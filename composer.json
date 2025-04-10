@@ -1,0 +1,34 @@
+{
+    "name": "haikiri/mikbill",
+    "description": "MikBiLL PHP SDK for working with clients.",
+    "keywords": [
+        "php",
+        "sdk",
+        "mikbill",
+        "api",
+        "users",
+        "billing",
+        "cabinet"
+    ],
+    "homepage": "https://github.com/MKC-MKC/mikbill",
+    "type": "library",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Haikiri\\MikBiLL\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "authors": [
+        {
+            "name": "Haikiri",
+            "email": "haikiri@ya.ru",
+            "homepage": "https://haikiri.t.me"
+        }
+    ]
+}

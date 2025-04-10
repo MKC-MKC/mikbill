@@ -41,17 +41,6 @@ $MikBiLL = new MikBiLLApi(
 );
 ```
 
-Или простой вариант без импорта класса:
-
-```php
-require "vendor/autoload.php";
-
-$MikBiLL = new Haikiri\MikBiLL\MikBiLLApi(
-    url: "https://api.example.com/", # Твой Api сервер.
-    key: "yourApiSignKey", # Твой Api ключ для подписи запросов.
-);
-```
-
 ### 2. Логирование
 
 Есть возможность записывать все json ответы в стандартный вывод error_log:
@@ -147,7 +136,7 @@ echo "<h2>[uid: {$user->getUserId()}] – {$user->getUserFirstName()} {$user->ge
 
 ### 8. Список доступных подписок
 
-Ты можешь увидеть список всех доступных подписок клиенту на данный момент используя массивы или готовые модели.
+Ты можешь увидеть список всех доступных подписок клиенту на данный момент.
 
 ```php
 echo "<h3>Доступные подписки из готовых моделей:</h3>";
@@ -157,19 +146,6 @@ foreach ($subs->getSubscriptions() as $sub) {
     echo "<hr><h2><code>[id:{$sub->getId()}] " . $sub->getName() . "</code></h2>";
     echo "<li>Цена: {$sub->getServicePrice()} {$sub->getCurrency()}.</li>";
     echo "<p>Описание: {$sub->getDescription()}</p>";
-}
-```
-
-Вот пример используя массивы данных:
-
-```php
-echo "<h3>Доступные подписки из массива:</h3>";
-
-$subs = $MikBiLL->cabinet->Subscriptions()->getSubscriptions();
-foreach ($subs->getAsArray() as $sub) {
-    echo "<hr><h2><code>[id:{$sub["id"]}] {$sub["name"]}</code></h2>";
-    echo "<li>Цена: {$sub["info"]["service_price"]} {$sub["info"]["currency"]}.</li>";
-    echo "<p>Описание: {$sub["info"]["description"]}</p>";
 }
 ```
 

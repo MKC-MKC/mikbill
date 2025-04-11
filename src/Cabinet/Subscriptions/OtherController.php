@@ -2,7 +2,7 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
 
-class OtherController implements OtherControllerInterface {
+class OtherController {
 	private		array|null				$data;
 	private		array|null				$items;
 

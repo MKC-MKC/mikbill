@@ -6,7 +6,7 @@ namespace Haikiri\MikBiLL\Billing;
 
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class UsersController implements UsersControllerInterface {
+class UsersController {
 	protected		MikBiLLApiInterface				$billInterface;
 
 	public function __construct(MikBiLLApiInterface $interface) {

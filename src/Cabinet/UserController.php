@@ -7,7 +7,7 @@ namespace Haikiri\MikBiLL\Cabinet;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 use Haikiri\MikBiLL\Exception\InvalidTokenException;
 
-class UserController implements UserControllerInterface {
+class UserController {
 	protected		MikBiLLApiInterface				$billInterface;
 
 	public function __construct(MikBiLLApiInterface $interface) {

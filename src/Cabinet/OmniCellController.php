@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet;
 
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class OmniCellController implements OmniCellControllerInterface {
+class OmniCellController {
 	protected		MikBiLLApiInterface				$billInterface;
 
 	public function __construct(MikBiLLApiInterface $interface) {

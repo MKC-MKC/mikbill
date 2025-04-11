@@ -2,7 +2,7 @@
 
 namespace Haikiri\MikBiLL\Cabinet\User;
 
-class UserModels implements UserModelsInterface {
+class UserModels {
 	use UserFeeModelsTrait;
 	use UserShowModelsTrait;
 	private		?array				$data;

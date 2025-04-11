@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet;
 
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class RegisterHotPostController implements RegisterHotPostControllerInterface {
+class RegisterHotPostController {
 	protected		MikBiLLApiInterface				$billInterface;
 
 	public function __construct(MikBiLLApiInterface $interface) {

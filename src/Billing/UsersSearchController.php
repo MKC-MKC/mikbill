@@ -6,7 +6,7 @@ namespace Haikiri\MikBiLL\Billing;
 
 use Haikiri\MikBiLL\Cabinet\User;
 
-class UsersSearchController implements UsersSearchControllerInterface {
+class UsersSearchController {
 	private		array|null				$data;
 	private		array|null				$items;
 

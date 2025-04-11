@@ -6,7 +6,7 @@ namespace Haikiri\MikBiLL\Cabinet;
 
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class AuthController implements AuthControllerInterface {
+class AuthController {
 	protected		MikBiLLApiInterface				$billInterface;
 
 	public function __construct(MikBiLLApiInterface $interface) {

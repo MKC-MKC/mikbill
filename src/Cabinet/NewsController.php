@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet;
 
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class NewsController implements NewsControllerInterface {
+class NewsController {
 	protected		MikBiLLApiInterface				$billInterface;
 
 	public function __construct(MikBiLLApiInterface $interface) {

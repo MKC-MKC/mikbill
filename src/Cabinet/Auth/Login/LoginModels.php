@@ -2,7 +2,7 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Auth\Login;
 
-class LoginModels implements LoginModelsInterface {
+class LoginModels {
 	private		?array				$data;
 
 	public function __construct(?array $data) {

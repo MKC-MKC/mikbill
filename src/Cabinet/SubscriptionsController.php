@@ -5,7 +5,7 @@ namespace Haikiri\MikBiLL\Cabinet;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 use Haikiri\MikBiLL\Exception\InvalidTokenException;
 
-class SubscriptionsController implements SubscriptionsControllerInterface {
+class SubscriptionsController {
 	protected		MikBiLLApiInterface				$billInterface;
 
 	public function __construct(MikBiLLApiInterface $interface) {

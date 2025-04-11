@@ -9,7 +9,7 @@ namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
  * Не стесняйтесь сообщать о проблемах и недочетах.
  * Актуальные данные в composer.json
  */
-class OtherModels implements OtherModelsInterface {
+class OtherModels {
 	private		array|null				$data;
 
 	public function __construct(?array $data = []) {

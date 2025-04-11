@@ -2,7 +2,7 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Auth\Phone;
 
-class PhoneOtpModels implements PhoneOtpModelsInterface {
+class PhoneOtpModels {
 	private		?array				$data;
 
 	public function __construct(?array $data) {

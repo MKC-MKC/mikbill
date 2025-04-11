@@ -42,7 +42,7 @@
 │  │  ├─ Credit
 │  │  └─ Change MAC
 │  ├─ Subscriptions (100%)
-│  │  └─ Other
+│  │  └─ Other (100%)
 │  ├─ Reports
 │  ├─ News
 │  └─ Omnicell

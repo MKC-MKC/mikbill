@@ -25,7 +25,7 @@ class MikBiLLApi extends MikBiLLApiAbstract {
 	 * @return array|null
 	 * @throws Exception\InvalidJsonException
 	 */
-	public function sendRequest(string $uri, string $method = "POST", array $params = [], bool $sign = false, ?string $token = null): ?array {
+	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): ?array {
 		$headers = [];
 
 		if ($sign) {

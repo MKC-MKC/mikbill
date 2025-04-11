@@ -22,15 +22,13 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface {
 	/**
 	 * Метод отправки запроса на сервер MikBiLL API.
 	 *
-	 * @param string $uri
-	 * @param string $method
-	 * @param array $params
-	 * @param bool $sign
-	 * @param string|null $token
-	 * @return array|null
-	 * @throws Exception\InvalidJsonException
+	 * @param $uri
+	 * @param $method
+	 * @param $params
+	 * @param $sign
+	 * @param $token
 	 */
-	abstract public function sendRequest(string $uri, string $method = "POST", array $params = [], bool $sign = false, ?string $token = null): ?array;
+	abstract public function sendRequest($uri, $method, $params, $sign, $token);
 
 	/**
 	 * Метод устанавливает токен пользователя.

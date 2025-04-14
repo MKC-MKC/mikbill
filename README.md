@@ -347,3 +347,68 @@ echo "<h3>Массив Middleware как-есть:</h3>";
 $wares = $MikBiLL->cabinet->Subscriptions()->getMiddlewares()->getAsIs();
 echo "<pre>" . print_r($wares, true) . "</pre>";
 ```
+
+### 10. Тикеты: Создание, отправка, чтение
+
+Клиент может увидеть все свои тикеты:
+
+```php
+echo "<h3>Тикеты клиента:</h3>";
+$tickets = $MikBiLL->cabinet->Tickets()->getTickets();
+foreach ($tickets->getMessages() as $ticket) {
+	$status = $ticket->isClosed() ? "📛[закрыто]" : "⏳ [открыто]";
+	echo "<hr><h2><small>$status</small> Обращение: <code>[id:{$ticket->getId()}]</code> | открыто " . ($ticket->getDate()?->format("d.m.Y в H:i:s") ?? "") . "</h2>";
+	echo "<p>Последнее сообщение:</p><code>{$ticket->getMessage()}</code>";
+}
+//echo "<pre>" . print_r($tickets->getAsArray(), true) . "</pre>";
+```
+
+Клиент может создать новый тикет:
+
+```php
+$text = "Это сообщение с которым будет создан тикет.";
+$ticket = $MikBiLL->cabinet->Tickets()->newTicket($text);
+
+echo $ticket->getId()
+	? "<hr><h2><code>Зарегистрировано новое обращение [id:{$ticket->getId()}]</code></h2>"
+	: "<hr><h2><code>Не удалось зарегистрировать обращение.</code></h2>";
+
+//echo "<pre>" . print_r($ticket->getData(), true) . "</pre>";
+```
+
+Клиент может отправлять сообщения в тикет:
+
+```php
+$id = 3; # ID тикета.
+$text = "Это сообщение будет дополнено в тикет.";
+$sentStatus = $MikBiLL->cabinet->Tickets()->sendMessage(ticketId: $id, message: $text);
+echo $sentStatus
+	? "<hr><h2><code>Сообщение отправлено.</code></h2>"
+	: "<hr><h2><code>Не удалось отправить сообщение.</code></h2>";
+```
+
+Клиент может видеть переписку в выбранном тикете:
+
+```php
+$id = 3; # ID тикета.
+$tickets = $MikBiLL->cabinet->Tickets()->getTicketsDialog(ticketId: $id);
+foreach ($tickets->getMessages() as $ticket) {
+	$type = $ticket->isMessageFromClient() ? "клиент" : "оператор";
+
+	$name = $ticket->isMessageFromClient()
+		? trim("{$ticket->getUserFirstName()} {$ticket->getUserMiddleName()}") # Обращаемся к клиенту по Имени и Отчеству.
+		: $ticket->getOperatorLogin();
+
+	echo "<hr><p>[Сообщение №{$ticket->getMessageId()}] написал $type <b>$name</b></p>";
+	echo "<p>Сообщение:</p><code>{$ticket->getMessageTest()}</code>";
+}
+```
+
+Для большей гибкости, ты можешь посмотреть массив сообщений выбранного тикета:
+
+```php
+echo "<h3>Сообщения в тикете:</h3>";
+$id = 3; # ID тикета.
+$ticket = $MikBiLL->cabinet->Tickets()->getTicketsDialog(ticketId: $id);
+echo "<pre>" . print_r($ticket->getAsArray(), true) . "</pre>";
+```

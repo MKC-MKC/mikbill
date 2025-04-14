@@ -6,8 +6,8 @@ MikBiLL PHP SDK для работы с клиентами. Получение т
 
 - [Исходники этого проекта](https://github.com/MKC-MKC/mikbill)
 - [Подробности и состояние этого проекта](https://github.com/MKC-MKC/mikbill/blob/main/info.md)
-- [API Личного кабинета](https://wiki.mikbill.pro/billing/external/api_cabinet)
 - [Примеры использования API в Postman](https://documenter.getpostman.com/view/5969645/TVCfXTtK)
+- [Установка и настройка API сервера](https://wiki.mikbill.pro/billing/external/api_cabinet)
 
 ---
 

@@ -33,7 +33,7 @@ composer require haikiri/mikbill
 │  ├─ Auth (100%)
 │  │  ├─ Login (100%)
 │  │  └─ Phone (100%)
-│  ├─ Tickets
+│  ├─ Tickets (100%)
 │  ├─ Common
 │  ├─ Packet
 │  ├─ User (>=50%)

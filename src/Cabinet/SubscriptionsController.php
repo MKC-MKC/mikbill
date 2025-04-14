@@ -52,4 +52,21 @@ class SubscriptionsController {
 		return isset($response["success"]) && $response["success"] == 1;
 	}
 
+	/**
+	 * Метод возвращает список всех Middleware.
+	 *
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#43ddf0d2-722b-4c1d-b7b6-050c5452dccb
+	 * @return Subscriptions\Middleware
+	 * @throws InvalidTokenException
+	 */
+	public function getMiddlewares(): Subscriptions\Middleware {
+		if (empty($this->billInterface->getUserToken())) throw new InvalidTokenException("The token was not found: The storage with token is empty.");
+		$response = $this->billInterface->sendRequest(
+			uri:		"/api/v1/cabinet/user/subscriptions/middlewares",
+			method:		"GET",
+			token:		$this->billInterface->getUserToken(),
+		);
+		return new Subscriptions\Middleware($response["data"] ?? []);
+	}
+
 }

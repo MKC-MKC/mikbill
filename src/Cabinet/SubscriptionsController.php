@@ -13,20 +13,20 @@ class SubscriptionsController {
 	}
 
 	/**
-	 * Метод возвращает доступные подписки на данный момент абоненту.
+	 * Метод возвращает модель доступных подписок на данный момент абоненту к выбранному сервису.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#aa0c7b39-2525-44a7-a1f6-d8aa7f9b8677
-	 * @return Subscriptions\OtherController
+	 * @return Subscriptions\Subscription
 	 * @throws InvalidTokenException
 	 */
-	public function getSubscriptions(): Subscriptions\OtherController {
+	public function getSubscriptions(): Subscriptions\Subscription {
 		if (empty($this->billInterface->getUserToken())) throw new InvalidTokenException("The token was not found: The storage with token is empty.");
 		$response = $this->billInterface->sendRequest(
 			uri:		"/api/v1/cabinet/user/subscriptions/other",
 			method:		"GET",
 			token:		$this->billInterface->getUserToken(),
 		);
-		return new Subscriptions\OtherController($response["data"] ?? []);
+		return new Subscriptions\Subscription($response["data"] ?? []);
 	}
 
 	/**

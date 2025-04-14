@@ -2,13 +2,13 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
 
-class OtherController {
+class Subscription {
 	private		array|null				$data;
 	private		array|null				$items;
 
 	public function __construct(?array $data = []) {
 		$this->data = $data;
-		$this->items = array_map(fn($i) => new OtherModels($i), $data);
+		$this->items = array_map(fn($i) => new SubscriptionModel($i), $data);
 	}
 
 	/**
@@ -24,10 +24,21 @@ class OtherController {
 	/**
 	 * Метод возвращает модели всех доступных подписок для клиента.
 	 *
-	 * @return OtherModels[]
+	 * @return SubscriptionModel[]
+	 */
+	public function getSubscription(): array {
+		return $this->items;
+	}
+
+	/**
+	 * TODO: Временный Fallback метод из-за изначально-нелогичного названия метода.
+	 *
+	 * @use self::getSubscription
+	 * @deprecated Используй метод getSubscription();
+	 * @return SubscriptionModel[]
 	 */
 	public function getSubscriptions(): array {
-		return $this->items;
+		return $this->getSubscription();
 	}
 
 }

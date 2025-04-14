@@ -72,9 +72,28 @@ $MikBiLL->proxy_type = CURLPROXY_SOCKS4;
 
 ### 4. Пример получения токена
 
+> [!IMPORTANT]
+> Обрати внимание, что:
+> Для работы с клиентом через `$this->cabinet` сначала необходимо получить и записать токен клиента через setUserToken.
+> Для работы с админ запросами через `$MikBiLL->billing` нужен ключ для подписи billing запросов (см. ШАГ 1).
+
+Пример получения токена клиента по его UID:
+
 ```php
 $billing_uid = 13; # UID клиента в MikBiLL.
 $token = $MikBiLL->billing->Users()->getUserToken(uid: $billing_uid);
+```
+
+Пример получения токена по логину и паролю:
+
+```php
+$token = $MikBiLL->cabinet->Auth()
+	->login("userLogin", "userPassword")
+	->getToken();
+
+echo $token
+	? "Успешно авторизовались."
+	: "Не удалось авторизоваться.";
 ```
 
 ### 5. Хранение и использование токена
@@ -181,21 +200,16 @@ echo $status
 	: "Не удалось отписаться от подписки №$id.";
 ```
 
-### 11. Авторизация по логину и паролю
-
-Клиента можно авторизовать по логину и паролю: получить токен при успешной авторизации.
+Пример как отписать клиента от услуги:
 
 ```php
-$token = $MikBiLL->cabinet->Auth()
-	->login("userLogin", "userPassword")
-	->getToken();
+$id = 123; # ID услуги в MikBiLL.
+$service = "wink"; # Название сервиса.
+$status = $MikBiLL->cabinet->Subscriptions()->setSubscription(id: $id, service: $service);
 
-echo $token
-	? "Успешно авторизовались."
-	: "Не удалось авторизоваться.";
-
-#   Обязательно запоминаем полученный токен для последующих запросов.
-$MikBiLL->setUserToken($token);
+echo $status
+	? "Успешно отписались от подписки №$id сервиса $service."
+	: "Не удалось отписаться от подписки №$id сервиса $service.";
 ```
 
 ---

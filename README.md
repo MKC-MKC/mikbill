@@ -162,42 +162,37 @@ echo "<h2>[uid: {$user->getUserId()}] – {$user->getUserFirstName()} {$user->ge
 
 ```php
 echo "<h3>Доступные подписки клиенту:</h3>";
+$service = "other"; # Название сервиса. Используйте "other" чтобы получить все доступные пользовательские подписки.
 
-$subs = $MikBiLL->cabinet->Subscriptions()->getSubscriptions();
-foreach ($subs->getSubscriptions() as $sub) {
+$subs = $MikBiLL->cabinet->Subscriptions()->getSubscriptions(service: $service);
+foreach ($subs->getSubscription() as $sub) {
     echo "<hr><h2><code>[id:{$sub->getId()}] " . $sub->getName() . "</code></h2>";
     echo "<li>Цена: {$sub->getServicePrice()} {$sub->getCurrency()}.</li>";
     echo "<p>Описание: {$sub->getDescription()}</p>";
 }
 ```
 
-### 9. Подписка на услугу
+### 9. Управление подписками на услуги
 
-Можно подписать клиента на услугу по её идентификатору.
+Можно подписать клиента на услугу по её идентификатору и названию сервиса.
 
 - `1` - активировать услугу
 - `0` - отключить услугу. (можно оставить пустым для отключения)
 
-```php
-$id = 101; # ID услуги в MikBiLL.
-$status = $MikBiLL->cabinet->Subscriptions()->setSubscriptions(id: $id, activate: 1);
+В аргументе service: необходимо указывать название услуги.
+Актуальный список сервисов можно узнать в официальном MikBiLL API:
+[Ссылка на документацию](https://documenter.getpostman.com/view/5969645/TVCfXTtK#aa0c7b39-2525-44a7-a1f6-d8aa7f9b8677)
 
-echo $status
-	? "Успешно оформили подписку №$id."
-	: "Не удалось оформить подписку №$id.";
-```
-
-### 10. Отписка от услуги
-
-Пример как отписать клиента от услуги.
+Пример как подписать клиента на услугу:
 
 ```php
-$id = 101; # ID услуги в MikBiLL.
-$status = $MikBiLL->cabinet->Subscriptions()->setSubscriptions(id: $id);
+$id = 123; # ID услуги в MikBiLL.
+$service = "wink"; # Название сервиса.
+$status = $MikBiLL->cabinet->Subscriptions()->setSubscription(id: $id, activate: 1, service: $service);
 
 echo $status
-	? "Успешно отписались от подписки №$id."
-	: "Не удалось отписаться от подписки №$id.";
+	? "Успешно оформили подписку №$id сервиса $service."
+	: "Не удалось оформить подписку №$id сервиса $service.";
 ```
 
 Пример как отписать клиента от услуги:

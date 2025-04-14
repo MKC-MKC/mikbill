@@ -23,9 +23,9 @@
 ├─ Billing API
 │  └─ Users (100%)
 ├─ Cabinet API
-│  ├─ Auth (99%)
+│  ├─ Auth (100%)
 │  │  ├─ Login (100%)
-│  │  └─ Phone (99% - требуется реальная проверка)
+│  │  └─ Phone (100% - требуется реальная проверка)
 │  ├─ Tickets
 │  ├─ Common
 │  ├─ Packet
@@ -42,7 +42,6 @@
 │  │  ├─ Credit
 │  │  └─ Change MAC
 │  ├─ Subscriptions (100%)
-│  │  └─ Other (100%)
 │  ├─ Reports
 │  ├─ News
 │  └─ Omnicell

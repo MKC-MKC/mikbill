@@ -324,9 +324,9 @@ echo $status
 
 ```php
 echo "<h3>Доступные Middleware как модель:</h3>";
-$subs = $MikBiLL->cabinet->Subscriptions()->getMiddlewares();
-foreach ($subs->getMiddleware() as $sub) {
-	echo "<hr><h2><code>[id:{$sub->getId()}] " . $sub->getName() . "</code></h2>";
+$wares = $MikBiLL->cabinet->Subscriptions()->getMiddlewares();
+foreach ($wares->getMiddleware() as $ware) {
+	echo "<hr><h2><code>[id:{$ware->getId()}] " . $ware->getName() . "</code></h2>";
 }
 ```
 
@@ -335,8 +335,8 @@ foreach ($subs->getMiddleware() as $sub) {
 ```php
 echo "<h3>Доступные Middleware как массив:</h3>";
 $subs = $MikBiLL->cabinet->Subscriptions()->getMiddlewares();
-foreach ($subs->getAsArray() as $sub) {
-	echo "<hr><h2><code>[id:{$sub["id"]}}] " . $sub["name"] . "</code></h2>";
+foreach ($wares->getAsArray() as $ware) {
+	echo "<hr><h2><code>[id:{$ware["id"]}}] " . $ware["name"] . "</code></h2>";
 }
 ```
 
@@ -344,6 +344,6 @@ foreach ($subs->getAsArray() as $sub) {
 
 ```php
 echo "<h3>Массив Middleware как-есть:</h3>";
-$subs = $MikBiLL->cabinet->Subscriptions()->getMiddlewares()->getAsIs();
-echo "<pre>" . print_r($subs, true) . "</pre>";
+$wares = $MikBiLL->cabinet->Subscriptions()->getMiddlewares()->getAsIs();
+echo "<pre>" . print_r($wares, true) . "</pre>";
 ```

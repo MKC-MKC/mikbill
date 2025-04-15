@@ -33,8 +33,6 @@ composer require haikiri/mikbill
 │  └─ Users (100%)
 ├─ Cabinet API
 │  ├─ Auth (100%)
-│  │  ├─ Login (100%)
-│  │  └─ Phone (100%)
 │  ├─ Tickets (100%)
 │  ├─ Common (100%)
 │  ├─ Packet (100%)

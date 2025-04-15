@@ -13,52 +13,52 @@ class Cabinet implements CabinetInterface {
 		$this->billInterface = $interface;
 	}
 
-	public function Auth(): MikBiLLCabinet\AuthController {
+	public function Auth(): object {
 		return new MikBiLLCabinet\AuthController(interface: $this->billInterface);
 	}
 
-	public function Tickets(): MikBiLLCabinet\TicketsController {
+	public function Tickets(): object {
 		return new MikBiLLCabinet\TicketsController(interface: $this->billInterface);
 	}
 
-	public function Common(): MikBiLLCabinet\CommonController {
+	public function Common(): object {
 		return new MikBiLLCabinet\CommonController(interface: $this->billInterface);
 	}
 
-	public function Packet(): MikBiLLCabinet\PacketController {
+	public function Packet(): object {
 		return new MikBiLLCabinet\PacketController(interface: $this->billInterface);
 	}
 
-	public function User(): MikBiLLCabinet\UserController {
+	public function User(): object {
 		return new MikBiLLCabinet\UserController(interface: $this->billInterface);
 	}
 
-	public function RegisterHotPost(): MikBiLLCabinet\RegisterHotPostController {
+	public function RegisterHotPost(): object {
 		return new MikBiLLCabinet\RegisterHotPostController(interface: $this->billInterface);
 	}
 
-	public function Payments(): MikBiLLCabinet\PaymentsController {
+	public function Payments(): object {
 		return new MikBiLLCabinet\PaymentsController(interface: $this->billInterface);
 	}
 
-	public function Services(): MikBiLLCabinet\ServicesController {
+	public function Services(): object {
 		return new MikBiLLCabinet\ServicesController(interface: $this->billInterface);
 	}
 
-	public function Subscriptions(): MikBiLLCabinet\SubscriptionsController {
+	public function Subscriptions(): object {
 		return new MikBiLLCabinet\SubscriptionsController(interface: $this->billInterface);
 	}
 
-	public function Reports(): MikBiLLCabinet\ReportsController {
+	public function Devices(): object {
+		return new MikBiLLCabinet\DevicesController(interface: $this->billInterface);
+	}
+
+	public function Reports(): object {
 		return new MikBiLLCabinet\ReportsController(interface: $this->billInterface);
 	}
 
-	public function News(): MikBiLLCabinet\NewsController {
+	public function News(): object {
 		return new MikBiLLCabinet\NewsController(interface: $this->billInterface);
-	}
-
-	public function OmniCell(): MikBiLLCabinet\OmniCellController {
-		return new MikBiLLCabinet\OmniCellController(interface: $this->billInterface);
 	}
 
 }

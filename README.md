@@ -34,7 +34,7 @@ composer require haikiri/mikbill
 │  │  ├─ Login (100%)
 │  │  └─ Phone (100%)
 │  ├─ Tickets (100%)
-│  ├─ Common
+│  ├─ Common (100%)
 │  ├─ Packet
 │  ├─ User (>=50%)
 │  │  └─ Contacts (0%)
@@ -428,3 +428,83 @@ echo "<h3>Массив сообщений тикета #$id:</h3>";
 $ticket = $MikBiLL->cabinet->Tickets()->getTicketsDialog(ticketId: $id);
 echo "<pre>" . print_r($ticket->getAsArray(), true) . "</pre>";
 ```
+
+## 11. Common
+
+Ты можешь получить IP адрес клиента:
+
+```php
+$getIp = $MikBiLL->cabinet->Common()->getIp();
+echo "<h3>Получаем: IP клиента</h3>";
+echo "<ul>";
+echo "<li>IP из модели: <code>{$getIp->getIp()}</code></li>";
+echo "<li>IP из массива: <code>" . $getIp->getArray()["ip"] . "</code></li>";
+echo "</ul>";
+//echo "<pre>" . print_r($getIp->getArray(), true) . "</pre>";
+```
+
+Ты можешь получить время сервера:
+
+```php
+$getDate = $MikBiLL->cabinet->Common()->getDate();
+echo "<h3>Получаем: Дата и Время</h3>";
+echo "<ul>";
+echo "<li>Управляемая дата и время: <code>" . $getDate->getDateTime()->format("d.m.Y H:i:s") . "</code></li>";
+echo "<li>Дата из массива: <code>" . $getDate->getArray()["format"] . "</code></li>";
+echo "<li>Time Stamp: <code>" . $getDate->getTimeStamp() . "</code></li>";
+echo "</ul>";
+//echo "<pre>" . print_r($getDate->getArray(), true) . "</pre>";
+```
+
+Ты можешь узнать версию MikBiLL:
+
+```php
+$getVersion = $MikBiLL->cabinet->Common()->getVersion();
+echo "<h3>Получаем: Версия MikBiLL</h3>";
+echo "<ul>";
+echo "<li>Версия: <code>$getVersion</code></li>";
+echo "</ul>";
+```
+
+Ты можешь получить меню:
+
+```php
+$getMenu = $MikBiLL->cabinet->Common()->getMenu();
+echo "<h3>Получаем: Меню</h3>";
+echo "<ul>";
+foreach ($getMenu->getMenus() as $menu) {
+	echo "<li><a id='{$menu->getId()}' href='{$menu->getUri()}' class='{$menu->getIcon()}'>{$menu->getName()}</a></li>";
+}
+echo "</ul>";
+//echo "<pre>" . print_r($getMenu->getAsArray(), true) . "</pre>";
+```
+
+Ты можешь получить данные организации:
+
+```php
+$getContact = $MikBiLL->cabinet->Common()->getContact();
+echo "<h3>Получаем: Контактные данные организации</h3>";
+echo "<ul>";
+echo "<li>Компания: <code>{$getContact->getName()}</code></li>";
+echo "<li>Адрес: <code>{$getContact->getAddress()}</code></li>";
+echo "<li>Сайт: <code>{$getContact->getSite()}</code></li>";
+echo $getContact->getEmail() ? "<li>Email: <code>{$getContact->getEmail()}</code></li>" : "";
+echo $getContact->getPhoneName1() ? "<li>{$getContact->getPhoneName1()}: <code>{$getContact->getPhoneNumber1()}</code></li>" : "";
+echo $getContact->getPhoneName2() ? "<li>{$getContact->getPhoneName2()}: <code>{$getContact->getPhoneNumber2()}</code></li>" : "";
+echo $getContact->getPhoneName3() ? "<li>{$getContact->getPhoneName3()}: <code>{$getContact->getPhoneNumber3()}</code></li>" : "";
+echo "<li>Показать карту: <code>" . ($getContact->isShowMap() ? "Да" : "Нет") . "</code></li>";
+echo "</ul>";
+//echo "<pre>" . print_r($getContact->getArray(), true) . "</pre>";
+```
+
+Ты можешь получить некую конфигурацию:
+
+> Метод не реализован полностью, и возможно, вряд ли появится желание делать эту модель.
+> Используйте getAsArray() для ручной работы с массивами.
+
+```php
+$getConfig = $MikBiLL->cabinet->Common()->getConfig();
+echo "<h3>Получаем: Конфигурацию (массив)</h3>";
+echo "<pre>" . print_r($getConfig->getAsArray(), true) . "</pre>";
+```
+

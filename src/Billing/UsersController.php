@@ -21,9 +21,9 @@ class UsersController {
 	 * $this->searchUser(key: "local_ip", value: "10.0.0.2", operator: "="); # Это найдёт всех пользователей с local_ip равным 10.0.0.2.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#f0e8660b-bc5b-42d9-99ad-a53c866b844e
-	 * @param string $key         - Возможные ключи: ['user', 'uid', 'state', 'gid', 'deposit', 'credit', и.т.д...]
-	 * @param string $value       - Значение по которому будет производиться поиск.
-	 * @param string $operator    - Возможные операторы: ['<', '=', '>', '>=', '!='] или ['меньше', 'равно', 'больше', 'больше или равно', 'не равно'].
+	 * @param string $key - Возможные ключи: ['user', 'uid', 'state', 'gid', 'deposit', 'credit', и.т.д...]
+	 * @param string $value - Значение по которому будет производиться поиск.
+	 * @param string $operator - Возможные операторы: ['<', '=', '>', '>=', '!='] или ['меньше', 'равно', 'больше', 'больше или равно', 'не равно'].
 	 * @return UsersSearchController
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */

@@ -10,6 +10,6 @@ class LoginModels {
 	}
 
 	public function getToken() : ?string {
-		return (string)$this->data["token"] ?? null;
+		return (string)$this->data["token"] ?? "";
 	}
 }

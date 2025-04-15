@@ -354,7 +354,7 @@ foreach ($wares->getMiddleware() as $ware) {
 
 ```php
 echo "<h3>Доступные Middleware как массив:</h3>";
-$subs = $MikBiLL->cabinet->Subscriptions()->getMiddlewares();
+$wares = $MikBiLL->cabinet->Subscriptions()->getMiddlewares();
 foreach ($wares->getAsArray() as $ware) {
 	echo "<hr><h2><code>[id:{$ware["id"]}}] " . $ware["name"] . "</code></h2>";
 }

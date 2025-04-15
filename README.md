@@ -54,7 +54,7 @@ composer require haikiri/mikbill
 │  ├─ Subscriptions (100%)
 │  ├─ Devices [LP]
 │  ├─ Reports
-│  └─ News
+│  └─ News (100%)
 ```
 
 Эта SDK библиотека будет наполняться по мере необходимости, возможностей и откликов.
@@ -509,5 +509,21 @@ echo "</ul>";
 $getConfig = $MikBiLL->cabinet->Common()->getConfig();
 echo "<h3>Получаем: Конфигурацию (массив)</h3>";
 echo "<pre>" . print_r($getConfig->getAsArray(), true) . "</pre>";
+```
+
+## 12. Новости
+
+Клиент может увидеть (персональные) новости
+
+```php
+$getNews = $MikBiLL->cabinet->News()->getNews();
+echo "<h3>Получаем: Новости</h3>";
+foreach ($getNews->getAllNews() as $news) {
+	echo "<hr><ul>";
+	echo "<li>ID: <code>{$news->getId()}</code></li>";
+	echo "<li>Тема: <code>{$news->getSubject()}</code></li>";
+	echo "<li>Новость:<br><textarea maxlength=\"50\">{$news->getText()}</textarea></li>";
+	echo "</ul>";
+}
 ```
 

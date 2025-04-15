@@ -20,7 +20,7 @@ class TicketMessenger {
 	}
 
 	/**
-	 * Метод возвращает в результате модель сообщений.
+	 * Метод возвращает результат как модель.
 	 * @return TicketMessengerModel[]
 	 */
 	public function getMessages(): array {

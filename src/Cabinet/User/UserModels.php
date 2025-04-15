@@ -17,7 +17,7 @@ class UserModels {
 	 *
 	 * @return array|null
 	 */
-	public function getAsArray(): ?array {
+	public function getData(): ?array {
 		return $this->data;
 	}
 
@@ -27,7 +27,7 @@ class UserModels {
 	 * @return int
 	 */
 	public function getUserId(): int {
-		return (int)$this->data["uid"] ?? 0;
+		return (int)$this->getData()["uid"] ?? 0;
 	}
 
 	/**
@@ -37,7 +37,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserId_(): int {
-		return (int)$this->data["useruid"] ?? 0;
+		return (int)$this->getData()["useruid"] ?? 0;
 	}
 
 	/**
@@ -47,7 +47,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserDeletedId(): ?int {
-		return (int)$this->data["delid"] ?? null;
+		return (int)$this->getData()["delid"] ?? null;
 	}
 
 	/**
@@ -56,7 +56,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserLogin(): string {
-		return (string)$this->data["user"] ?? "";
+		return (string)$this->getData()["user"] ?? "";
 	}
 
 	/**
@@ -65,7 +65,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserPassword(): string {
-		return (string)$this->data["password"] ?? "";
+		return (string)$this->getData()["password"] ?? "";
 	}
 
 	/**
@@ -75,7 +75,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserDogovor(): int {
-		return (int)$this->data["numdogovor"] ?? 0;
+		return (int)$this->getData()["numdogovor"] ?? 0;
 	}
 
 	/**
@@ -84,7 +84,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserNotes(): string {
-		return (string)$this->data["prim"] ?? "";
+		return (string)$this->getData()["prim"] ?? "";
 	}
 
 	/**
@@ -93,7 +93,7 @@ class UserModels {
 	 * @return string # float -> string
 	 */
 	public function getUserDeposit(): string {
-		return (string)$this->data["deposit"] ?? "";
+		return (string)$this->getData()["deposit"] ?? "";
 	}
 
 	/**
@@ -102,7 +102,7 @@ class UserModels {
 	 * @return int
 	 */
 	public function getUserState(): int {
-		return (int)$this->data["state"] ?? 0;
+		return (int)$this->getData()["state"] ?? 0;
 	}
 
 	/**
@@ -111,7 +111,7 @@ class UserModels {
 	 * @return bool
 	 */
 	public function isUserBlocked(): bool {
-		return (bool)$this->data["blocked"] ?? false;
+		return (bool)$this->getData()["blocked"] ?? false;
 	}
 
 	/**
@@ -120,7 +120,7 @@ class UserModels {
 	 * @return bool
 	 */
 	public function isUserActivated(): bool {
-		return (bool)$this->data["activated"] ?? false;
+		return (bool)$this->getData()["activated"] ?? false;
 	}
 
 	/**
@@ -129,7 +129,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserFIO(): string {
-		return (string)$this->data["fio"];
+		return (string)$this->getData()["fio"];
 	}
 
 	/**
@@ -168,7 +168,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserBirthday(): string {
-		return (string)$this->data["date_birth"] ?? "";
+		return (string)$this->getData()["date_birth"] ?? "";
 	}
 
 	/**
@@ -177,7 +177,7 @@ class UserModels {
 	 * @return bool
 	 */
 	public function getUserBirthdayDo(): bool {
-		return (bool)$this->data["date_birth_do"] ?? false;
+		return (bool)$this->getData()["date_birth_do"] ?? false;
 	}
 
 	/**
@@ -186,7 +186,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserSpeedRate(): string {
-		return (string)$this->data["speed_rate"] ?? "";
+		return (string)$this->getData()["speed_rate"] ?? "";
 	}
 
 	/**
@@ -195,7 +195,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserSpeedBurst(): string {
-		return (string)$this->data["speed_burst"] ?? "";
+		return (string)$this->getData()["speed_burst"] ?? "";
 	}
 
 	/**
@@ -204,7 +204,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserEmail(): string {
-		return (string)$this->data["email"] ?? "";
+		return (string)$this->getData()["email"] ?? "";
 	}
 
 	/**
@@ -213,7 +213,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserPhone(): string {
-		return (string)$this->data["phone"] ?? "";
+		return (string)$this->getData()["phone"] ?? "";
 	}
 
 	/**
@@ -222,7 +222,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserPhoneSms(): string {
-		return (string)$this->data["sms_tel"] ?? "";
+		return (string)$this->getData()["sms_tel"] ?? "";
 	}
 
 	/**
@@ -231,7 +231,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserPhoneMobile(): string {
-		return (string)$this->data["mob_tel"] ?? "";
+		return (string)$this->getData()["mob_tel"] ?? "";
 	}
 
 	/**
@@ -240,7 +240,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserCurrency(): string {
-		return (string)$this->data["UE"] ?? "";
+		return (string)$this->getData()["UE"] ?? "";
 	}
 
 	/**
@@ -249,7 +249,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserTariffName(): string {
-		return (string)$this->data["packet_name"] ?? "";
+		return (string)$this->getData()["packet_name"] ?? "";
 	}
 
 	/**
@@ -258,7 +258,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserTariffSpeedIn(): string {
-		return (string)$this->data["speed_in"] ?? "";
+		return (string)$this->getData()["speed_in"] ?? "";
 	}
 
 	/**
@@ -267,7 +267,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserTariffSpeedOut(): string {
-		return (string)$this->data["speed_out"] ?? "";
+		return (string)$this->getData()["speed_out"] ?? "";
 	}
 
 	/**
@@ -277,7 +277,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserTariffFixedCost(): float {
-		return (float)$this->data["tarif_fixed_cost"] ?? 0.0;
+		return (float)$this->getData()["tarif_fixed_cost"] ?? 0.0;
 	}
 
 	/**
@@ -286,7 +286,7 @@ class UserModels {
 	 * @return float
 	 */
 	public function getUserFixedCost2(): float {
-		return (float)$this->data["fixed_cost2"] ?? 0.0;
+		return (float)$this->getData()["fixed_cost2"] ?? 0.0;
 	}
 
 	/**
@@ -296,7 +296,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserCharge(): int {
-		return (int)$this->data["abonplata"] ?? 0;
+		return (int)$this->getData()["abonplata"] ?? 0;
 	}
 
 	/**
@@ -305,7 +305,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserAddDate(): string {
-		return (string)$this->data["add_date"] ?? "";
+		return (string)$this->getData()["add_date"] ?? "";
 	}
 
 	/**
@@ -314,7 +314,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserDelDate(): string {
-		return (string)$this->data["del_date"] ?? "";
+		return (string)$this->getData()["del_date"] ?? "";
 	}
 
 	/**
@@ -323,7 +323,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserLastConnectionDate(): string {
-		return (string)$this->data["last_connection"] ?? "";
+		return (string)$this->getData()["last_connection"] ?? "";
 	}
 
 	/**
@@ -332,7 +332,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserInn(): string {
-		return (string)$this->data["inn"] ?? "";
+		return (string)$this->getData()["inn"] ?? "";
 	}
 
 	/**
@@ -342,7 +342,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserPassportSeries(): string {
-		return (string)$this->data["passportserie"] ?? "";
+		return (string)$this->getData()["passportserie"] ?? "";
 	}
 
 	/**
@@ -352,7 +352,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserPassportRegistration(): string {
-		return (string)$this->data["passportpropiska"] ?? "";
+		return (string)$this->getData()["passportpropiska"] ?? "";
 	}
 
 	/**
@@ -362,7 +362,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserPassportVoenkomat(): string {
-		return (string)$this->data["passportvoenkomat"] ?? "";
+		return (string)$this->getData()["passportvoenkomat"] ?? "";
 	}
 
 	/**
@@ -372,7 +372,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserSwitchPort(): int {
-		return (int)$this->data["switchport"] ?? 0;
+		return (int)$this->getData()["switchport"] ?? 0;
 	}
 
 	/**
@@ -382,7 +382,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserSector(): string {
-		return (string)$this->data["sectorid"] ?? "";
+		return (string)$this->getData()["sectorid"] ?? "";
 	}
 
 	/**
@@ -391,7 +391,7 @@ class UserModels {
 	 * @return bool
 	 */
 	public function isUserUseRouter(): bool {
-		return (bool)$this->data["use_router"] ?? false;
+		return (bool)$this->getData()["use_router"] ?? false;
 	}
 
 	/**
@@ -400,7 +400,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserRouterModel(): string {
-		return (string)$this->data["router_model"] ?? "";
+		return (string)$this->getData()["router_model"] ?? "";
 	}
 
 	/**
@@ -409,7 +409,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserRouterSsid(): string {
-		return (string)$this->data["router_ssid"] ?? "";
+		return (string)$this->getData()["router_ssid"] ?? "";
 	}
 
 	/**
@@ -418,7 +418,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserRouterLogin(): string {
-		return (string)$this->data["router_login"] ?? "";
+		return (string)$this->getData()["router_login"] ?? "";
 	}
 
 	/**
@@ -427,7 +427,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserRouterPassword(): string {
-		return (string)$this->data["router_pass"] ?? "";
+		return (string)$this->getData()["router_pass"] ?? "";
 	}
 
 	/**
@@ -436,7 +436,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserRouterAddDate(): string {
-		return (string)$this->data["router_add_date"] ?? "";
+		return (string)$this->getData()["router_add_date"] ?? "";
 	}
 
 	/**
@@ -445,7 +445,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserRouterPort(): string {
-		return (string)$this->data["router_port"] ?? "";
+		return (string)$this->getData()["router_port"] ?? "";
 	}
 
 	/**
@@ -454,7 +454,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserRouterSerialNumber(): string {
-		return (string)$this->data["router_serial"] ?? "";
+		return (string)$this->getData()["router_serial"] ?? "";
 	}
 
 	/**
@@ -464,7 +464,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function isUserRouterAcquiredFromUs(): bool {
-		return (bool)$this->data["router_we_saled"] ?? false;
+		return (bool)$this->getData()["router_we_saled"] ?? false;
 	}
 
 	/**
@@ -473,7 +473,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserTurboTime(): string {
-		return (string)$this->data["turbo_time"] ?? "";
+		return (string)$this->getData()["turbo_time"] ?? "";
 	}
 
 	/**
@@ -482,7 +482,7 @@ class UserModels {
 	 * @return bool
 	 */
 	public function isUserTurboActivated(): bool {
-		return (bool)$this->data["turbo_active"] ?? false;
+		return (bool)$this->getData()["turbo_active"] ?? false;
 	}
 
 	/**
@@ -491,7 +491,7 @@ class UserModels {
 	 * @return bool
 	 */
 	public function isUserTurboDo(): bool {
-		return (bool)$this->data["do_turbo"] ?? false;
+		return (bool)$this->getData()["do_turbo"] ?? false;
 	}
 
 	/**
@@ -500,7 +500,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserCredit(): string {
-		return (string)$this->data["credit"] ?? "";
+		return (string)$this->getData()["credit"] ?? "";
 	}
 
 	/**
@@ -509,7 +509,7 @@ class UserModels {
 	 * @return float
 	 */
 	public function getUserCreditCost(): float {
-		return (float)$this->data["credit_active_cena"] ?? 0.0;
+		return (float)$this->getData()["credit_active_cena"] ?? 0.0;
 	}
 
 	/**
@@ -519,7 +519,7 @@ class UserModels {
 	 * @noinspection SpellCheckingInspection
 	 */
 	public function getUserCreditPercent(): string {
-		return (string)$this->data["credit_procent"] ?? "";
+		return (string)$this->getData()["credit_procent"] ?? "";
 	}
 
 	/**
@@ -528,7 +528,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserCreditUnlimited(): string {
-		return (string)$this->data["credit_unlimited"] ?? "";
+		return (string)$this->getData()["credit_unlimited"] ?? "";
 	}
 
 	/**
@@ -537,7 +537,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserRating(): string {
-		return (string)$this->data["rating"] ?? "";
+		return (string)$this->getData()["rating"] ?? "";
 	}
 
 	/**
@@ -546,7 +546,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserFramedIp(): string {
-		return (string)$this->data["framed_ip"] ?? "";
+		return (string)$this->getData()["framed_ip"] ?? "";
 	}
 
 	/**
@@ -555,7 +555,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserFramedMask(): string {
-		return (string)$this->data["framed_mask"] ?? "";
+		return (string)$this->getData()["framed_mask"] ?? "";
 	}
 
 	/**
@@ -564,7 +564,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserLocalIp(): string {
-		return (string)$this->data["local_ip"] ?? "";
+		return (string)$this->getData()["local_ip"] ?? "";
 	}
 
 	/**
@@ -573,7 +573,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserLocalMac(): string {
-		return (string)$this->data["local_mac"] ?? "";
+		return (string)$this->getData()["local_mac"] ?? "";
 	}
 
 	/**
@@ -582,7 +582,7 @@ class UserModels {
 	 * @return array|null
 	 */
 	public function getUserPaymentMethods(): ?array {
-		return (array)$this->data["payment_methods"] ?? [];
+		return (array)$this->getData()["payment_methods"] ?? [];
 	}
 
 	/**
@@ -591,7 +591,7 @@ class UserModels {
 	 * @return string
 	 */
 	public function getUserAddress(): string {
-		return (string)$this->data["address"] ?? "";
+		return (string)$this->getData()["address"] ?? "";
 	}
 
 	/**
@@ -600,7 +600,7 @@ class UserModels {
 	 * @return array|null
 	 */
 	public function getUserShow(): ?array {
-		return $this->data["show"] ?? null;
+		return $this->getData()["show"] ?? null;
 	}
 
 	/**
@@ -609,7 +609,7 @@ class UserModels {
 	 * @return array|null
 	 */
 	public function getUserFee(): ?array {
-		return $this->data["fee"] ?? null;
+		return $this->getData()["fee"] ?? null;
 	}
 
 }

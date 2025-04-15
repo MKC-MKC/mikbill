@@ -17,9 +17,9 @@ class GetConfig
 		return $this->data ?? [];
 	}
 
-	public function getCompanyInfo(): GetCompanyInfo
+	public function getCompanyInfo(): GetCompanyInfoModel
 	{
-		return new GetCompanyInfo($this->getAsArray()["company_info"] ?? []);
+		return new GetCompanyInfoModel($this->getAsArray()["company_info"] ?? []);
 	}
 
 }

@@ -248,7 +248,7 @@ echo "<code style='font-size: 18px;'>{$MikBiLL->getUserToken()}</code><hr>";
 $user = $MikBiLL->cabinet->User()->getUser();
 echo "<h2>[{$user->getUserFirstName()} {$user->getUserMiddleName()}]</h2>"; # Пример использования модели.
 echo "<h3>Массив данных клиента:</h3>";
-echo "<pre>" . print_r($user->getAsArray(), true) . "</pre><hr>"; # Пример просмотра массива, если не устраивают модели.
+echo "<pre>" . print_r($user->getData(), true) . "</pre><hr>"; # Пример просмотра массива, если не устраивают модели.
 ```
 
 ## 7. Поиск клиента
@@ -442,9 +442,9 @@ $getIp = $MikBiLL->cabinet->Common()->getIp();
 echo "<h3>Получаем: IP клиента</h3>";
 echo "<ul>";
 echo "<li>IP из модели: <code>{$getIp->getIp()}</code></li>";
-echo "<li>IP из массива: <code>" . $getIp->getArray()["ip"] . "</code></li>";
+echo "<li>IP из массива: <code>" . $getIp->getData()["ip"] . "</code></li>";
 echo "</ul>";
-//echo "<pre>" . print_r($getIp->getArray(), true) . "</pre>";
+//echo "<pre>" . print_r($getIp->getData(), true) . "</pre>";
 ```
 
 Ты можешь получить время сервера:
@@ -454,10 +454,10 @@ $getDate = $MikBiLL->cabinet->Common()->getDate();
 echo "<h3>Получаем: Дата и Время</h3>";
 echo "<ul>";
 echo "<li>Управляемая дата и время: <code>" . $getDate->getDateTime()->format("d.m.Y H:i:s") . "</code></li>";
-echo "<li>Дата из массива: <code>" . $getDate->getArray()["format"] . "</code></li>";
+echo "<li>Дата из массива: <code>" . $getDate->getData()["format"] . "</code></li>";
 echo "<li>Time Stamp: <code>" . $getDate->getTimeStamp() . "</code></li>";
 echo "</ul>";
-//echo "<pre>" . print_r($getDate->getArray(), true) . "</pre>";
+//echo "<pre>" . print_r($getDate->getData(), true) . "</pre>";
 ```
 
 Ты можешь узнать версию MikBiLL:
@@ -498,7 +498,7 @@ echo $getContact->getPhoneName2() ? "<li>{$getContact->getPhoneName2()}: <code>{
 echo $getContact->getPhoneName3() ? "<li>{$getContact->getPhoneName3()}: <code>{$getContact->getPhoneNumber3()}</code></li>" : "";
 echo "<li>Показать карту: <code>" . ($getContact->isShowMap() ? "Да" : "Нет") . "</code></li>";
 echo "</ul>";
-//echo "<pre>" . print_r($getContact->getArray(), true) . "</pre>";
+//echo "<pre>" . print_r($getContact->getData(), true) . "</pre>";
 ```
 
 Ты можешь получить некую конфигурацию:

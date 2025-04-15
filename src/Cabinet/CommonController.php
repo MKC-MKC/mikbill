@@ -90,17 +90,17 @@ class CommonController
 	 * Метод возвращает контактные данные организации.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#2949d3f0-a201-477b-9de5-cee4566b61ec
-	 * @return Common\GetCompanyInfo
+	 * @return Common\GetCompanyInfoModel
 	 * @throws Exception\BillApiException|Exception\UnauthorizedException
 	 */
-	public function getContact(): Common\GetCompanyInfo
+	public function getContact(): Common\GetCompanyInfoModel
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/contact",
 			method: "GET",
 			token: $this->billInterface->getUserToken(),
 		);
-		return new Common\GetCompanyInfo($response["data"] ?? []);
+		return new Common\GetCompanyInfoModel($response["data"] ?? []);
 	}
 
 	/**

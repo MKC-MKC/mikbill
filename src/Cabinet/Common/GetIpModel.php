@@ -12,14 +12,14 @@ class GetIpModel
 		$this->data = $data;
 	}
 
-	public function getArray(): ?array
+	public function getData(): ?array
 	{
 		return $this->data ?? [];
 	}
 
 	public function getIp(): string
 	{
-		return (string)$this->getArray()["ip"] ?? "";
+		return (string)$this->getData()["ip"] ?? "";
 	}
 
 }

@@ -12,24 +12,24 @@ class NewsModel
 		$this->data = $data;
 	}
 
-	public function getArray(): ?array
+	public function getData(): ?array
 	{
 		return $this->data ?? [];
 	}
 
 	public function getId(): int
 	{
-		return (int)$this->getArray()["newsid"] ?? 0;
+		return (int)$this->getData()["newsid"] ?? 0;
 	}
 
 	public function getSubject(): string
 	{
-		return (string)$this->getArray()["subject"] ?? "";
+		return (string)$this->getData()["subject"] ?? "";
 	}
 
 	public function getText(): string
 	{
-		return (string)$this->getArray()["text"] ?? "";
+		return (string)$this->getData()["text"] ?? "";
 	}
 
 }

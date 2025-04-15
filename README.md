@@ -26,6 +26,8 @@ composer require haikiri/mikbill
 Проект построен на основе официальной структуры API MikBiLL с возможностью расширения и заменой частей кода.
 Пример официальной API структуры и заполненности этого SDK в процентах:
 
+> [LP] - Низкий приоритет. Возможно будет появление базового функционала для некоторых методов в будущем.
+
 ```plaintext
 ├─ Billing API
 │  └─ Users (100%)
@@ -38,18 +40,19 @@ composer require haikiri/mikbill
 │  ├─ Packet
 │  ├─ User (>=50%)
 │  │  └─ Contacts (0%)
-│  ├─ Register Hotpost
+│  ├─ Register Hotpost [LP]
 │  │  ├─ type 1
 │  │  └─ type 2
-│  ├─ Payments
+│  ├─ Payments [LP]
 │  ├─ Services
 │  │  ├─ Turbo
 │  │  ├─ Freeze
 │  │  ├─ Real IP
 │  │  ├─ Credit
-│  │  └─ Change MAC
+│  │  ├─ Change MAC
+│  │  └─ Money Transfers
 │  ├─ Subscriptions (100%)
-│  ├─ Devices
+│  ├─ Devices [LP]
 │  ├─ Reports
 │  └─ News
 ```

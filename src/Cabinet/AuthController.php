@@ -20,10 +20,10 @@ class AuthController {
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#a19e1a83-9c70-4a3c-97ea-56c1ab3f7cbb
 	 * @param string $login
 	 * @param string $pass
-	 * @return Auth\Login\LoginModels
+	 * @return object
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function login(string $login, string $pass): Auth\Login\LoginModels {
+	public function login(string $login, string $pass): object {
 		$params = [
 			"login"		=>	$login,
 			"password"	=>	$pass,
@@ -57,10 +57,10 @@ class AuthController {
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#0c62d445-3b55-4732-8b37-88aae1bb0773
 	 * @param int|string $otp # Например: '71-49-05-18' - Код из SMS
-	 * @return Auth\Phone\PhoneOtpModels
+	 * @return object
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function phoneOtp(int|string $otp): Auth\Phone\PhoneOtpModels {
+	public function phoneOtp(int|string $otp): object {
 		$params = [
 			"otp"	=>	$otp,
 		];

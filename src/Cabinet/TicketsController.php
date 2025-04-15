@@ -15,10 +15,10 @@ class TicketsController {
 	/**
 	 * Метод возвращает все тикеты клиента.
 	 *
-	 * @return Tickets\Ticket
+	 * @return object
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function getTickets(): Tickets\Ticket {
+	public function getTickets(): object {
 		$response = $this->billInterface->sendRequest(
 			uri:		"/api/v1/cabinet/tickets",
 			method:		"GET",
@@ -34,7 +34,7 @@ class TicketsController {
 	 * @return Tickets\NewTicketModel
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function newTicket(string $message): Tickets\NewTicketModel {
+	public function newTicket(string $message): object {
 		$params = [
 			"message"	=>	$message,
 		];
@@ -50,10 +50,10 @@ class TicketsController {
 	 * Метод возвращает модель объект тикета.
 	 *
 	 * @param string|int $ticketId
-	 * @return Tickets\TicketMessenger
+	 * @return object
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function getTicketsDialog(string|int $ticketId): Tickets\TicketMessenger {
+	public function getTicketsDialog(string|int $ticketId): object {
 		$response = $this->billInterface->sendRequest(
 			uri:		"/api/v1/cabinet/tickets/$ticketId",
 			method:		"GET",

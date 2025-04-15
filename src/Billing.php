@@ -13,7 +13,7 @@ class Billing implements BillingInterface {
 		$this->billInterface = $interface;
 	}
 
-	public function Users(): MikBiLLBilling\UsersController {
+	public function Users(): object {
 		return new MikBiLLBilling\UsersController(interface: $this->billInterface);
 	}
 

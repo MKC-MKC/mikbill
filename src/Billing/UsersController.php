@@ -24,10 +24,10 @@ class UsersController {
 	 * @param string $key - Возможные ключи: ['user', 'uid', 'state', 'gid', 'deposit', 'credit', и.т.д...]
 	 * @param string $value - Значение по которому будет производиться поиск.
 	 * @param string $operator - Возможные операторы: ['<', '=', '>', '>=', '!='] или ['меньше', 'равно', 'больше', 'больше или равно', 'не равно'].
-	 * @return UsersSearchController
+	 * @return object
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function searchUser(string $key = "uid", string $value = "1", string $operator = "="): UsersSearchController {
+	public function searchUser(string $key = "uid", string $value = "1", string $operator = "="): object {
 		$params = [
 			"field"		=>	$key,
 			"operator"	=>	$operator,

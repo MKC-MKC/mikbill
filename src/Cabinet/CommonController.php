@@ -18,11 +18,11 @@ class CommonController
 	 * Метод возвращает IP клиента относительно web-сервера.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#e15b3e31-61c6-4eea-9b2c-b32ce49d09a3
-	 * @return Common\GetIpModel
+	 * @return object
 	 * @noinspection SpellCheckingInspection
 	 * @throws Exception\BillApiException|Exception\UnauthorizedException
 	 */
-	public function getIp(): Common\GetIpModel
+	public function getIp(): object
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/getip",
@@ -36,11 +36,11 @@ class CommonController
 	 * Метод возвращает время с backend`а
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#590cf34a-1467-4199-9406-45458d5fde06
-	 * @return Common\GetServerDateModel
+	 * @return object
 	 * @noinspection SpellCheckingInspection
 	 * @throws Exception\BillApiException|Exception\UnauthorizedException
 	 */
-	public function getDate(): Common\GetServerDateModel
+	public function getDate(): object
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/serverdate",
@@ -56,10 +56,10 @@ class CommonController
 	 * Используйте ->getAsArray() для получения массива данных.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#8313a870-e586-426c-80b4-b646316bc533
-	 * @return Common\GetConfig
+	 * @return object
 	 * @throws Exception\BillApiException|Exception\UnauthorizedException
 	 */
-	public function getConfig(): Common\GetConfig
+	public function getConfig(): object
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/config",
@@ -90,10 +90,10 @@ class CommonController
 	 * Метод возвращает контактные данные организации.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#2949d3f0-a201-477b-9de5-cee4566b61ec
-	 * @return Common\GetCompanyInfoModel
+	 * @return object
 	 * @throws Exception\BillApiException|Exception\UnauthorizedException
 	 */
-	public function getContact(): Common\GetCompanyInfoModel
+	public function getContact(): object
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/contact",
@@ -107,10 +107,10 @@ class CommonController
 	 * Метод вообще что-то возвращает?
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d8fc182c-2200-4a06-80df-f12d54e94b3b
-	 * @return Common\GetMenu
+	 * @return object
 	 * @throws Exception\BillApiException|Exception\UnauthorizedException
 	 */
-	public function getMenu(): Common\GetMenu
+	public function getMenu(): object
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/menu",

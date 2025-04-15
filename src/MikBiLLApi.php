@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Haikiri\MikBiLL;
 
+use Exception as InternalException;
+
 class MikBiLLApi extends MikBiLLApiAbstract {
 	#	Proxy SOCKS:
 	public		bool				$isProxy		=	false;	# true - enable proxy ; false - disable proxy ;
@@ -23,7 +25,8 @@ class MikBiLLApi extends MikBiLLApiAbstract {
 	 * @param bool $sign
 	 * @param string|null $token
 	 * @return array|null
-	 * @throws Exception\InvalidJsonException
+	 * @throws InternalException
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): ?array {
 		$headers = [];
@@ -32,6 +35,7 @@ class MikBiLLApi extends MikBiLLApiAbstract {
 			$params["salt"] = uniqid();
 			$params["sign"] = hash_hmac("sha512", $params["salt"], $this->key);
 		} else {
+			if ($token === "") throw new Exception\UnauthorizedException("The token was not found: The storage with token is empty.", -999);
 			$headers[] = "Authorization: " . $token;
 		}
 
@@ -54,7 +58,28 @@ class MikBiLLApi extends MikBiLLApiAbstract {
 		curl_close($ch);
 
 		$validResponse = self::validate($response, true);
+		self::billResponseValidate($validResponse);
 		return $statusCode == 200 && is_array($validResponse) ? $validResponse : null;
+	}
+
+	/**
+	 * Метод валидации ответа от Billing API.
+	 *
+	 * @param array $response
+	 * @return void
+	 * @throws Exception\BillApiException
+	 * @throws Exception\UnauthorizedException
+	 */
+	protected static function billResponseValidate(array $response): void {
+		if (($response["success"] ?? false) === true) return;
+
+		$code		=	(int)($response["code"] ?? -1);
+		$message	=	$response["message"] ?? "Unknown error";
+
+		match ($code) {
+			-401		=>	throw new Exception\UnauthorizedException(message: $message, code: $code),
+			default		=>	throw new Exception\BillApiException(message: $message, code: $code),
+		};
 	}
 
 }

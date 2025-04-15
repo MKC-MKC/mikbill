@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Haikiri\MikBiLL;
 
+use Exception;
+
 abstract class MikBiLLApiAbstract implements MikBiLLApiInterface {
 	protected		string				$url;
 	protected		string				$key;
@@ -57,12 +59,13 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface {
 	 * @param int $depth
 	 * @param int $flags
 	 * @return object|array
-	 * @throws Exception\InvalidJsonException
+	 * @throws Exception
 	 */
 	public static function validate(mixed $json, ?bool $asArray = null, int $depth = 512, int $flags = 0): object|array {
-		if (!is_string($json)) throw new Exception\InvalidJsonException("Invalid response from the server: \$json is not a string");
+		if (!is_string($json)) throw new Exception("Invalid response from the server: \$json is not a string");
 		$result = json_decode($json, $asArray, $depth, $flags);
 		if (self::$debug) error_log(PHP_EOL . "**********" . PHP_EOL . var_export($result, true));
-		return json_last_error() != JSON_ERROR_NONE ? throw new Exception\InvalidJsonException(json_last_error_msg(), json_last_error()) : $result;
+		if (json_last_error() !== JSON_ERROR_NONE) throw new Exception(json_last_error_msg(), json_last_error());
+		return $result;
 	}
 }

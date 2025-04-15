@@ -2,8 +2,8 @@
 
 namespace Haikiri\MikBiLL\Cabinet;
 
+use Haikiri\MikBiLL\Exception;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
-use Haikiri\MikBiLL\Exception\InvalidTokenException;
 
 class TicketsController {
 	protected		MikBiLLApiInterface				$billInterface;
@@ -16,10 +16,9 @@ class TicketsController {
 	 * Метод возвращает все тикеты клиента.
 	 *
 	 * @return Tickets\Ticket
-	 * @throws InvalidTokenException
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function getTickets(): Tickets\Ticket {
-		if (empty($this->billInterface->getUserToken())) throw new InvalidTokenException("The token was not found: The storage with token is empty.");
 		$response = $this->billInterface->sendRequest(
 			uri:		"/api/v1/cabinet/tickets",
 			method:		"GET",
@@ -33,13 +32,12 @@ class TicketsController {
 	 *
 	 * @param string $message
 	 * @return Tickets\NewTicketModel
-	 * @throws InvalidTokenException
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function newTicket(string $message): Tickets\NewTicketModel {
 		$params = [
 			"message"	=>	$message,
 		];
-		if (empty($this->billInterface->getUserToken())) throw new InvalidTokenException("The token was not found: The storage with token is empty.");
 		$response = $this->billInterface->sendRequest(
 			uri:		"/api/v1/cabinet/tickets",
 			params:		$params,
@@ -53,10 +51,9 @@ class TicketsController {
 	 *
 	 * @param string|int $ticketId
 	 * @return Tickets\TicketMessenger
-	 * @throws InvalidTokenException
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function getTicketsDialog(string|int $ticketId): Tickets\TicketMessenger {
-		if (empty($this->billInterface->getUserToken())) throw new InvalidTokenException("The token was not found: The storage with token is empty.");
 		$response = $this->billInterface->sendRequest(
 			uri:		"/api/v1/cabinet/tickets/$ticketId",
 			method:		"GET",
@@ -71,10 +68,9 @@ class TicketsController {
 	 * @param string|int $ticketId
 	 * @param string $message
 	 * @return bool
-	 * @throws InvalidTokenException
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function sendMessage(string|int $ticketId, string $message): bool {
-		if (empty($this->billInterface->getUserToken())) throw new InvalidTokenException("The token was not found: The storage with token is empty.");
 		$params = [
 			"message"	=>	$message,
 		];

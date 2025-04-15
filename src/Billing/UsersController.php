@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Haikiri\MikBiLL\Billing;
 
+use Haikiri\MikBiLL\Exception;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
 class UsersController {
@@ -24,6 +25,7 @@ class UsersController {
 	 * @param string $value       - Значение по которому будет производиться поиск.
 	 * @param string $operator    - Возможные операторы: ['<', '=', '>', '>=', '!='] или ['меньше', 'равно', 'больше', 'больше или равно', 'не равно'].
 	 * @return UsersSearchController
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function searchUser(string $key = "uid", string $value = "1", string $operator = "="): UsersSearchController {
 		$params = [
@@ -46,6 +48,7 @@ class UsersController {
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#925498e8-df53-48e7-86c0-69ca6982ad44
 	 * @param string $uid
 	 * @return array|null
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function getUserToken(string $uid): ?string {
 		$params = [
@@ -67,6 +70,7 @@ class UsersController {
 	 * @use https://documenter.getpostman.com/view/5969645/TVCfXTtK#e0a2b1c3-4d8f-4a6b-9c7d-0e1f2a3b5c8e
 	 * @param string $uid
 	 * @return array|null
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function kickUser(string $uid): ?array {
 		$params = [
@@ -87,6 +91,7 @@ class UsersController {
 	 * @param $uid
 	 * @param $user_id
 	 * @return array|null
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
 	public function bindUser($uid, $user_id): ?array {
 		$params = [

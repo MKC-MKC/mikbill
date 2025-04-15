@@ -53,18 +53,6 @@ class SubscriptionsController {
 	}
 
 	/**
-	 * TODO: Временный Fallback метод из-за изначально-нелогичного названия метода.
-	 * @use self::setSubscription
-	 * @param mixed ...$args
-	 * @return bool
-	 * @deprecated Используй метод setSubscription();
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
-	 */
-	public function setSubscriptions(...$args): bool {
-		return $this->setSubscription(...$args);
-	}
-
-	/**
 	 * Метод возвращает список всех Middleware.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#43ddf0d2-722b-4c1d-b7b6-050c5452dccb

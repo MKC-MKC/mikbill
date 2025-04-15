@@ -30,15 +30,4 @@ class Subscription {
 		return $this->items;
 	}
 
-	/**
-	 * TODO: Временный Fallback метод из-за изначально-нелогичного названия метода.
-	 *
-	 * @use self::getSubscription
-	 * @deprecated Используй метод getSubscription();
-	 * @return SubscriptionModel[]
-	 */
-	public function getSubscriptions(): array {
-		return $this->getSubscription();
-	}
-
 }

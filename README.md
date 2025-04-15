@@ -37,7 +37,7 @@ composer require haikiri/mikbill
 │  │  └─ Phone (100%)
 │  ├─ Tickets (100%)
 │  ├─ Common (100%)
-│  ├─ Packet
+│  ├─ Packet (100%)
 │  ├─ User (>=50%)
 │  │  └─ Contacts (0%)
 │  ├─ Register Hotpost [LP]
@@ -502,7 +502,7 @@ echo "</ul>";
 
 Ты можешь получить некую конфигурацию:
 
-> Метод не реализован полностью, и возможно, вряд ли появится желание делать эту модель.
+> Метод не реализован полностью, и возможно, вряд ли появится желание заполнять эту модель.
 > Используйте getAsArray() для ручной работы с массивами.
 
 ```php
@@ -525,5 +525,39 @@ foreach ($getNews->getAllNews() as $news) {
 	echo "<li>Новость:<br><textarea maxlength=\"50\">{$news->getText()}</textarea></li>";
 	echo "</ul>";
 }
+```
+
+## 13. Тарифы
+
+Клиент может получить список доступных тарифов
+
+```php
+$getPackets = $MikBiLL->cabinet->Packet()->getPackets();
+echo "<h3>Получаем: Список тарифов</h3>";
+foreach ($getPackets->getPacket() as $packet) {
+	echo "<hr><ul>";
+	echo "<li>Тариф <code>{$packet->getName()} [{$packet->getId()}]</code></li>";
+	echo "<li>Цена: <code>{$packet->getPrice()} {$packet->getCurrency()}.</code></li>";
+	echo "<li>Цена со скидкой: <code>{$packet->getPriceDiscounted()} {$packet->getCurrency()}.</code></li>";
+	echo "</ul>";
+}
+```
+
+Можно посмотреть детали тарифа по его ID
+
+> Метод не реализован полностью, и возможно, вряд ли появится желание заполнять эту модель.
+> Используйте getAsArray() для ручной работы с массивами.
+
+```php
+$id = 31; #	ID Тарифа.
+$packet = $MikBiLL->cabinet->Packet()->getPacketInfo(packetId: $id);
+echo "<h3>Получаем: Детали тарифа #$id</h3>";
+echo "<ul>";
+echo "<li>Тариф: <code>{$packet->getName()} [id:{$packet->getId()}]</code></li>";
+echo "<li>Цена: <code>{$packet->getAsArray()["fixed_cost"]} {$packet->getAsArray()["currency"]}.</code></li>";
+echo "<li>Суточная цена: <code>{$packet->getDailyCost()} {$packet->getCurrency()}.</code></li>";
+echo "<li>Скорость: <code>{$packet->getSpeedRate()}</code></li>";
+echo "</ul>";
+echo "<pre>" . print_r($packet->getAsArray(), true) . "</pre>";
 ```
 

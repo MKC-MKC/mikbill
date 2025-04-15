@@ -49,9 +49,9 @@ composer require haikiri/mikbill
 │  │  ├─ Credit
 │  │  └─ Change MAC
 │  ├─ Subscriptions (100%)
+│  ├─ Devices
 │  ├─ Reports
-│  ├─ News
-│  └─ Omnicell
+│  └─ News
 ```
 
 Эта SDK библиотека будет наполняться по мере необходимости, возможностей и откликов.

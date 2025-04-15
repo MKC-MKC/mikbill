@@ -13,8 +13,8 @@ interface CabinetInterface {
 	public function Payments();
 	public function Services();
 	public function Subscriptions();
+	public function Devices();
 	public function Reports();
 	public function News();
-	public function OmniCell();
 
 }

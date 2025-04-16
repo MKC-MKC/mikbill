@@ -6,19 +6,21 @@ namespace Haikiri\MikBiLL;
 
 use Exception;
 
-abstract class MikBiLLApiAbstract implements MikBiLLApiInterface {
-	protected		string				$url;
-	protected		string				$key;
-	protected		?string				$token = null;
-	public			static bool			$debug = false;
-	public			Billing				$billing;
-	public			Cabinet				$cabinet;
+abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
+{
+	protected string $url;
+	protected string $key;
+	protected ?string $token = null;
+	public static bool $debug = false;
+	public Billing $billing;
+	public Cabinet $cabinet;
 
-	public function __construct(string $url, string $key) {
-		$this->url		=	$url;
-		$this->key		=	$key;
-		$this->billing	=	new Billing($this);
-		$this->cabinet	=	new Cabinet($this);
+	public function __construct(string $url, string $key)
+	{
+		$this->url = $url;
+		$this->key = $key;
+		$this->billing = new Billing($this);
+		$this->cabinet = new Cabinet($this);
 	}
 
 	/**
@@ -38,7 +40,8 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface {
 	 * @param string|null $token
 	 * @return void
 	 */
-	public function setUserToken($token): void {
+	public function setUserToken($token): void
+	{
 		$this->token = $token;
 	}
 
@@ -47,7 +50,8 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface {
 	 *
 	 * @return string
 	 */
-	public function getUserToken(): string {
+	public function getUserToken(): string
+	{
 		return $this->token ?? "";
 	}
 
@@ -61,11 +65,13 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface {
 	 * @return object|array
 	 * @throws Exception
 	 */
-	public static function validate(mixed $json, ?bool $asArray = null, int $depth = 512, int $flags = 0): object|array {
+	public static function validate(mixed $json, ?bool $asArray = null, int $depth = 512, int $flags = 0): object|array
+	{
 		if (!is_string($json)) throw new Exception("Invalid response from the server: \$json is not a string");
 		$result = json_decode($json, $asArray, $depth, $flags);
 		if (self::$debug) error_log(PHP_EOL . "**********" . PHP_EOL . var_export($result, true));
 		if (json_last_error() !== JSON_ERROR_NONE) throw new Exception(json_last_error_msg(), json_last_error());
 		return $result;
 	}
+
 }

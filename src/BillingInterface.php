@@ -2,7 +2,9 @@
 
 namespace Haikiri\MikBiLL;
 
-interface BillingInterface {
+interface BillingInterface
+{
+
 	public function Users();
 
 }

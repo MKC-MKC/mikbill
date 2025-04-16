@@ -39,7 +39,7 @@ class SubscriptionsController {
 	 * @return bool
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function setSubscription(int $id = 123, int $activate = 0, string $service = "other"): bool {
+	public function setSubscription(int $id, int $activate = 0, string $service = "other"): bool {
 		$params = [
 			"id"		=>	$id,
 			"activate"	=>	$activate,

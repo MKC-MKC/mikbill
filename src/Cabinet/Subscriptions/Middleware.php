@@ -49,7 +49,7 @@ class Middleware {
 	}
 
 	/**
-	 * Метод возвращает список всех middleware.
+	 * Метод возвращает результат как модель.
 	 *
 	 * @return MiddlewareModel[]
 	 */

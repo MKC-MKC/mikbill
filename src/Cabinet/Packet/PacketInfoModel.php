@@ -12,79 +12,79 @@ class PacketInfoModel
 		$this->data = $data;
 	}
 
-	public function getAsArray(): ?array
+	public function getData(): ?array
 	{
 		return $this->data ?? [];
 	}
 
 	public function getId(): int
 	{
-		return (int)$this->getAsArray()["gid"] ?? 0;
+		return (int)$this->getData()["gid"] ?? 0;
 	}
 
 	public function getNum(): int
 	{
-		return (int)$this->getAsArray()["num"] ?? 0;
+		return (int)$this->getData()["num"] ?? 0;
 	}
 
 	public function getName(): string
 	{
-		return (string)$this->getAsArray()["packet"] ?? "";
+		return (string)$this->getData()["packet"] ?? "";
 	}
 
 	public function getCost(): float
 	{
-		return (float)$this->getAsArray()["fixed_cost"] ?? 0.0;
+		return (float)$this->getData()["fixed_cost"] ?? 0.0;
 	}
 
 	public function getDailyCost(): float
 	{
-		return (float)$this->getAsArray()["fixed_cost2"] ?? 0.0;
+		return (float)$this->getData()["fixed_cost2"] ?? 0.0;
 	}
 
 	public function getCurrency(): string
 	{
-		return (string)$this->getAsArray()["currency"] ?? "";
+		return (string)$this->getData()["currency"] ?? "";
 	}
 
 	public function getSpeedRate(): string
 	{
-		return (string)$this->getAsArray()["speed_rate"] ?? "";
+		return (string)$this->getData()["speed_rate"] ?? "";
 	}
 
 	public function getSpeedBurst(): string
 	{
-		return (string)$this->getAsArray()["speed_burst"] ?? "";
+		return (string)$this->getData()["speed_burst"] ?? "";
 	}
 
 	public function getTurboTime(): string
 	{
-		return (string)$this->getAsArray()["turbo_time"] ?? "";
+		return (string)$this->getData()["turbo_time"] ?? "";
 	}
 
 	public function getTurboActivationCost(): string
 	{
-		return (string)$this->getAsArray()["turbo_active_cena"] ?? "";
+		return (string)$this->getData()["turbo_active_cena"] ?? "";
 	}
 
 	public function getTurboSpeedIn(): string
 	{
-		return (string)$this->getAsArray()["turbo_speed_in"] ?? "";
+		return (string)$this->getData()["turbo_speed_in"] ?? "";
 	}
 
 	public function getTurboSpeedOut(): string
 	{
-		return (string)$this->getAsArray()["turbo_speed_out"] ?? "";
+		return (string)$this->getData()["turbo_speed_out"] ?? "";
 	}
 
 	public function isMinusAllowed(): bool
 	{
-		return (bool)($this->getAsArray()["razresh_minus"] ?? 0) ?? false;
+		return (bool)($this->getData()["razresh_minus"] ?? 0) ?? false;
 	}
 
 	public function getHowMuch(): ?array
 	{
-		return (array)$this->getAsArray()["howmuch"] ?? [];
+		return (array)$this->getData()["howmuch"] ?? [];
 	}
 
 }

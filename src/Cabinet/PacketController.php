@@ -33,6 +33,8 @@ class PacketController
 
 	/**
 	 * Метод возвращает информацию о тарифе по его ID.
+	 * Нет планов по реализации моделей для данного API метода.
+	 * Используйте ->getData() для получения массива данных.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#11e9027f-c26e-4927-b25f-898d63c2664a
 	 * @param $packetId

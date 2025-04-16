@@ -547,7 +547,7 @@ foreach ($getPackets->getPacket() as $packet) {
 Можно посмотреть детали тарифа по его ID:
 
 > Метод не реализован полностью, и возможно, вряд ли появится желание заполнять эту модель.
-> Используйте getAsArray() для ручной работы с массивами.
+> Используйте getData() для ручной работы с массивами.
 
 ```php
 $id = 31; #	ID Тарифа.
@@ -555,10 +555,10 @@ $packet = $MikBiLL->cabinet->Packet()->getPacketInfo(packetId: $id);
 echo "<h3>Получаем: Детали тарифа #$id</h3>";
 echo "<ul>";
 echo "<li>Тариф: <code>{$packet->getName()} [id:{$packet->getId()}]</code></li>";
-echo "<li>Цена: <code>{$packet->getAsArray()["fixed_cost"]} {$packet->getAsArray()["currency"]}.</code></li>";
+echo "<li>Цена: <code>{$packet->getData()["fixed_cost"]} {$packet->getData()["currency"]}.</code></li>";
 echo "<li>Суточная цена: <code>{$packet->getDailyCost()} {$packet->getCurrency()}.</code></li>";
 echo "<li>Скорость: <code>{$packet->getSpeedRate()}</code></li>";
 echo "</ul>";
-echo "<pre>" . print_r($packet->getAsArray(), true) . "</pre>";
+echo "<pre>" . print_r($packet->getData(), true) . "</pre>";
 ```
 

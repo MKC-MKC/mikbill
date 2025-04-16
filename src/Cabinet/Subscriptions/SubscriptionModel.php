@@ -4,6 +4,8 @@ declare(strict_types=0); # TODO: Отключаем строгую типиза�
 
 namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
 
+use DateTimeImmutable;
+
 /**
  * Этот класс нуждается в доработке.
  * Не стесняйтесь сообщать о проблемах и недочетах.
@@ -173,14 +175,20 @@ class SubscriptionModel
 		return (string)$this->getInfo()["currency"] ?? "";
 	}
 
-	public function getServiceDateStart(): string
+	public function getServiceDateStart(): ?DateTimeImmutable
 	{
-		return (string)$this->getInfo()["service_date_start"] ?? "";
+		$dateString = $this->getInfo()["service_date_start"] ?? null;
+		if (empty($dateString)) return null;
+
+		return DateTimeImmutable::createFromFormat(format: "Y-m-d H:i:s", datetime: $dateString) ?: null;
 	}
 
-	public function getServiceDateStop(): string
+	public function getServiceDateStop(): ?DateTimeImmutable
 	{
-		return (string)$this->getInfo()["service_date_stop"] ?? "";
+		$dateString = $this->getInfo()["service_date_stop"] ?? null;
+		if (empty($dateString)) return null;
+
+		return DateTimeImmutable::createFromFormat(format: "Y-m-d H:i:s", datetime: $dateString) ?: null;
 	}
 
 	public function getTrial(): string

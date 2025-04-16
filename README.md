@@ -323,8 +323,8 @@ $middleware = "wink"; # Название сервиса. Используйте 
 $status = $MikBiLL->cabinet->Subscriptions()->setSubscription(id: $id, activate: 1, service: $middleware);
 
 echo $status
-	? "Успешно оформили подписку №$id сервиса $service."
-	: "Не удалось оформить подписку №$id сервиса $service.";
+	? "Успешно оформили подписку №$id сервиса $middleware."
+	: "Не удалось оформить подписку №$id сервиса $middleware.";
 ```
 
 Пример как отписать клиента от услуги:
@@ -333,8 +333,8 @@ echo $status
 $status = $MikBiLL->cabinet->Subscriptions()->setSubscription(id: $id, service: $middleware);
 
 echo $status
-	? "Успешно отписались от подписки №$id сервиса $service."
-	: "Не удалось отписаться от подписки №$id сервиса $service.";
+	? "Успешно отписались от подписки №$id сервиса $middleware."
+	: "Не удалось отписаться от подписки №$id сервиса $middleware.";
 ```
 
 > Появилась возможность получить список доступных Middleware подписок для клиента.

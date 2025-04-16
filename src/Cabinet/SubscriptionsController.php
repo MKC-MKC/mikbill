@@ -68,4 +68,42 @@ class SubscriptionsController {
 		return new Subscriptions\Middleware($response["data"] ?? []);
 	}
 
+	/**
+	 * Метод возвращает список групп и их дополнительных подписок (не привязанных к middleware).
+	 *
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#df73309e-ae0a-453d-938d-966874227ee0
+	 * @return object
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 */
+	public function getAdditional(): object {
+		$response = $this->billInterface->sendRequest(
+			uri:		"/api/v1/cabinet/user/subscriptions/additional",
+			method:		"GET",
+			token:		$this->billInterface->getUserToken(),
+		);
+		return new Subscriptions\Additional($response["data"] ?? []);
+	}
+
+	/**
+	 * Метод выполняет подписку или отписку клиента от услуги используя ID услуги и токен как идентификатор.
+	 *
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#828c0e2c-6bb8-4f90-9cbb-40798ab644a2
+	 * @param int $id - 123 - ID подписки;
+	 * @param int $activate - 0 - для отписки; 1 - для подписки;
+	 * @return bool
+	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 */
+	public function setAdditional(int $id, int $activate = 0): bool {
+		$params = [
+			"id"		=>	$id,
+			"activate"	=>	$activate,
+		];
+		$response = $this->billInterface->sendRequest(
+			uri:		"/api/v1/cabinet/user/subscriptions/additional",
+			params:		$params,
+			token:		$this->billInterface->getUserToken(),
+		);
+		return isset($response["success"]) && $response["success"] == 1;
+	}
+
 }

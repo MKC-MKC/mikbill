@@ -54,7 +54,7 @@ composer require haikiri/mikbill
         - Credit
         - Change MAC
         - Money Transfers 🆕
-    - [Subscriptions](#8-подписки) [F]
+    - [Subscriptions](#8-подписки) [MD]
     - Devices 🆕 [LP]
     - Reports [LP]
     - [News](#11-новости) [F]
@@ -366,6 +366,23 @@ foreach ($wares->getAsArray() as $ware) {
 echo "<h3>Массив Middleware как-есть:</h3>";
 $wares = $MikBiLL->cabinet->Subscriptions()->getMiddlewares()->getAsIs();
 echo "<pre>" . print_r($wares, true) . "</pre>";
+```
+
+Ты можешь получить список дополнительных подписок (не привязанных к middleware).
+> Используй метод `getAsIs()` чтобы получить массив данных как-есть и работать с ним самостоятельно.
+
+```php
+$getAdditional = $MikBiLL->cabinet->Subscriptions()->getAdditional();
+echo "<pre>" . print_r($getAdditional->getAsIs(), true) . "</pre>";
+```
+
+Метод управления подписками не привязанным к middleware схожий с setSubscription:
+
+```php
+$id = 102; # ID подписки.
+$sub = $MikBiLL->cabinet->Subscriptions()->setAdditional(id: $id, activate: 1); # Подписаться
+$unSub = $MikBiLL->cabinet->Subscriptions()->setAdditional(id: $id, activate: 0); # Отписаться
+# В ответ всё так-же приходит boolean.
 ```
 
 ## 9. Тикеты: Создание, отправка, чтение

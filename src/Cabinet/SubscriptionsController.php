@@ -13,10 +13,10 @@ class SubscriptionsController {
 	}
 
 	/**
-	 * Метод возвращает модель доступных подписок на данный момент абоненту к выбранному сервису.
+	 * Метод возвращает модель доступных подписок middleware.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#aa0c7b39-2525-44a7-a1f6-d8aa7f9b8677
-	 * @param string $service - Название подписки. Используйте "other", "MegoGo", "wink" и.т.д. Актуальный список не нашёл, смотри ссылку выше.
+	 * @param string $service - Название сервиса middleware: "MegoGo", "wink" и.т.д. Актуальный список смотри ссылку выше.
 	 * @return object
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
@@ -30,12 +30,12 @@ class SubscriptionsController {
 	}
 
 	/**
-	 * Метод выполняет подписку или отписку клиента от услуги используя ID услуги и токен как идентификатор.
+	 * Метод выполняет подписку или отписку клиента от услуги по ID относительно middleware.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#b7e82f1a-c4d7-4c9b-a126-a23d67de8c6f
 	 * @param int $id - 123 - ID подписки;
 	 * @param int $activate - 0 - для отписки; 1 - для подписки;
-	 * @param string $service - Название подписки. Используйте "other", "MegoGo", "wink" и.т.д. Актуальный список не нашёл, смотри ссылку выше.
+	 * @param string $service - Название сервиса middleware: "MegoGo", "wink" и.т.д. Актуальный список смотри ссылку выше.
 	 * @return bool
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */

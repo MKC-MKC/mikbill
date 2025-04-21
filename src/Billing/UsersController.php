@@ -46,11 +46,11 @@ class UsersController {
 	 * Метод с помощью которого можно авторизовать пользователя (получить token) по UID для Cabinet API.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#925498e8-df53-48e7-86c0-69ca6982ad44
-	 * @param string $uid
+	 * @param $uid
 	 * @return array|null
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function getUserToken(string $uid): ?string {
+	public function getUserToken($uid): ?string {
 		$params = [
 			"uid"	=>	$uid
 		];
@@ -68,11 +68,11 @@ class UsersController {
 	 * Метод с помощью которого можно выкинуть пользователя из on-line по UID.
 	 *
 	 * @use https://documenter.getpostman.com/view/5969645/TVCfXTtK#e0a2b1c3-4d8f-4a6b-9c7d-0e1f2a3b5c8e
-	 * @param string $uid
+	 * @param $uid
 	 * @return array|null
 	 * @throws Exception\UnauthorizedException|Exception\BillApiException
 	 */
-	public function kickUser(string $uid): ?array {
+	public function kickUser($uid): ?array {
 		$params = [
 			"uid"	=>	$uid,
 		];

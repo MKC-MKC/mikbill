@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Exception;
 
 use LogicException;
 
-class UnauthorizedException extends LogicException
+class WrongPasswordException extends LogicException
 {
 
 }

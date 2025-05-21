@@ -7,10 +7,12 @@ namespace Haikiri\MikBiLL\Billing;
 use Haikiri\MikBiLL\Exception;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class UsersController {
-	protected		MikBiLLApiInterface				$billInterface;
+class UsersController
+{
+	protected MikBiLLApiInterface $billInterface;
 
-	public function __construct(MikBiLLApiInterface $interface) {
+	public function __construct(MikBiLLApiInterface $interface)
+	{
 		$this->billInterface = $interface;
 	}
 
@@ -18,20 +20,22 @@ class UsersController {
 	 * Метод поиска абонентов в Billing по критериям.
 	 *
 	 * Пример использования:
-	 * $this->searchUser(key: "local_ip", value: "10.0.0.2", operator: "="); # Это найдёт всех пользователей с local_ip равным 10.0.0.2.
+	 * $this->searchUser(key: "local_ip", value: "10.0.0.2", operator: "=");
+	 * # Это найдёт всех пользователей с local_ip равным 10.0.0.2.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#f0e8660b-bc5b-42d9-99ad-a53c866b844e
 	 * @param string $key - Возможные ключи: ['user', 'uid', 'state', 'gid', 'deposit', 'credit', и.т.д...]
 	 * @param string|int $value - Значение по которому будет производиться поиск.
 	 * @param string $operator - Возможные операторы: ['<', '=', '>', '>=', '!='] или ['меньше', 'равно', 'больше', 'больше или равно', 'не равно'].
 	 * @return object
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @throws Exception\BillApiException
 	 */
-	public function searchUser(string $key = "uid", string|int $value = "1", string $operator = "="): object {
+	public function searchUser(string $key = "uid", string|int $value = "1", string $operator = "="): object
+	{
 		$params = [
-			"field"		=>	$key,
-			"operator"	=>	$operator,
-			"value"		=>	$value,
+			"field" => $key,
+			"operator" => $operator,
+			"value" => $value,
 		];
 
 		$response = $this->billInterface->sendRequest(
@@ -48,11 +52,12 @@ class UsersController {
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#925498e8-df53-48e7-86c0-69ca6982ad44
 	 * @param $uid
 	 * @return array|null
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @throws Exception\BillApiException
 	 */
-	public function getUserToken($uid): ?string {
+	public function getUserToken($uid): ?string
+	{
 		$params = [
-			"uid"	=>	$uid
+			"uid" => $uid
 		];
 
 		$response = $this->billInterface->sendRequest(
@@ -70,11 +75,12 @@ class UsersController {
 	 * @use https://documenter.getpostman.com/view/5969645/TVCfXTtK#e0a2b1c3-4d8f-4a6b-9c7d-0e1f2a3b5c8e
 	 * @param $uid
 	 * @return array|null
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @throws Exception\BillApiException
 	 */
-	public function kickUser($uid): ?array {
+	public function kickUser($uid): ?array
+	{
 		$params = [
-			"uid"	=>	$uid,
+			"uid" => $uid,
 		];
 
 		return $this->billInterface->sendRequest(
@@ -85,18 +91,19 @@ class UsersController {
 	}
 
 	/**
-	 * @deprecated - Не удалось найти документацию. Метод найден в библиотеке 'kagatan/mb-client-api'.
-	 *
-	 * @see https://github.com/kagatan/mb-client-api/blob/77fea126b42a701563646a99fa439d313ac39b39/src/ClientAPI.php#L126
 	 * @param $uid
 	 * @param $user_id
 	 * @return array|null
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @throws Exception\BillApiException
+	 * @deprecated - Не удалось найти документацию. Метод найден в библиотеке 'kagatan/mb-client-api'.
+	 *
+	 * @see https://github.com/kagatan/mb-client-api/blob/77fea126b42a701563646a99fa439d313ac39b39/src/ClientAPI.php#L126
 	 */
-	public function bindUser($uid, $user_id): ?array {
+	public function bindUser($uid, $user_id): ?array
+	{
 		$params = [
-			"uid"		=>	$uid,
-			"user_id"	=>	$user_id,
+			"uid" => $uid,
+			"user_id" => $user_id,
 		];
 
 		return $this->billInterface->sendRequest("/api/v1/billing/users/bind", "POST", $params, true);

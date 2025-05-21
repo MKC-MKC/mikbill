@@ -5,10 +5,12 @@ namespace Haikiri\MikBiLL\Cabinet;
 use Haikiri\MikBiLL\Exception;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class SubscriptionsController {
-	protected		MikBiLLApiInterface				$billInterface;
+class SubscriptionsController
+{
+	protected MikBiLLApiInterface $billInterface;
 
-	public function __construct(MikBiLLApiInterface $interface) {
+	public function __construct(MikBiLLApiInterface $interface)
+	{
 		$this->billInterface = $interface;
 	}
 
@@ -17,15 +19,17 @@ class SubscriptionsController {
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#aa0c7b39-2525-44a7-a1f6-d8aa7f9b8677
 	 * @param string $service - Название сервиса middleware: "MegoGo", "wink" и.т.д. Актуальный список смотри ссылку выше.
-	 * @return object
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @return Subscriptions\Subscription
+	 * @throws Exception\BillApiException
 	 */
-	public function getSubscriptions(string $service = "other"): object {
+	public function getSubscriptions(string $service = "other"): object
+	{
 		$response = $this->billInterface->sendRequest(
-			uri:		"/api/v1/cabinet/user/subscriptions/" . trim(strtolower($service), "/"),
-			method:		"GET",
-			token:		$this->billInterface->getUserToken(),
+			uri: "/api/v1/cabinet/user/subscriptions/" . trim(strtolower($service), "/"),
+			method: "GET",
+			token: $this->billInterface->getUserToken(),
 		);
+
 		return new Subscriptions\Subscription($response["data"] ?? []);
 	}
 
@@ -37,18 +41,21 @@ class SubscriptionsController {
 	 * @param int $activate - 0 - для отписки; 1 - для подписки;
 	 * @param string $service - Название сервиса middleware: "MegoGo", "wink" и.т.д. Актуальный список смотри ссылку выше.
 	 * @return bool
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @throws Exception\BillApiException
 	 */
-	public function setSubscription(int $id, int $activate = 0, string $service = "other"): bool {
+	public function setSubscription(int $id, int $activate = 0, string $service = "other"): bool
+	{
 		$params = [
-			"id"		=>	$id,
-			"activate"	=>	$activate,
+			"id" => $id,
+			"activate" => $activate,
 		];
+
 		$response = $this->billInterface->sendRequest(
-			uri:		"/api/v1/cabinet/user/subscriptions/" . trim(strtolower($service), "/"),
-			params:		$params,
-			token:		$this->billInterface->getUserToken(),
+			uri: "/api/v1/cabinet/user/subscriptions/" . trim(strtolower($service), "/"),
+			params: $params,
+			token: $this->billInterface->getUserToken(),
 		);
+
 		return isset($response["success"]) && $response["success"] == 1;
 	}
 
@@ -56,15 +63,17 @@ class SubscriptionsController {
 	 * Метод возвращает список всех Middleware.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#43ddf0d2-722b-4c1d-b7b6-050c5452dccb
-	 * @return object
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @return Subscriptions\Middleware
+	 * @throws Exception\BillApiException
 	 */
-	public function getMiddlewares(): object {
+	public function getMiddlewares(): object
+	{
 		$response = $this->billInterface->sendRequest(
-			uri:		"/api/v1/cabinet/user/subscriptions/middlewares",
-			method:		"GET",
-			token:		$this->billInterface->getUserToken(),
+			uri: "/api/v1/cabinet/user/subscriptions/middlewares",
+			method: "GET",
+			token: $this->billInterface->getUserToken(),
 		);
+
 		return new Subscriptions\Middleware($response["data"] ?? []);
 	}
 
@@ -72,15 +81,17 @@ class SubscriptionsController {
 	 * Метод возвращает список групп и их дополнительных подписок (не привязанных к middleware).
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#df73309e-ae0a-453d-938d-966874227ee0
-	 * @return object
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @return Subscriptions\Additional
+	 * @throws Exception\BillApiException
 	 */
-	public function getAdditional(): object {
+	public function getAdditional(): object
+	{
 		$response = $this->billInterface->sendRequest(
-			uri:		"/api/v1/cabinet/user/subscriptions/additional",
-			method:		"GET",
-			token:		$this->billInterface->getUserToken(),
+			uri: "/api/v1/cabinet/user/subscriptions/additional",
+			method: "GET",
+			token: $this->billInterface->getUserToken(),
 		);
+
 		return new Subscriptions\Additional($response["data"] ?? []);
 	}
 
@@ -91,18 +102,21 @@ class SubscriptionsController {
 	 * @param int $id - 123 - ID подписки;
 	 * @param int $activate - 0 - для отписки; 1 - для подписки;
 	 * @return bool
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @throws Exception\BillApiException
 	 */
-	public function setAdditional(int $id, int $activate = 0): bool {
+	public function setAdditional(int $id, int $activate = 0): bool
+	{
 		$params = [
-			"id"		=>	$id,
-			"activate"	=>	$activate,
+			"id" => $id,
+			"activate" => $activate,
 		];
+
 		$response = $this->billInterface->sendRequest(
-			uri:		"/api/v1/cabinet/user/subscriptions/additional",
-			params:		$params,
-			token:		$this->billInterface->getUserToken(),
+			uri: "/api/v1/cabinet/user/subscriptions/additional",
+			params: $params,
+			token: $this->billInterface->getUserToken(),
 		);
+
 		return isset($response["success"]) && $response["success"] == 1;
 	}
 

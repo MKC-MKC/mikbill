@@ -18,9 +18,9 @@ class CommonController
 	 * Метод возвращает IP клиента относительно web-сервера.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#e15b3e31-61c6-4eea-9b2c-b32ce49d09a3
-	 * @return object
+	 * @return Common\GetIpModel
 	 * @noinspection SpellCheckingInspection
-	 * @throws Exception\BillApiException|Exception\UnauthorizedException
+	 * @throws Exception\BillApiException
 	 */
 	public function getIp(): object
 	{
@@ -29,6 +29,7 @@ class CommonController
 			method: "GET",
 			token: $this->billInterface->getUserToken(),
 		);
+
 		return new Common\GetIpModel($response["data"] ?? []);
 	}
 
@@ -36,9 +37,9 @@ class CommonController
 	 * Метод возвращает время с backend`а
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#590cf34a-1467-4199-9406-45458d5fde06
-	 * @return object
+	 * @return Common\GetServerDateModel
 	 * @noinspection SpellCheckingInspection
-	 * @throws Exception\BillApiException|Exception\UnauthorizedException
+	 * @throws Exception\BillApiException
 	 */
 	public function getDate(): object
 	{
@@ -47,6 +48,7 @@ class CommonController
 			method: "GET",
 			token: $this->billInterface->getUserToken(),
 		);
+
 		return new Common\GetServerDateModel($response["data"] ?? []);
 	}
 
@@ -56,8 +58,8 @@ class CommonController
 	 * Используйте ->getAsArray() для получения массива данных.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#8313a870-e586-426c-80b4-b646316bc533
-	 * @return object
-	 * @throws Exception\BillApiException|Exception\UnauthorizedException
+	 * @return Common\GetConfig
+	 * @throws Exception\BillApiException
 	 */
 	public function getConfig(): object
 	{
@@ -66,6 +68,7 @@ class CommonController
 			method: "GET",
 			token: $this->billInterface->getUserToken(),
 		);
+
 		return new Common\GetConfig($response["data"] ?? []);
 	}
 
@@ -74,7 +77,7 @@ class CommonController
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#ef5cb672-9695-4c1e-a4a6-e10e0e9489c7
 	 * @return string|null
-	 * @throws Exception\BillApiException|Exception\UnauthorizedException
+	 * @throws Exception\BillApiException
 	 */
 	public function getVersion(): ?string
 	{
@@ -83,6 +86,7 @@ class CommonController
 			method: "GET",
 			token: $this->billInterface->getUserToken(),
 		);
+
 		return isset($response["data"]) ? (string)$response["data"] : null;
 	}
 
@@ -90,8 +94,8 @@ class CommonController
 	 * Метод возвращает контактные данные организации.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#2949d3f0-a201-477b-9de5-cee4566b61ec
-	 * @return object
-	 * @throws Exception\BillApiException|Exception\UnauthorizedException
+	 * @return Common\GetCompanyInfoModel
+	 * @throws Exception\BillApiException
 	 */
 	public function getContact(): object
 	{
@@ -100,6 +104,7 @@ class CommonController
 			method: "GET",
 			token: $this->billInterface->getUserToken(),
 		);
+
 		return new Common\GetCompanyInfoModel($response["data"] ?? []);
 	}
 
@@ -107,8 +112,8 @@ class CommonController
 	 * Метод вообще что-то возвращает?
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d8fc182c-2200-4a06-80df-f12d54e94b3b
-	 * @return object
-	 * @throws Exception\BillApiException|Exception\UnauthorizedException
+	 * @return Common\GetMenu
+	 * @throws Exception\BillApiException
 	 */
 	public function getMenu(): object
 	{
@@ -117,6 +122,7 @@ class CommonController
 			method: "GET",
 			token: $this->billInterface->getUserToken(),
 		);
+
 		return new Common\GetMenu($response["data"] ?? []);
 	}
 

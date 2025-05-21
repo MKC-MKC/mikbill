@@ -6,15 +6,16 @@ namespace Haikiri\MikBiLL;
 
 use Exception as InternalException;
 
-class MikBiLLApi extends MikBiLLApiAbstract {
+class MikBiLLApi extends MikBiLLApiAbstract
+{
 	#	Proxy SOCKS:
-	public		bool				$isProxy		=	false;	# true - enable proxy ; false - disable proxy ;
-	public		int					$proxy_opt		=	CURLOPT_PROXYUSERPWD;
-	public		int					$proxy_type		=	CURLPROXY_SOCKS5;
-	public		int					$proxy_port		=	8080;
-	public		string				$proxy_addr		=	"";
-	public		string				$proxy_user		=	"";
-	public		string				$proxy_pass		=	"";
+	public bool $isProxy = false;    # true - enable proxy ; false - disable proxy ;
+	public int $proxy_opt = CURLOPT_PROXYUSERPWD;
+	public int $proxy_type = CURLPROXY_SOCKS5;
+	public int $proxy_port = 8080;
+	public string $proxy_addr = "";
+	public string $proxy_user = "";
+	public string $proxy_pass = "";
 
 	/**
 	 * Метод отправки запроса на сервер MikBiLL API.
@@ -26,9 +27,10 @@ class MikBiLLApi extends MikBiLLApiAbstract {
 	 * @param string|null $token
 	 * @return array|null
 	 * @throws InternalException
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @throws Exception\BillApiException
 	 */
-	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): ?array {
+	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): ?array
+	{
 		$headers = [];
 
 		if ($sign) {
@@ -43,8 +45,8 @@ class MikBiLLApi extends MikBiLLApiAbstract {
 		curl_setopt($ch, CURLOPT_URL, rtrim($this->url, "/") . "/" . ltrim($uri, "/"));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-		if (!empty($headers))	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		if ($method == "POST")	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+		if (!empty($headers)) curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		if ($method == "POST") curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
 		if ($this->isProxy) {
 			curl_setopt($ch, CURLOPT_PROXY, $this->proxy_addr);
@@ -53,8 +55,8 @@ class MikBiLLApi extends MikBiLLApiAbstract {
 			if (!empty($this->proxy_user)) curl_setopt($ch, $this->proxy_opt, $this->proxy_user . ":" . $this->proxy_pass);
 		}
 
-		$response	=	curl_exec($ch);
-		$statusCode	=	curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$response = curl_exec($ch);
+		$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 
 		$validResponse = self::validate($response, true);
@@ -68,17 +70,17 @@ class MikBiLLApi extends MikBiLLApiAbstract {
 	 * @param array $response
 	 * @return void
 	 * @throws Exception\BillApiException
-	 * @throws Exception\UnauthorizedException
 	 */
-	protected static function billResponseValidate(array $response): void {
+	protected static function billResponseValidate(array $response): void
+	{
 		if (($response["success"] ?? false) === true) return;
 
-		$code		=	(int)($response["code"] ?? -1);
-		$message	=	$response["message"] ?? "Unknown error";
+		$code = (int)($response["code"] ?? -1);
+		$message = $response["message"] ?? "Unknown error";
 
 		match ($code) {
-			-401		=>	throw new Exception\UnauthorizedException(message: $message, code: $code),
-			default		=>	throw new Exception\BillApiException(message: $message, code: $code),
+			-401 => throw new Exception\UnauthorizedException(message: $message, code: $code),
+			default => throw new Exception\BillApiException(message: $message, code: $code),
 		};
 	}
 

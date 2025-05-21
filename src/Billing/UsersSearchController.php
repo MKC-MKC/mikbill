@@ -6,11 +6,13 @@ namespace Haikiri\MikBiLL\Billing;
 
 use Haikiri\MikBiLL\Cabinet\User;
 
-class UsersSearchController {
-	private		array|null				$data;
-	private		array|null				$items;
+class UsersSearchController
+{
+	private array|null $data;
+	private array|null $items;
 
-	public function __construct(?array $data = []) {
+	public function __construct(?array $data = [])
+	{
 		$this->data = $data;
 		$this->items = array_map(fn($i) => new User\UserModels($i), $data);
 	}
@@ -20,7 +22,8 @@ class UsersSearchController {
 	 * С этим методом вы можете сами управлять возвращаемыми данными, или построить свою модель.
 	 * @return array|null
 	 */
-	public function getAsArray(): ?array {
+	public function getAsArray(): ?array
+	{
 		return $this->data;
 	}
 
@@ -29,7 +32,8 @@ class UsersSearchController {
 	 * Обратите внимание, что модель User содержит в себе больше данных чем может вернуть метод поиска по клиенту MikBiLL.
 	 * @return User\UserModels[]
 	 */
-	public function getUsers(): array {
+	public function getUsers(): array
+	{
 		return $this->items;
 	}
 
@@ -38,7 +42,8 @@ class UsersSearchController {
 	 * Используйте с осторожностью, и только если уверены что вернётся только один клиент.
 	 * @return User\UserModels|null
 	 */
-	public function getOne(): ?User\UserModels {
+	public function getOne(): ?User\UserModels
+	{
 		return $this->getUsers()[0] ?? null;
 	}
 

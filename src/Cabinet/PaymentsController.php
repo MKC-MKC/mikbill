@@ -4,10 +4,12 @@ namespace Haikiri\MikBiLL\Cabinet;
 
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class PaymentsController {
-	protected		MikBiLLApiInterface				$billInterface;
+class PaymentsController
+{
+	protected MikBiLLApiInterface $billInterface;
 
-	public function __construct(MikBiLLApiInterface $interface) {
+	public function __construct(MikBiLLApiInterface $interface)
+	{
 		$this->billInterface = $interface;
 	}
 

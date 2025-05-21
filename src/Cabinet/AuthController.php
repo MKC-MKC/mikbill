@@ -7,10 +7,12 @@ namespace Haikiri\MikBiLL\Cabinet;
 use Haikiri\MikBiLL\Exception;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
-class AuthController {
-	protected		MikBiLLApiInterface				$billInterface;
+class AuthController
+{
+	protected MikBiLLApiInterface $billInterface;
 
-	public function __construct(MikBiLLApiInterface $interface) {
+	public function __construct(MikBiLLApiInterface $interface)
+	{
 		$this->billInterface = $interface;
 	}
 
@@ -20,19 +22,21 @@ class AuthController {
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#a19e1a83-9c70-4a3c-97ea-56c1ab3f7cbb
 	 * @param string $login
 	 * @param string $pass
-	 * @return object
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @return Auth\Login\LoginModels
+	 * @throws Exception\BillApiException
 	 */
-	public function login(string $login, string $pass): object {
+	public function login(string $login, string $pass): object
+	{
 		$params = [
-			"login"		=>	$login,
-			"password"	=>	$pass,
+			"login" => $login,
+			"password" => $pass,
 		];
 
 		$response = $this->billInterface->sendRequest(
-			uri:		"/api/v1/cabinet/auth/login",
-			params:		$params,
+			uri: "/api/v1/cabinet/auth/login",
+			params: $params,
 		);
+
 		return new Auth\Login\LoginModels($response["data"] ?? []);
 	}
 
@@ -42,11 +46,12 @@ class AuthController {
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#a65b8db9-0c0c-4227-a1f6-8109eedfe61a
 	 * @param int|string $phone # Например: '380934708280'
 	 * @return array|null
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @throws Exception\BillApiException
 	 */
-	public function phone(int|string $phone): ?array {
+	public function phone(int|string $phone): ?array
+	{
 		$params = [
-			"phone"		=>	$phone,
+			"phone" => $phone,
 		];
 
 		return $this->billInterface->sendRequest(uri: "/api/v1/cabinet/auth/phone", params: $params);
@@ -57,18 +62,20 @@ class AuthController {
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#0c62d445-3b55-4732-8b37-88aae1bb0773
 	 * @param int|string $otp # Например: '71-49-05-18' - Код из SMS
-	 * @return object
-	 * @throws Exception\UnauthorizedException|Exception\BillApiException
+	 * @return Auth\Phone\PhoneOtpModels
+	 * @throws Exception\BillApiException
 	 */
-	public function phoneOtp(int|string $otp): object {
+	public function phoneOtp(int|string $otp): object
+	{
 		$params = [
-			"otp"	=>	$otp,
+			"otp" => $otp,
 		];
 
 		$response = $this->billInterface->sendRequest(
-			uri:		"/api/v1/cabinet/auth/phone/otp",
-			params:		$params,
+			uri: "/api/v1/cabinet/auth/phone/otp",
+			params: $params,
 		);
+
 		return new Auth\Phone\PhoneOtpModels($response["data"] ?? []);
 	}
 

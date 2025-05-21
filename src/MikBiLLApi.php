@@ -79,7 +79,18 @@ class MikBiLLApi extends MikBiLLApiAbstract
 		$message = $response["message"] ?? "Unknown error";
 
 		match ($code) {
+			-422 => throw new Exception\RequiredParamException(message: $message, code: $code),
 			-401 => throw new Exception\UnauthorizedException(message: $message, code: $code),
+			-34 => throw new Exception\VoucherCardExpiredException(message: $message, code: $code),
+			-33 => throw new Exception\VoucherCardUsedException(message: $message, code: $code),
+			-32 => throw new Exception\VoucherCardBlockedException(message: $message, code: $code),
+			-30 => throw new Exception\VoucherCardFormatException(message: $message, code: $code),
+			-29 => throw new Exception\VoucherCardLengthException(message: $message, code: $code),
+			-28 => throw new Exception\ActivationErrorException(message: $message, code: $code),
+			-27 => throw new Exception\AlreadyDeactivatedException(message: $message, code: $code),
+			-24 => throw new Exception\NoMoneyException(message: $message, code: $code),
+			-23 => throw new Exception\WrongPasswordException(message: $message, code: $code),
+			-22, => throw new Exception\AlreadyActivatedException(message: $message, code: $code),
 			default => throw new Exception\BillApiException(message: $message, code: $code),
 		};
 	}

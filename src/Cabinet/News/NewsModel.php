@@ -2,34 +2,24 @@
 
 namespace Haikiri\MikBiLL\Cabinet\News;
 
-class NewsModel
+use Haikiri\MikBiLL\ResponseWrapper;
+
+class NewsModel extends ResponseWrapper
 {
-
-	private array $data;
-
-	public function __construct(array $data)
-	{
-		$this->data = $data;
-	}
-
-	public function getData(): ?array
-	{
-		return $this->data ?? [];
-	}
 
 	public function getId(): int
 	{
-		return (int)$this->getData()["newsid"] ?? 0;
+		return $this->getData("newsid", 0);
 	}
 
 	public function getSubject(): string
 	{
-		return (string)$this->getData()["subject"] ?? "";
+		return $this->getData("subject", "");
 	}
 
 	public function getText(): string
 	{
-		return (string)$this->getData()["text"] ?? "";
+		return $this->getData("text", "");
 	}
 
 }

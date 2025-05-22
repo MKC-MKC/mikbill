@@ -18,11 +18,15 @@
             "Haikiri\\MikBiLL\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Haikiri\\MikBiLL\\Tests\\": "tests/"
+        }
+    },
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.0",
-        "ext-curl": "*",
-        "ext-json": "*"
+        "ext-curl": "*"
     },
     "authors": [
         {
@@ -30,5 +34,8 @@
             "email": "haikiri@ya.ru",
             "homepage": "https://haikiri.t.me"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^12.1"
+    }
 }

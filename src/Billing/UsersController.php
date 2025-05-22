@@ -6,6 +6,7 @@ namespace Haikiri\MikBiLL\Billing;
 
 use Haikiri\MikBiLL\Exception;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
+use Haikiri\MikBiLL\Response;
 
 class UsersController
 {
@@ -27,7 +28,7 @@ class UsersController
 	 * @param string $key - Возможные ключи: ['user', 'uid', 'state', 'gid', 'deposit', 'credit', и.т.д...]
 	 * @param string|int $value - Значение по которому будет производиться поиск.
 	 * @param string $operator - Возможные операторы: ['<', '=', '>', '>=', '!='] или ['меньше', 'равно', 'больше', 'больше или равно', 'не равно'].
-	 * @return object
+	 * @return UsersSearchController
 	 * @throws Exception\BillApiException
 	 */
 	public function searchUser(string $key = "uid", string|int $value = "1", string $operator = "="): object
@@ -41,9 +42,10 @@ class UsersController
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/billing/users/search",
 			params: $params,
-			sign: true
+			sign: true,
 		);
-		return new UsersSearchController($response["data"] ?? []);
+
+		return new UsersSearchController($response->getData());
 	}
 
 	/**
@@ -51,10 +53,10 @@ class UsersController
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#925498e8-df53-48e7-86c0-69ca6982ad44
 	 * @param $uid
-	 * @return array|null
+	 * @return string|null
 	 * @throws Exception\BillApiException
 	 */
-	public function getUserToken($uid): ?string
+	public function getUserToken($uid): string|null
 	{
 		$params = [
 			"uid" => $uid
@@ -63,21 +65,22 @@ class UsersController
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/billing/users/token",
 			params: $params,
-			sign: true
+			sign: true,
 		);
 
-		return $response["data"]["token"] ?? null;
+		return $response->getToken();
 	}
 
 	/**
 	 * Метод с помощью которого можно выкинуть пользователя из on-line по UID.
 	 *
-	 * @use https://documenter.getpostman.com/view/5969645/TVCfXTtK#e0a2b1c3-4d8f-4a6b-9c7d-0e1f2a3b5c8e
 	 * @param $uid
-	 * @return array|null
+	 * @return Response
 	 * @throws Exception\BillApiException
+	 * @use https://documenter.getpostman.com/view/5969645/TVCfXTtK#e0a2b1c3-4d8f-4a6b-9c7d-0e1f2a3b5c8e
+	 * @deprecated
 	 */
-	public function kickUser($uid): ?array
+	public function kickUser($uid): Response
 	{
 		$params = [
 			"uid" => $uid,
@@ -93,20 +96,24 @@ class UsersController
 	/**
 	 * @param $uid
 	 * @param $user_id
-	 * @return array|null
+	 * @return Response
 	 * @throws Exception\BillApiException
 	 * @deprecated - Не удалось найти документацию. Метод найден в библиотеке 'kagatan/mb-client-api'.
-	 *
 	 * @see https://github.com/kagatan/mb-client-api/blob/77fea126b42a701563646a99fa439d313ac39b39/src/ClientAPI.php#L126
 	 */
-	public function bindUser($uid, $user_id): ?array
+	public function bindUser($uid, $user_id): Response
 	{
 		$params = [
 			"uid" => $uid,
 			"user_id" => $user_id,
 		];
 
-		return $this->billInterface->sendRequest("/api/v1/billing/users/bind", "POST", $params, true);
+		return $this->billInterface->sendRequest(
+			uri: "/api/v1/billing/users/bind",
+			method: "POST",
+			params: $params,
+			sign: true,
+		);
 	}
 
 }

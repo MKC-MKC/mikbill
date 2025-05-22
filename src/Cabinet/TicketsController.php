@@ -28,7 +28,7 @@ class TicketsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Tickets\Ticket($response["data"] ?? []);
+		return new Tickets\Ticket($response->getData());
 	}
 
 	/**
@@ -50,7 +50,7 @@ class TicketsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Tickets\NewTicketModel($response["data"] ?? []);
+		return new Tickets\NewTicketModel($response->getData());
 	}
 
 	/**
@@ -68,7 +68,7 @@ class TicketsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Tickets\TicketMessenger($response["data"] ?? []);
+		return new Tickets\TicketMessenger($response->getData());
 	}
 
 	/**
@@ -91,7 +91,7 @@ class TicketsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return isset($response["success"]) && $response["success"] == 1;
+		return $response->isSuccess();
 	}
 
 }

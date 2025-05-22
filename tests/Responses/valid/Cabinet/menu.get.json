@@ -1,0 +1,49 @@
+{
+    "success": true,
+    "code": 0,
+    "data": [
+        {
+            "id": "1",
+            "name": "Главная",
+            "link": "/",
+            "usersgroupid": "0",
+            "parent": "0",
+            "sort": "1",
+            "hide": "0",
+            "icon": "fas fa-home",
+            "hook": "",
+            "title": "Главная",
+            "description": "Общая информация",
+            "keywords": ""
+        },
+        {
+            "id": "2",
+            "name": "Услуги",
+            "link": "#",
+            "usersgroupid": "0",
+            "parent": "0",
+            "sort": "2",
+            "hide": "0",
+            "icon": "icon-check fa-solid fa-square-check",
+            "hook": "services",
+            "title": "",
+            "description": "",
+            "keywords": ""
+        },
+        {
+            "id": "100",
+            "name": "Telegram",
+            "link": "https://MilkyGray.t.me/",
+            "usersgroupid": "0",
+            "parent": "110",
+            "sort": "0",
+            "hide": "0",
+            "icon": "fa-brands fa-telegram",
+            "hook": "",
+            "title": "Телеграм канал",
+            "description": "Наш новостной Telegram-канал MilkyGray",
+            "keywords": ""
+        }
+    ],
+    "message": "ОК"
+}

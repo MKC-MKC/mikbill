@@ -1,0 +1,429 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "user": "username",
+        "password": "userpass",
+        "crypt_method": "0",
+        "state": "1",
+        "uid": "1639",
+        "gid": "2",
+        "deposit": "375.82",
+        "credit": 4030,
+        "fio": "Иванько Петр Петрович",
+        "phone": "",
+        "address": "Мадрид, Тележкина 30/12",
+        "prim": "drhу",
+        "add_date": "2013-07-19",
+        "blocked": "0",
+        "activated": "1",
+        "expired": "0000-00-00",
+        "total_time": "0",
+        "total_traffic": "0",
+        "total_money": "0.000000",
+        "last_connection": "2025-05-20 07:56:17",
+        "framed_ip": "172.16.0.4",
+        "framed_mask": "255.255.255.255",
+        "callback_number": "",
+        "local_ip": "10.0.0.4",
+        "local_mac": "AA:BB:CC:11:22:33",
+        "sectorid": "1. Основной",
+        "create_mail": "1",
+        "user_installed": "1",
+        "speed_rate": "5120",
+        "speed_burst": "5120",
+        "gidd": "0",
+        "link_to_ip_mac": "0",
+        "email": "info@wi-fi-point.com",
+        "passportserie": "_СЕРИЯ_",
+        "passportpropiska": "ЕДРИТ, г. Мадрид, ул. Тележкина, 30/12",
+        "passportvoenkomat": "",
+        "passportgdevidan": "_ГДЕ И КОГДА_",
+        "inn": "3251006556",
+        "real_ip": "0",
+        "real_price": 0,
+        "real_ipfree": "0",
+        "dogovor": "1",
+        "credit_procent": 0,
+        "rating": "0",
+        "mob_tel": "380934708280",
+        "sms_tel": "380934708280",
+        "date_birth": "2020-02-11",
+        "date_birth_do": "1",
+        "languarddisable": "0",
+        "credit_unlimited": "0",
+        "dontshowspeed": "0",
+        "numdogovor": "1232",
+        "app": "12",
+        "switchport": "4294967295",
+        "houseid": "2500",
+        "housingid": "0",
+        "houseblockid": "0",
+        "porch": "1",
+        "floor": "3",
+        "swid": "0",
+        "use_router": "0",
+        "router_model": "TP-Link Corporat",
+        "router_login": "",
+        "router_pass": "",
+        "router_ssid": "",
+        "router_wep_pass": "",
+        "router_we_saled": "0",
+        "router_use_dual": "0",
+        "router_add_date": "00/00/0000",
+        "router_serial": "",
+        "router_port": "8080",
+        "credit_stop": "0",
+        "date_abonka": "1",
+        "mac_reg": "0",
+        "fixed_cost": "0",
+        "deletedtable": 0,
+        "otkluchentable": 0,
+        "frezetable": 0,
+        "useruid": "1639",
+        "lane": "Тележкина пр.",
+        "house": "30",
+        "settlementname": "Мадрид",
+        "packet": "оптика_5Mb",
+        "fixed": "10",
+        "tarif_fixed_cost": "400.000000",
+        "fixed_cost2": "10.000000",
+        "local_ipv6": "",
+        "us_uid": "1639",
+        "ext_legal_person": 0,
+        "dogovor_date": "2015-01-21",
+        "invoice_print_on": 0,
+        "ext_show_company_name": 1,
+        "ext_show_company_name_text": "",
+        "show_company_name_text": "Тестовая кампаніїїєя",
+        "dealer_id": "0",
+        "local_mask": "255.255.0.0",
+        "tarif": "Unlim-130",
+        "shapers_day_night_active": "0",
+        "UE": "₹",
+        "turbo_active": 0,
+        "packet_name": "оптика_5Mb",
+        "speed_in": 5,
+        "speed_out": 5,
+        "show": {
+            "speed_out": 1,
+            "speed_in": 1,
+            "index_daysleft": 1,
+            "index_enddate": 1,
+            "fee": 1,
+            "inn": 0,
+            "numdogovor": 0,
+            "uid": 1,
+            "payments_tile": 1,
+            "discount": 1
+        },
+        "use_cards": "0",
+        "use_alfabankru": 0,
+        "use_ckassa": 0,
+        "use_click": 0,
+        "use_cloudpayments": 0,
+        "use_easypay": 0,
+        "use_fondy": 0,
+        "freedompay_on": 0,
+        "use_ipay": 0,
+        "use_isbank": 0,
+        "use_liqpay": 0,
+        "liqpay_kommiss_on": 0,
+        "liqpay_kommiss_percent": "0",
+        "use_onpay": 0,
+        "use_paycell": 0,
+        "use_paykeeper": 0,
+        "use_paymaster": 0,
+        "use_payme": 0,
+        "use_paymo": 0,
+        "use_paypal": 0,
+        "paysera_on": 0,
+        "use_paysoft": 0,
+        "platon_on": 0,
+        "use_portmone": 0,
+        "use_privat24": 0,
+        "use_privat_v2": 0,
+        "use_pscb": 0,
+        "psbank_on": 0,
+        "qiwi_on": 0,
+        "reeves_on": 0,
+        "use_robokassa": 0,
+        "use_sberbankrumrch": 0,
+        "use_sberbankrumrch_autopay": 0,
+        "use_simplepay": 0,
+        "use_stripe": 0,
+        "use_tinkoff": 1,
+        "tinkoff_kommiss_percent": "10",
+        "use_ukrpays": 0,
+        "use_uniteller": 0,
+        "use_wqiwiru": 0,
+        "use_yandex": 0,
+        "use_yandexmoney": 0,
+        "use_masterpass": 0,
+        "barcode_on": 0,
+        "qrcode_on": 0,
+        "iviru_on": 0,
+        "rentsoft_on": 0,
+        "rentsoft_secret": "",
+        "rentsoft_ag_name": "a-com-tv-86d4b8dc4526da8cf003e503c8ecd61e",
+        "rentsoft_dev_domain_suffix": 0,
+        "flussonic_on": 0,
+        "primepay_on": 0,
+        "whitepay_on": 0,
+        "payment_methods": {
+            "alfabankru": {
+                "enabled": 0
+            },
+            "cards": {
+                "enabled": "0"
+            },
+            "ckassa": {
+                "enabled": 0
+            },
+            "click": {
+                "enabled": 0
+            },
+            "cloudpayments": {
+                "enabled": 0
+            },
+            "easypay": {
+                "enabled": 1
+            },
+            "fondy": {
+                "enabled": 1
+            },
+            "freedompay": {
+                "enabled": 0
+            },
+            "ipay": {
+                "enabled": 0
+            },
+            "isbank": {
+                "enabled": 0
+            },
+            "liqpay": {
+                "enabled": 1,
+                "commission_enabled": 1,
+                "commission_percent": "2.75"
+            },
+            "onpay": {
+                "enabled": 0
+            },
+            "paycell": {
+                "enabled": 0
+            },
+            "paykeeper": {
+                "enabled": 0
+            },
+            "paymaster": {
+                "enabled": 0
+            },
+            "payme": {
+                "enabled": 0
+            },
+            "paymo": {
+                "enabled": 0
+            },
+            "paypal": {
+                "enabled": 0
+            },
+            "paysera": {
+                "enabled": 0
+            },
+            "paysoft": {
+                "enabled": 0
+            },
+            "platon": {
+                "enabled": 0
+            },
+            "portmone": {
+                "enabled": 1
+            },
+            "privatv2": {
+                "enabled": 1
+            },
+            "primepay": {
+                "enabled": 0
+            },
+            "pscb": {
+                "enabled": 0
+            },
+            "qiwi": {
+                "enabled": 0
+            },
+            "reeves": {
+                "enabled": 0
+            },
+            "robokassa": {
+                "enabled": 0
+            },
+            "sberbankrumrch": {
+                "enabled": 1
+            },
+            "simplepay": {
+                "enabled": 0
+            },
+            "stripe": {
+                "enabled": 0
+            },
+            "tinkoff": {
+                "enabled": 1,
+                "commission_enabled": 1,
+                "commission_percent": "3"
+            },
+            "ukrpays": {
+                "enabled": 1
+            },
+            "uniteller": {
+                "enabled": 0
+            },
+            "whitepay": {
+                "enabled": 0
+            },
+            "wqiwiru": {
+                "enabled": 0
+            },
+            "yandex": {
+                "enabled": 0
+            },
+            "yandexmoney": {
+                "enabled": 0
+            }
+        },
+        "do_turbo": "1",
+        "turbo_buy_cena": 0,
+        "do_real_ip": "0",
+        "realip_like_tarif": "0",
+        "real_ip_link_with_packet_type": "0",
+        "real_pay_period": "0",
+        "real_ip_buy_cena": 0,
+        "real_ip_disable_cena": 0,
+        "do_perevod_na_tarif": "1",
+        "tarif_perevod_vniz": 10,
+        "tarif_perevod_vverh": 0,
+        "current_rating": "2",
+        "freeze_do_ever": "1",
+        "start_credit_date": "0",
+        "stop_credit_date": "0",
+        "start_credit_procent_date": "0",
+        "stop_credit_procent_date": "0",
+        "do_credit_vremen_global": 1,
+        "do_credit_procent_vremen_global": 0,
+        "do_credit_swing_date_use": "1",
+        "do_credit_vremen": 0,
+        "do_credit_vremen_use": 0,
+        "do_credit_procent_vremen_use": 0,
+        "do_credit_vremen_start_date": "0",
+        "do_credit_vremen_stop_date": "0",
+        "do_credit_procent_vremen_start_date": "0",
+        "do_credit_procent_vremen_stop_date": "0",
+        "use_perevod": "0",
+        "use_change_pass": "1",
+        "use_change_data": "1",
+        "do_fixed_credit": "0",
+        "do_credit_swing_date": "1",
+        "do_credit_swing_date_days": "3",
+        "credit_active_cena": "15.00",
+        "credit_procent_active_cena": "0.00",
+        "do_credit_vozvrat_aktiv_cena": "1",
+        "turbo_active_cena": "20.00",
+        "turbo_time": "24",
+        "turbo_speed_in": "102400",
+        "turbo_speed_out": "102400",
+        "do_print_dogovor": "0",
+        "zapret_uhoda_s_tarifa": "0",
+        "razresh_minus": "0",
+        "use_drweb": 0,
+        "check_freeze": 0,
+        "freeze_date_info": [],
+        "unfreeze_earlier_disallow": 0,
+        "kabinet_do_freeze_balanse_plus": "1",
+        "cena_freeze": 0,
+        "count_free_freeze": "0",
+        "count_free_freeze_use": "0",
+        "freeze_fixed_month": 0,
+        "kabinet_do_freeze": "1",
+        "cena_unfreeze": "0.00",
+        "cena_sutok_freeze": "0.00",
+        "freeze_do_return_abonolata": "0",
+        "min_sutok_freeze": "7",
+        "dont_show_speed_tarif": "0",
+        "dont_display_local_ip": "0",
+        "dont_display_framed_ip": "1",
+        "do_perevod_fixed": "0",
+        "perevod_summa": "1",
+        "fixed_tarif": "10",
+        "current_day": "21",
+        "abonplata_user_dev": "0",
+        "abonplata_subscriptions": "0",
+        "abonplata": "4030",
+        "abonplata_real_now": "0",
+        "abonplata_installments": "0",
+        "discount": {
+            "extended": 0,
+            "ext_discount_global": {
+                "value": 0,
+                "sign": "%"
+            },
+            "ext_discount_packet": {
+                "value": 0,
+                "sign": "%"
+            },
+            "ext_discount_subs": {
+                "value": 0,
+                "sign": "%"
+            },
+            "ext_discount_device": {
+                "value": 0,
+                "sign": "%"
+            }
+        },
+        "erec_payment": "3654.18",
+        "itog_summa": "3654.18",
+        "do_fixed_credit_summa": "0",
+        "days_left": "110",
+        "date_itog": "16-05-2022",
+        "address_old": "",
+        "fee": {
+            "packet": {
+                "price": 4030,
+                "discount": {
+                    "value": 0,
+                    "sign": "%"
+                },
+                "price_with_discount": 4030
+            },
+            "subscriptions": {
+                "total": 0,
+                "total_with_discount": 0,
+                "discount": {
+                    "value": 0,
+                    "sign": "%"
+                },
+                "detailed": [
+                    {
+                        "id": "136",
+                        "name": "24htv Lite",
+                        "price": "0",
+                        "discount": "0",
+                        "price_with_discount": "0"
+                    }
+                ]
+            },
+            "devices": {
+                "total": 0,
+                "total_with_discount": 0,
+                "discount": {
+                    "value": 0,
+                    "sign": "%"
+                },
+                "detailed": []
+            },
+            "realip": 0,
+            "installments": 0,
+            "total": 4030,
+            "total_with_discount": 4030
+        }
+    },
+    "message": "ОК"
+}

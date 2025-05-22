@@ -1,0 +1,23 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "available": 1,
+        "active": 0,
+        "info": {
+            "active_cena": "15.00",
+            "credit_procent": 0,
+            "type": 3,
+            "currency": "руб",
+            "credit_summa": 416,
+            "early_loan_repayment": "1",
+            "will_be_avilable_days": 10,
+            "start_credit_day": "21",
+            "stop_credit_day": "24",
+            "date_start": "2025-05-21",
+            "date_stop": "2025-05-24",
+            "credit_active_days": 3
+        }
+    },
+    "message": "ОК"
+}

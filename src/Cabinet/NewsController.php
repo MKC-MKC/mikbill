@@ -29,7 +29,7 @@ class NewsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new News\News($response["data"] ?? []);
+		return new News\News($response->getData());
 	}
 
 }

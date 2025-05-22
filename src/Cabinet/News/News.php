@@ -2,27 +2,18 @@
 
 namespace Haikiri\MikBiLL\Cabinet\News;
 
-class News
-{
+use Haikiri\MikBiLL\ResponseWrapper;
 
-	private array|null $data;
+class News extends ResponseWrapper
+{
 	private array|null $items;
 
-	public function __construct(?array $data = [])
+	public function __construct(?array $data)
 	{
-		$this->data = $data;
+		parent::__construct($data);
 		$this->items = array_map(fn($i) => new NewsModel($i), $data);
 	}
 
-	/**
-	 * Метод возвращает результат как массив.
-	 *
-	 * @return array|null
-	 */
-	public function getAsArray(): ?array
-	{
-		return $this->data;
-	}
 
 	/**
 	 * Метод возвращает результат как модель.

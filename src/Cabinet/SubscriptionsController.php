@@ -30,7 +30,7 @@ class SubscriptionsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Subscriptions\Subscription($response["data"] ?? []);
+		return new Subscriptions\Subscription($response->getData());
 	}
 
 	/**
@@ -56,7 +56,7 @@ class SubscriptionsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return isset($response["success"]) && $response["success"] == 1;
+		return $response->isSuccess();
 	}
 
 	/**
@@ -74,7 +74,7 @@ class SubscriptionsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Subscriptions\Middleware($response["data"] ?? []);
+		return new Subscriptions\Middleware($response->getData());
 	}
 
 	/**
@@ -92,7 +92,7 @@ class SubscriptionsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Subscriptions\Additional($response["data"] ?? []);
+		return new Subscriptions\Additional($response->getData());
 	}
 
 	/**
@@ -117,7 +117,7 @@ class SubscriptionsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return isset($response["success"]) && $response["success"] == 1;
+		return $response->isSuccess();
 	}
 
 }

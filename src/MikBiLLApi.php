@@ -25,11 +25,11 @@ class MikBiLLApi extends MikBiLLApiAbstract
 	 * @param array $params
 	 * @param bool $sign
 	 * @param string|null $token
-	 * @return array|null
+	 * @return Response
 	 * @throws InternalException
 	 * @throws Exception\BillApiException
 	 */
-	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): ?array
+	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): Response
 	{
 		$headers = [];
 
@@ -56,12 +56,11 @@ class MikBiLLApi extends MikBiLLApiAbstract
 		}
 
 		$response = curl_exec($ch);
-		$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 
 		$validResponse = self::validate($response, true);
 		self::billResponseValidate($validResponse);
-		return $statusCode == 200 && is_array($validResponse) ? $validResponse : null;
+		return Response::fromResponse($validResponse);
 	}
 
 	/**

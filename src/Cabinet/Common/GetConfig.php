@@ -2,24 +2,14 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Common;
 
-class GetConfig
+use Haikiri\MikBiLL\ResponseWrapper;
+
+class GetConfig extends ResponseWrapper
 {
-
-	private array $data;
-
-	public function __construct(array $data)
-	{
-		$this->data = $data;
-	}
-
-	public function getAsArray(): ?array
-	{
-		return $this->data ?? [];
-	}
 
 	public function getCompanyInfo(): GetCompanyInfoModel
 	{
-		return new GetCompanyInfoModel($this->getAsArray()["company_info"] ?? []);
+		return new GetCompanyInfoModel($this->getData("company_info"));
 	}
 
 }

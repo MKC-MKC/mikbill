@@ -2,223 +2,127 @@
 
 namespace Haikiri\MikBiLL\Cabinet\User;
 
-trait UserFeeModelsTrait {
+trait UserFeeModelsTrait
+{
 
-	/**
-	 * Метод возвращает данные тарифа.
-	 *
-	 * @return array|null
-	 */
-	public function getUserFeePacket(): ?array {
-		return (array)$this->getUserFee()["packet"] ?? [];
+	public function getUserFeePacket(): array|null
+	{
+		return $this->getData("fee.packet");
 	}
 
-	/**
-	 * Метод возвращает данные подписок.
-	 *
-	 * @return array|null
-	 */
-	public function getUserFeeSubscriptions(): ?array {
-		return (array)$this->getUserFee()["subscriptions"] ?? [];
+	public function getUserFeeSubscriptions(): array|null
+	{
+		return $this->getData("fee.subscriptions");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return array|null
-	 */
-	public function getUserFeeDevices(): ?array {
-		return (array)$this->getUserFee()["devices"] ?? [];
+	public function getUserFeeDevices(): array|null
+	{
+		return $this->getData("fee.devices");
 	}
 
-	/**
-	 * Метод возвращает стоимость тарифа.
-	 *
-	 * @return int
-	 */
-	public function getUserFeePacketPrice(): int {
-		return (int)$this->getUserFeePacket()["price"] ?? 0;
+	public function getUserFeePacketPrice(): float|int|string|null
+	{
+		return $this->getData("fee.packet.price");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return array|null
-	 */
-	public function getUserFeePacketDiscount(): ?array {
-		return (array)$this->getUserFeePacket()["discount"] ?? [];
+	public function getUserFeePacketDiscount(): array|null
+	{
+		return $this->getData("fee.packet.discount");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeePacketDiscountValue(): int {
-		return (int)$this->getUserFeePacketDiscount()["value"] ?? 0;
+	public function getUserFeePacketPriceWithDiscount(): float|int|string|null
+	{
+		return $this->getData("fee.packet.price_with_discount");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return string
-	 */
-	public function getUserFeePacketDiscountSign(): string {
-		return (string)$this->getUserFeePacketDiscount()["sign"] ?? "";
+	public function getUserFeePacketDiscountValue(): int|string|null
+	{
+		return $this->getData("fee.packet.discount.value");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeePacketPriceWithDiscount(): int {
-		return (int)$this->getUserFeePacket()["price_with_discount"] ?? 0;
+	public function getUserFeePacketDiscountSign(): string|null
+	{
+		return $this->getData("fee.packet.discount.sign");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeSubscriptionsTotal(): int {
-		return (int)$this->getUserFeeSubscriptions()["total"] ?? 0;
+	public function getUserFeeSubscriptionsTotal(): float|int|string|null
+	{
+		return $this->getData("fee.subscriptions.total");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeSubscriptionsTotalWithDiscount(): int {
-		return (int)$this->getUserFeeSubscriptions()["total_with_discount"] ?? 0;
+	public function getUserFeeSubscriptionsTotalWithDiscount(): float|int|string|null
+	{
+		return $this->getData("fee.subscriptions.total_with_discount");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return array|null
-	 */
-	public function getUserFeeSubscriptionsDiscount(): ?array {
-		return (array)$this->getUserFeeSubscriptions()["discount"] ?? [];
+	public function getUserFeeSubscriptionsDiscount(): array|null
+	{
+		return $this->getData("fee.subscriptions.discount");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeSubscriptionsDiscountValue(): int {
-		return (int)$this->getUserFeeSubscriptionsDiscount()["value"] ?? 0;
+	public function getUserFeeSubscriptionsDetailed(): array|null
+	{
+		return $this->getData("fee.subscriptions.detailed");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return string
-	 */
-	public function getUserFeeSubscriptionsDiscountSign(): string {
-		return (string)$this->getUserFeeSubscriptionsDiscount()["sign"] ?? "";
+	public function getUserFeeSubscriptionsDiscountValue(): int|string|null
+	{
+		return $this->getData("fee.subscriptions.discount.value");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return array|null
-	 */
-	public function getUserFeeSubscriptionsDetailed(): ?array {
-		return (array)$this->getUserFeeSubscriptions()["detailed"] ?? [];
+	public function getUserFeeSubscriptionsDiscountSign(): string|null
+	{
+		return $this->getData("fee.subscriptions.discount.sign");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeDevicesTotal(): int {
-		return (int)$this->getUserFeeDevices()["total"] ?? 0;
+	public function getUserFeeDevicesTotal(): float|int|string|null
+	{
+		return $this->getData("fee.devices.total");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeDevicesTotalWithDiscount(): int {
-		return (int)$this->getUserFeeDevices()["total_with_discount"] ?? 0;
+	public function getUserFeeDevicesTotalWithDiscount(): float|int|string|null
+	{
+		return $this->getData("fee.devices.total_with_discount");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return array|null
-	 */
-	public function getUserFeeDevicesDiscount(): ?array {
-		return (array)$this->getUserFeeDevices()["discount"] ?? [];
+	public function getUserFeeDevicesDetailed(): array|null
+	{
+		return $this->getData("fee.devices.detailed");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeDevicesDiscountValue(): int {
-		return (int)$this->getUserFeeDevicesDiscount()["value"] ?? 0;
+	public function getUserFeeDevicesDiscount(): array|null
+	{
+		return $this->getData("fee.devices.discount");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return string
-	 */
-	public function getUserFeeDevicesDiscountSign(): string {
-		return (string)$this->getUserFeeDevicesDiscount()["sign"] ?? "";
+	public function getUserFeeDevicesDiscountValue(): int|string|null
+	{
+		return $this->getData("fee.devices.discount.value");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return array|null
-	 */
-	public function getUserFeeDevicesDetailed(): ?array {
-		return (array)$this->getUserFeeDevices()["detailed"] ?? [];
+	public function getUserFeeDevicesDiscountSign(): string|null
+	{
+		return $this->getData("fee.devices.discount.sign");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 * @noinspection SpellCheckingInspection
-	 */
-	public function getUserFeeRealIp(): int {
-		return (int)$this->getUserFee()["realip"] ?? 0;
+	public function getUserFeeRealIp(): int|string|null
+	{
+		return $this->getData("fee.realip");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeInstallments(): int {
-		return (int)$this->getUserFee()["installments"] ?? 0;
+	public function getUserFeeInstallments(): int|string|null
+	{
+		return $this->getData("fee.installments");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeTotal(): int {
-		return (int)$this->getUserFee()["total"] ?? 0;
+	public function getUserFeeTotal(): float|int|string|null
+	{
+		return $this->getData("fee.total");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return int
-	 */
-	public function getUserFeeTotalWithDiscount(): int {
-		return (int)$this->getUserFee()["total_with_discount"] ?? 0;
+	public function getUserFeeTotalWithDiscount(): float|int|string|null
+	{
+		return $this->getData("fee.total_with_discount");
 	}
 
 }

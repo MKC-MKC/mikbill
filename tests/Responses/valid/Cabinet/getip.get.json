@@ -1,0 +1,8 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "ip": "10.11.12.13"
+    },
+    "message": "ОК"
+}

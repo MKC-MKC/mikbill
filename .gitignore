@@ -1,6 +1,7 @@
 # Project
 *.lock
 vendor
+tests/Responses/real/
 
 # ---> macOS
 # General

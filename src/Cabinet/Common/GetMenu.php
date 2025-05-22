@@ -2,26 +2,16 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Common;
 
-class GetMenu
-{
+use Haikiri\MikBiLL\ResponseWrapper;
 
-	private array|null $data;
+class GetMenu extends ResponseWrapper
+{
 	private array|null $items;
 
-	public function __construct(?array $data = [])
+	public function __construct(?array $data)
 	{
-		$this->data = $data;
+		parent::__construct($data);
 		$this->items = array_map(fn($i) => new GetMenuModel($i), $data);
-	}
-
-	/**
-	 * Метод возвращает результат как массив.
-	 *
-	 * @return array|null
-	 */
-	public function getAsArray(): ?array
-	{
-		return $this->data;
 	}
 
 	/**

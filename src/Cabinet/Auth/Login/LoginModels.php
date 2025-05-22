@@ -2,14 +2,14 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Auth\Login;
 
-class LoginModels {
-	private		?array				$data;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-	public function __construct(?array $data) {
-		$this->data = $data;
+class LoginModels extends ResponseWrapper
+{
+
+	public function getToken(): string|null
+	{
+		return $this->getData("token");
 	}
 
-	public function getToken() : ?string {
-		return (string)$this->data["token"] ?? "";
-	}
 }

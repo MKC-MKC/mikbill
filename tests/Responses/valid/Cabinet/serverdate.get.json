@@ -1,0 +1,16 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "date": "Thu May 22 15:00:00 2025",
+        "timestamp": 1747926000,
+        "format": "2025-05-22 15:00:00",
+        "day": "Thu",
+        "month": "05",
+        "dd": "22",
+        "time": "15:00:00",
+        "year": "2025",
+        "now_date": "2025-05-22"
+    },
+    "message": "ОК"
+}

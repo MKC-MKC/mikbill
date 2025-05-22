@@ -2,19 +2,19 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
 
-class MiddlewareModel {
-	private array $data;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-	public function __construct(array $data) {
-		$this->data = $data;
+class MiddlewareModel extends ResponseWrapper
+{
+
+	public function getId(): int
+	{
+		return $this->getData("id", 0);
 	}
 
-	public function getId(): int {
-		return (int)$this->data["id"] ?? 0;
-	}
-
-	public function getName(): string {
-		return (string)$this->data["name"] ?? "";
+	public function getName(): string
+	{
+		return $this->getData("name", "");
 	}
 
 }

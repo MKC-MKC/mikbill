@@ -3,30 +3,19 @@
 namespace Haikiri\MikBiLL\Cabinet\Tickets;
 
 use DateTimeImmutable;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-class TicketMessengerModel {
-	private		array|null				$data;
-
-	public function __construct(?array $data = []) {
-		$this->data = $data;
-	}
-
-	/**
-	 * Метод возвращает массив данных сообщения.
-	 *
-	 * @return array|null
-	 */
-	public function getData(): ?array {
-		return $this->data ?? [];
-	}
+class TicketMessengerModel extends ResponseWrapper
+{
 
 	/**
 	 * Метод возвращает ID сообщения.
 	 *
 	 * @return int
 	 */
-	public function getMessageId(): int {
-		return (int)($this->getData()["messageid"] ?? 0);
+	public function getMessageId(): int
+	{
+		return $this->getData("messageid", 0);
 	}
 
 	/**
@@ -34,8 +23,9 @@ class TicketMessengerModel {
 	 *
 	 * @return int
 	 */
-	public function getTicketId(): int {
-		return (int)($this->getData()["ticketid"] ?? 0);
+	public function getTicketId(): int
+	{
+		return $this->getData("ticketid", 0);
 	}
 
 	/**
@@ -43,8 +33,9 @@ class TicketMessengerModel {
 	 *
 	 * @return int
 	 */
-	public function getUserId(): int {
-		return (int)($this->getData()["useruid"] ?? 0);
+	public function getUserId(): int
+	{
+		return $this->getData("useruid", 0);
 	}
 
 	/**
@@ -52,8 +43,9 @@ class TicketMessengerModel {
 	 *
 	 * @return bool
 	 */
-	public function isMessageFromClient(): bool {
-		return (boolean)($this->getUserId() ?? 0);
+	public function isMessageFromClient(): bool
+	{
+		return $this->getUserId() ?? 0;
 	}
 
 	/**
@@ -61,8 +53,9 @@ class TicketMessengerModel {
 	 *
 	 * @return int
 	 */
-	public function getStuffId(): int {
-		return (int)($this->getData()["stuffid"] ?? 0);
+	public function getStuffId(): int
+	{
+		return $this->getData("stuffid", 0);
 	}
 
 	/**
@@ -70,8 +63,9 @@ class TicketMessengerModel {
 	 *
 	 * @return bool
 	 */
-	public function isMessageUnread(): bool {
-		return (int)($this->getData()["unread"] ?? 0) === 1;
+	public function isMessageUnread(): bool
+	{
+		return $this->getData("unread", 0);
 	}
 
 	/**
@@ -79,8 +73,9 @@ class TicketMessengerModel {
 	 *
 	 * @return string
 	 */
-	public function getMessageTest(): string {
-		return (string)($this->getData()["message"] ?? "");
+	public function getMessageTest(): string
+	{
+		return $this->getData("message", "");
 	}
 
 	/**
@@ -88,8 +83,9 @@ class TicketMessengerModel {
 	 *
 	 * @return string
 	 */
-	public function getFIO(): string {
-		return (string)($this->getData()["fio"] ?? "");
+	public function getFIO(): string
+	{
+		return $this->getData("fio", "");
 	}
 
 	/**
@@ -97,7 +93,8 @@ class TicketMessengerModel {
 	 *
 	 * @return string
 	 */
-	public function getUserFirstName(): string {
+	public function getUserFirstName(): string
+	{
 		$fioParts = explode(" ", $this->getFIO());
 		return $fioParts[1] ?? "";
 	}
@@ -107,7 +104,8 @@ class TicketMessengerModel {
 	 *
 	 * @return string
 	 */
-	public function getUserLastName(): string {
+	public function getUserLastName(): string
+	{
 		$fioParts = explode(" ", $this->getFIO());
 		return $fioParts[0] ?? "";
 	}
@@ -117,7 +115,8 @@ class TicketMessengerModel {
 	 *
 	 * @return string
 	 */
-	public function getUserMiddleName(): string {
+	public function getUserMiddleName(): string
+	{
 		$fioParts = explode(" ", $this->getFIO());
 		return $fioParts[2] ?? "";
 	}
@@ -127,8 +126,9 @@ class TicketMessengerModel {
 	 *
 	 * @return string
 	 */
-	public function getUserLogin(): string {
-		return (string)($this->getData()["user"] ?? "");
+	public function getUserLogin(): string
+	{
+		return $this->getData("user", "");
 	}
 
 	/**
@@ -136,8 +136,9 @@ class TicketMessengerModel {
 	 *
 	 * @return string
 	 */
-	public function getOperatorLogin(): string {
-		return (string)($this->getData()["login"] ?? "");
+	public function getOperatorLogin(): string
+	{
+		return $this->getData("login", "");
 	}
 
 	/**
@@ -145,8 +146,9 @@ class TicketMessengerModel {
 	 *
 	 * @return DateTimeImmutable|null
 	 */
-	public function getDate(): ?DateTimeImmutable {
-		$dateString = $this->getData()["date"] ?? null;
+	public function getDate(): ?DateTimeImmutable
+	{
+		$dateString = $this->getData("date");
 		if ($dateString === null) return null;
 
 		return DateTimeImmutable::createFromFormat("Y-m-d H:i:s", $dateString) ?: null;

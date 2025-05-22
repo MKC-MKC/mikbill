@@ -1,0 +1,12 @@
+{
+    "success": false,
+    "error": 1202,
+    "errortext": "ERROR_SAVED_TO_GENERAL_LOGS",
+    "errorKey": "",
+    "errorType": "error",
+    "errorTimeout": 5000,
+    "noErrorRender": false,
+    "playSound": false,
+    "extraInfo": [],
+    "data": []
+}

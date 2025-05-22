@@ -1,0 +1,18 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "company_adress": "Здесь должен быть адрес вашей компании",
+        "company_email": "office@MilkyGray.site",
+        "company_name": "MilkyGray",
+        "company_site": "https://MilkyGray.site",
+        "name_mobile_1": "1 Office Number",
+        "name_mobile_2": "2 Office Number",
+        "name_mobile_3": "",
+        "phone_mobile_1": "+77 (777) 77-777",
+        "phone_mobile_2": "+77 (777) 77-777",
+        "phone_mobile_3": "",
+        "show_map": "1"
+    },
+    "message": "ОК"
+}

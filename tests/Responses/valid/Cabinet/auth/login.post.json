@@ -1,0 +1,8 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "token": "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9"
+    },
+    "message": "ОК"
+}

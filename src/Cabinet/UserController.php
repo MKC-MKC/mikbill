@@ -31,7 +31,7 @@ class UserController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new User\UserModels($response["data"] ?? []);
+		return new User\UserModels($response->getData());
 	}
 
 }

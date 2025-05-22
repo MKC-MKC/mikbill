@@ -2,74 +2,69 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Common;
 
+use Exception;
+use DateTimeZone;
 use DateTimeImmutable;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-class GetServerDateModel
+class GetServerDateModel extends ResponseWrapper
 {
 
-	private array $data;
-
-	public function __construct(array $data)
+	public function getDate(): string|null
 	{
-		$this->data = $data;
+		return $this->getData("date");
 	}
 
-	public function getData(): array
+	public function getTimeStamp(): string|null
 	{
-		return $this->data ?? [];
+		return $this->getData("timestamp");
 	}
 
-	public function getDate(): ?string
+	public function getFormat(): string|null
 	{
-		return (string)$this->getData()["date"] ?? null;
+		return $this->getData("format");
 	}
 
-	public function getTimeStamp(): ?string
+	public function getDay(): string|null
 	{
-		return (string)$this->getData()["timestamp"] ?? null;
+		return $this->getData("day");
 	}
 
-	public function getFormat(): ?string
+	public function getMonth(): string|null
 	{
-		return (string)$this->getData()["format"] ?? null;
+		return $this->getData("month");
 	}
 
-	public function getDay(): ?string
+	public function getDd(): string|null
 	{
-		return (string)$this->getData()["day"] ?? null;
+		return $this->getData("dd");
 	}
 
-	public function getMonth(): ?string
+	public function getTime(): string|null
 	{
-		return (string)$this->getData()["month"] ?? null;
+		return $this->getData("time");
 	}
 
-	public function getDd(): ?string
+	public function getYear(): string|null
 	{
-		return (string)$this->getData()["dd"] ?? null;
+		return $this->getData("year");
 	}
 
-	public function getTime(): ?string
+	public function getNowDate(): string|null
 	{
-		return (string)$this->getData()["time"] ?? null;
+		return $this->getData("now_date");
 	}
 
-	public function getYear(): ?string
+	public function getDateTime($to = "utc"): DateTimeImmutable|bool
 	{
-		return (string)$this->getData()["year"] ?? null;
-	}
+		try {
+			$timestamp = $this->getTimeStamp();
+			$timezone = new DateTimeZone(timezone: $to);
 
-	public function getNowDate(): ?string
-	{
-		return (string)$this->getData()["now_date"] ?? null;
-	}
-
-	public function getDateTime(): ?DateTimeImmutable
-	{
-		$dateString = $this->getData()["format"] ?? null;
-		if (empty($dateString)) return null;
-
-		return DateTimeImmutable::createFromFormat(format: "Y-m-d H:i:s", datetime: $dateString) ?: null;
+			return (new DateTimeImmutable("@" . $timestamp))->setTimezone($timezone);
+		} catch (Exception) {
+			return false;
+		}
 	}
 
 }

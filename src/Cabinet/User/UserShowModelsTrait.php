@@ -2,99 +2,57 @@
 
 namespace Haikiri\MikBiLL\Cabinet\User;
 
-trait UserShowModelsTrait {
+trait UserShowModelsTrait
+{
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 */
-	public function getUserShowSpeedIn(): bool {
-		return (bool)$this->getUserShow()["speed_in"] ?? false;
+	public function isUserAllowedToShowSpeedIn(): bool|null
+	{
+		return $this->getData("show.speed_in");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 */
-	public function getUserShowSpeedOut(): bool {
-		return (bool)$this->getUserShow()["speed_out"] ?? false;
+	public function isUserAllowedToShowSpeedOut(): bool|null
+	{
+		return $this->getData("show.speed_out");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 * @noinspection SpellCheckingInspection
-	 */
-	public function getUserShowDaysLeft(): bool {
-		return (bool)$this->getUserShow()["index_daysleft"] ?? false;
+	public function isUserAllowedToShowDaysLeft(): bool|null
+	{
+		return $this->getData("show.index_daysleft");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 * @noinspection SpellCheckingInspection
-	 */
-	public function getUserShowEndDate(): bool {
-		return (bool)$this->getUserShow()["index_enddate"] ?? false;
+	public function isUserAllowedToShowEndDate(): bool|null
+	{
+		return $this->getData("show.index_enddate");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 */
-	public function getUserShowFee(): bool {
-		return (bool)$this->getUserShow()["fee"] ?? false;
+	public function isUserAllowedToShowFee(): bool|null
+	{
+		return $this->getData("show.fee");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 */
-	public function getUserShowInn(): bool {
-		return (bool)$this->getUserShow()["inn"] ?? false;
+	public function isUserAllowedToShowInn(): bool|null
+	{
+		return $this->getData("show.inn");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 * @noinspection SpellCheckingInspection
-	 */
-	public function getUserShowDogovor(): bool {
-		return (bool)$this->getUserShow()["numdogovor"] ?? false;
+	public function isUserAllowedToShowDogovor(): bool|null
+	{
+		return $this->getData("show.numdogovor");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 */
-	public function getUserShowUid(): bool {
-		return (bool)$this->getUserShow()["uid"] ?? false;
+	public function isUserAllowedToShowUid(): bool|null
+	{
+		return $this->getData("show.uid");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 */
-	public function getUserShowPaymentsTile(): bool {
-		return (bool)$this->getUserShow()["payments_tile"] ?? false;
+	public function isUserAllowedToShowPaymentsTile(): bool|null
+	{
+		return $this->getData("show.payments_tile");
 	}
 
-	/**
-	 * #
-	 *
-	 * @return bool
-	 */
-	public function getUserShowDiscount(): bool {
-		return (bool)$this->getUserShow()["discount"] ?? false;
+	public function isUserAllowedToShowDiscount(): bool|null
+	{
+		return $this->getData("show.discount");
 	}
 
 }

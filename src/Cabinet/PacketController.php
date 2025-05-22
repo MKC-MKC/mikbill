@@ -29,7 +29,7 @@ class PacketController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Packet\Packets($response["data"] ?? []);
+		return new Packet\Packets($response->getData());
 	}
 
 	/**
@@ -50,7 +50,7 @@ class PacketController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Packet\PacketInfoModel($response["data"] ?? []);
+		return new Packet\PacketInfoModel($response->getData());
 	}
 
 }

@@ -2,23 +2,18 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
 
-class Additional
-{
-	private array|null $data;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-	public function __construct(?array $data = [])
-	{
-		$this->data = $data;
-	}
+class Additional extends ResponseWrapper
+{
 
 	/**
-	 * Метод возвращает результат как-есть, без каких либо обработок.
-	 *
+	 * @deprecated Используй getData();
 	 * @return array|null
 	 */
-	public function getAsIs(): ?array
+	public function getAsIs(): array|null
 	{
-		return $this->data;
+		return $this->getAsArray();
 	}
 
 }

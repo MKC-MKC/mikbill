@@ -2,29 +2,19 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Auth\Phone;
 
-class PhoneOtpModels {
-	private		?array				$data;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-	public function __construct(?array $data) {
-		$this->data = $data;
-	}
-
-	/**
-	 * Метод возвращает результат как массив.
-	 *
-	 * @return array|null
-	 */
-	public function getAsArray(): ?array {
-		return $this->data;
-	}
+class PhoneOtpModels extends ResponseWrapper
+{
 
 	/**
 	 * Метод возвращает UID клиента.
 	 *
-	 * @return int
+	 * @return int|null
 	 */
-	public function getUserId(): int {
-		return (int)$this->data["uid"] ?? 0;
+	public function getUserId(): int|null
+	{
+		return $this->getData("uid");
 	}
 
 	/**
@@ -32,8 +22,9 @@ class PhoneOtpModels {
 	 *
 	 * @return string|null
 	 */
-	public function getUserToken(): ?string {
-		return (string)$this->data["token"] ?? "";
+	public function getUserToken(): string|null
+	{
+		return $this->getData("token");
 	}
 
 }

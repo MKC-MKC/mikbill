@@ -2,12 +2,15 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
 
-class Middleware {
-	private		array|null				$data;
-	private		array|null				$items;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-	public function __construct(?array $data = []) {
-		$this->data = $data;
+class Middleware extends ResponseWrapper
+{
+	private array|null $items;
+
+	public function __construct(?array $data)
+	{
+		parent::__construct($data);
 		$this->items = $this->createMiddlewareItems(array: $data);
 	}
 
@@ -17,7 +20,8 @@ class Middleware {
 	 * @param array|null $array
 	 * @return array
 	 */
-	private function createMiddlewareItems(?array $array): array {
+	private function createMiddlewareItems(?array $array): array
+	{
 		if (empty($array)) return [];
 		return array_map(fn($i, $s) => new MiddlewareModel(
 			data: [
@@ -29,11 +33,12 @@ class Middleware {
 
 	/**
 	 * Метод возвращает результат как-есть, без каких либо обработок.
-	 *
 	 * @return array|null
+	 * @deprecated Используй getData();
 	 */
-	public function getAsIs(): ?array {
-		return $this->data;
+	public function getAsIs(): array|null
+	{
+		return $this->getData();
 	}
 
 	/**
@@ -41,7 +46,8 @@ class Middleware {
 	 *
 	 * @return array
 	 */
-	public function getAsArray(): array {
+	public function getAsArray(): array
+	{
 		return array_map(fn($i) => [
 			"id" => $i->getId(),
 			"name" => $i->getName()
@@ -53,7 +59,8 @@ class Middleware {
 	 *
 	 * @return MiddlewareModel[]
 	 */
-	public function getMiddleware(): array {
+	public function getMiddleware(): array
+	{
 		return $this->items;
 	}
 

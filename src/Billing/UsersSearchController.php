@@ -5,26 +5,16 @@ declare(strict_types=1);
 namespace Haikiri\MikBiLL\Billing;
 
 use Haikiri\MikBiLL\Cabinet\User;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-class UsersSearchController
+class UsersSearchController extends ResponseWrapper
 {
-	private array|null $data;
 	private array|null $items;
 
-	public function __construct(?array $data = [])
+	public function __construct(?array $data)
 	{
-		$this->data = $data;
+		parent::__construct($data);
 		$this->items = array_map(fn($i) => new User\UserModels($i), $data);
-	}
-
-	/**
-	 * Метод возвращает результат как массив.
-	 * С этим методом вы можете сами управлять возвращаемыми данными, или построить свою модель.
-	 * @return array|null
-	 */
-	public function getAsArray(): ?array
-	{
-		return $this->data;
 	}
 
 	/**

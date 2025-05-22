@@ -2,79 +2,69 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Common;
 
-class GetMenuModel
+use Haikiri\MikBiLL\ResponseWrapper;
+
+class GetMenuModel extends ResponseWrapper
 {
-
-	private array $data;
-
-	public function __construct(array $data)
-	{
-		$this->data = $data;
-	}
-
-	public function getData(): ?array
-	{
-		return $this->data ?? [];
-	}
 
 	public function getId(): int
 	{
-		return (int)$this->getData()["id"] ?? 0;
+		return $this->getData("id", 0);
 	}
 
 	public function getName(): string
 	{
-		return (string)$this->getData()["name"] ?? "";
+		return $this->getData("name", "");
 	}
 
 	public function getUri(): string
 	{
-		return (string)$this->getData()["link"] ?? "";
+		return $this->getData("link", "");
 	}
 
 	public function getUserGroupId(): int
 	{
-		return (int)$this->getData()["usersgroupid"] ?? 0;
+		return $this->getData("usersgroupid", 0);
 	}
 
 	public function getParent(): int
 	{
-		return (int)$this->getData()["parent"] ?? 0;
+		return $this->getData("parent", 0);
 	}
 
 	public function getSort(): int
 	{
-		return (int)$this->getData()["sort"] ?? 0;
+		return $this->getData("sort", 0);
 	}
 
 	public function getHide(): int
 	{
-		return (int)$this->getData()["hide"] ?? 0;
+		return $this->getData("hide", 0);
 	}
 
 	public function getIcon(): string
 	{
-		return (string)$this->getData()["icon"] ?? "";
+		return $this->getData("icon", "");
 	}
 
 	public function getHook(): string
 	{
-		return (string)$this->getData()["hook"] ?? "";
+		return $this->getData("hook", "");
 	}
 
 	public function getTitle(): string
 	{
-		return (string)$this->getData()["title"] ?? "";
+		return $this->getData("title", "");
 	}
 
 	public function getDescription(): string
 	{
-		return (string)$this->getData()["description"] ?? "";
+		return $this->getData("description", "");
 	}
 
 	public function getKeywords(): string
 	{
-		return (string)$this->getData()["keywords"] ?? "";
+		return $this->getData("keywords", "");
 	}
 
 }

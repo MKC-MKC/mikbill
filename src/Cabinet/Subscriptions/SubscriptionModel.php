@@ -1,191 +1,184 @@
-<?php /** @noinspection SpellCheckingInspection */
-
-declare(strict_types=0); # TODO: Отключаем строгую типизацию. Временная опция.
+<?php
 
 namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
 
 use DateTimeImmutable;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-/**
- * Этот класс нуждается в доработке.
- * Не стесняйтесь сообщать о проблемах и недочетах.
- * Актуальные данные в composer.json
- */
-class SubscriptionModel
+class SubscriptionModel extends ResponseWrapper
 {
-	private array|null $data;
-
-	public function __construct(?array $data = [])
-	{
-		$this->data = $data;
-	}
-
-	public function getData(): ?array
-	{
-		return $this->data ?? [];
-	}
 
 	public function getId(): int
 	{
-		return (int)$this->getData()["id"] ?? 0;
+		return $this->getData("id", 0);
 	}
 
 	public function getName(): string
 	{
-		return (string)$this->getData()["name"] ?? "";
+		return $this->getData("name", "");
 	}
 
 	public function getType(): string
 	{
-		return (string)$this->getData()["type"] ?? "";
+		return $this->getData("type", "");
 	}
 
 	public function isConnected(): bool
 	{
-		return (bool)($this->getData()["connected"] ?? 0) == 1;
+		return $this->getData("connected", 0);
 	}
 
 	public function isActive(): bool
 	{
-		return (bool)($this->getData()["active"] ?? 0) == 1;
+		return $this->getData("active", 0);
 	}
 
 	public function isAvailable(): bool
 	{
-		return (bool)($this->getData()["available"] ?? 0) == 1;
+		return $this->getData("available", 0);
 	}
 
-	public function getInfo(): ?array
+	public function getInfo(): array|null
 	{
-		return (array)$this->getData()["info"] ?? [];
+		return $this->getData("info");
 	}
 
 	public function getServiceId(): string
 	{
-		return (string)$this->getInfo()["serviceid"] ?? "";
+		return $this->getData("info.serviceid", "");
 	}
 
 	public function getServiceAlias(): string
 	{
-		return (string)$this->getInfo()["service_alias"] ?? "";
+		return $this->getData("info.service_alias", "");
 	}
 
 	public function getServiceName(): string
 	{
-		return (string)$this->getInfo()["servicename"] ?? "";
+		return $this->getData("info.servicename", "");
 	}
 
 	public function getServiceType(): string
 	{
-		return (string)$this->getInfo()["service_type"] ?? "";
+		return $this->getData("info.service_type", "");
 	}
 
 	public function getTriggerCondition(): string
 	{
-		return (string)$this->getInfo()["trigger_condition"] ?? "";
+		return $this->getData("info.trigger_condition", "");
 	}
 
 	public function getServiceLikePacket(): string
 	{
-		return (string)$this->getInfo()["service_like_packet"] ?? "";
+		return $this->getData("info.service_like_packet", "");
 	}
 
 	public function getPeriod(): string
 	{
-		return (string)$this->getInfo()["period"] ?? "";
+		return $this->getData("info.period", "");
 	}
 
 	public function getServiceGroupId(): string
 	{
-		return (string)$this->getInfo()["service_groupid"] ?? "";
+		return $this->getData("info.service_groupid", "");
 	}
 
 	public function getPriority(): string
 	{
-		return (string)$this->getInfo()["priority"] ?? "";
+		return $this->getData("info.priority", "");
 	}
 
 	public function getDescription(): string
 	{
-		return (string)$this->getInfo()["description"] ?? "";
+		return $this->getData("info.description", "");
 	}
 
 	public function getServicePortal(): string
 	{
-		return (string)$this->getInfo()["service_portal"] ?? "";
+		return $this->getData("info.service_portal", "");
 	}
 
 	public function getUsersStates(): string
 	{
-		return (string)$this->getInfo()["users_states"] ?? "";
+		return $this->getData("info.users_states", "");
 	}
 
 	public function getSqlCondition(): string
 	{
-		return (string)$this->getInfo()["sql_condition"] ?? "";
+		return $this->getData("info.sql_condition", "");
 	}
 
 	public function getTariffService(): string
 	{
-		return (string)$this->getInfo()["tarifservice"] ?? "";
+		return $this->getData("info.tarifservice", "");
 	}
 
 	public function getSuspended(): string
 	{
-		return (string)$this->getInfo()["suspended"] ?? "";
+		return $this->getData("info.suspended", "");
 	}
 
 	public function getServicePrice(): float
 	{
-		return (float)$this->getInfo()["service_price"] ?? 0.0;
+		return $this->getData("info.service_price", 0.0);
 	}
 
 	public function isServiceLoyalRecalculation(): bool
 	{
-		return (bool)$this->getInfo()["service_loyal_recalculation"] ?? 0;
+		return $this->getData("info.service_loyal_recalculation", 0);
 	}
 
 	public function isActivationByAdmin(): bool
 	{
-		return (bool)$this->getInfo()["activation_by_admin"] ?? 0;
+		return $this->getData("info.activation_by_admin", 0);
 	}
 
 	public function isActivationByUser(): bool
 	{
-		return (bool)$this->getInfo()["activation_by_user"] ?? 0;
+		return $this->getData("info.activation_by_user", 0);
 	}
 
 	public function isDeactivationByAdmin(): bool
 	{
-		return (bool)$this->getInfo()["deactivation_by_admin"] ?? 0;
+		return $this->getData("info.deactivation_by_admin", 0);
 	}
 
 	public function isDeactivationByUser(): bool
 	{
-		return (bool)$this->getInfo()["deactivation_by_user"] ?? 0;
+		return $this->getData("info.deactivation_by_user", 0);
 	}
 
 	public function getDiscountOn(): int
 	{
-		return (int)$this->getInfo()["discount_on"] ?? 0;
+		return $this->getData("info.discount_on", 0);
 	}
 
 	public function getCurrency(): string
 	{
-		return (string)$this->getInfo()["currency"] ?? "";
+		return $this->getData("info.currency", "");
 	}
 
-	public function getServiceDateStart(): ?DateTimeImmutable
+	public function getServiceDateStart(): string
 	{
-		$dateString = $this->getInfo()["service_date_start"] ?? null;
+		return $this->getData("info.service_date_start", "");
+	}
+
+	public function getServiceDateStop(): string
+	{
+		return $this->getData("info.service_date_stop", "");
+	}
+
+	public function startedAt(): ?DateTimeImmutable
+	{
+		$dateString = $this->getServiceDateStart();
 		if (empty($dateString)) return null;
 
 		return DateTimeImmutable::createFromFormat(format: "Y-m-d H:i:s", datetime: $dateString) ?: null;
 	}
 
-	public function getServiceDateStop(): ?DateTimeImmutable
+	public function stoppedAt(): ?DateTimeImmutable
 	{
-		$dateString = $this->getInfo()["service_date_stop"] ?? null;
+		$dateString = $this->getServiceDateStop();
 		if (empty($dateString)) return null;
 
 		return DateTimeImmutable::createFromFormat(format: "Y-m-d H:i:s", datetime: $dateString) ?: null;
@@ -193,32 +186,32 @@ class SubscriptionModel
 
 	public function getTrial(): string
 	{
-		return (string)$this->getInfo()["trial"] ?? "";
+		return $this->getData("info.trial", "");
 	}
 
 	public function getTrialPrice(): string
 	{
-		return (string)$this->getInfo()["trial_price"] ?? "";
+		return $this->getData("info.trial_price", "");
 	}
 
 	public function getTrialPeriodOn(): string
 	{
-		return (string)$this->getInfo()["trial_period_on"] ?? "";
+		return $this->getData("info.trial_period_on", "");
 	}
 
 	public function getTrialPeriodDays(): string
 	{
-		return (string)$this->getInfo()["trial_period_days"] ?? "";
+		return $this->getData("info.trial_period_days", "");
 	}
 
 	public function getTrialChangeOn(): string
 	{
-		return (string)$this->getInfo()["trial_change_on"] ?? "";
+		return $this->getData("info.trial_change_on", "");
 	}
 
 	public function getTrialChangeServiceId(): string
 	{
-		return (string)$this->getInfo()["trial_change_serviceid"] ?? "";
+		return $this->getData("info.trial_change_serviceid", "");
 	}
 
 }

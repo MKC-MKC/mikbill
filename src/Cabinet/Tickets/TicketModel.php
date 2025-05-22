@@ -5,25 +5,21 @@ declare(strict_types=1);
 namespace Haikiri\MikBiLL\Cabinet\Tickets;
 
 use DateTimeImmutable;
+use Haikiri\MikBiLL\ResponseWrapper;
 
-class TicketModel {
-	private		array|null				$data;
-
-	public function __construct(?array $data = []) {
-		$this->data = $data;
-	}
-
-	public function getData(): ?array {
-		return $this->data ?? [];
-	}
+class TicketModel extends ResponseWrapper
+{
+	public const OPENED = 1;
+	public const CLOSED = 2;
 
 	/**
 	 * Метод возвращает ID тикета.
 	 *
 	 * @return int
 	 */
-	public function getId(): int {
-		return (int)($this->getData()["ticketid"] ?? 0);
+	public function getId(): int
+	{
+		return $this->getData("ticketid", 0);
 	}
 
 	/**
@@ -32,8 +28,9 @@ class TicketModel {
 	 *
 	 * @return int
 	 */
-	public function getStatusTypeId(): int {
-		return (int)($this->getData()["statustypeid"] ?? 0);
+	public function getStatusTypeId(): int
+	{
+		return $this->getData("statustypeid", 0);
 	}
 
 	/**
@@ -42,8 +39,9 @@ class TicketModel {
 	 *
 	 * @return string
 	 */
-	public function getStatusTypeName(): string {
-		return (string)($this->getData()["statustypename"] ?? "");
+	public function getStatusTypeName(): string
+	{
+		return $this->getData("statustypename", "");
 	}
 
 	/**
@@ -52,8 +50,9 @@ class TicketModel {
 	 *
 	 * @return int
 	 */
-	public function getPriorityTypeId(): int {
-		return (int)($this->getData()["prioritytypeid"] ?? 0);
+	public function getPriorityTypeId(): int
+	{
+		return $this->getData("prioritytypeid", 0);
 	}
 
 	/**
@@ -62,8 +61,9 @@ class TicketModel {
 	 *
 	 * @return string
 	 */
-	public function getPriorityTypeName(): string {
-		return (string)($this->getData()["prioritytypename"] ?? "");
+	public function getPriorityTypeName(): string
+	{
+		return $this->getData("prioritytypename", "");
 	}
 
 	/**
@@ -71,8 +71,9 @@ class TicketModel {
 	 *
 	 * @return DateTimeImmutable|null
 	 */
-	public function getDate(): ?DateTimeImmutable {
-		$dateString = $this->getData()["creationdate"] ?? null;
+	public function getDate(): ?DateTimeImmutable
+	{
+		$dateString = $this->getData("creationdate");
 		if ($dateString === null) return null;
 
 		return DateTimeImmutable::createFromFormat("Y-m-d H:i:s", $dateString) ?: null;
@@ -83,8 +84,9 @@ class TicketModel {
 	 *
 	 * @return string
 	 */
-	public function getMessage(): string {
-		return (string)($this->getData()["first_message"] ?? "");
+	public function getMessage(): string
+	{
+		return $this->getData("first_message", "");
 	}
 
 	/**
@@ -92,8 +94,9 @@ class TicketModel {
 	 *
 	 * @return bool
 	 */
-	public function isClosed(): bool {
-		return $this->getStatusTypeId() == 2;
+	public function isClosed(): bool
+	{
+		return $this->getStatusTypeId() == self::CLOSED;
 	}
 
 }

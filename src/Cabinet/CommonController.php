@@ -30,7 +30,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetIpModel($response["data"] ?? []);
+		return new Common\GetIpModel($response->getData());
 	}
 
 	/**
@@ -49,7 +49,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetServerDateModel($response["data"] ?? []);
+		return new Common\GetServerDateModel($response->getData());
 	}
 
 	/**
@@ -69,7 +69,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetConfig($response["data"] ?? []);
+		return new Common\GetConfig($response->getData());
 	}
 
 	/**
@@ -79,7 +79,7 @@ class CommonController
 	 * @return string|null
 	 * @throws Exception\BillApiException
 	 */
-	public function getVersion(): ?string
+	public function getVersion(): string|null
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/version",
@@ -87,7 +87,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return isset($response["data"]) ? (string)$response["data"] : null;
+		return $response->getData();
 	}
 
 	/**
@@ -105,7 +105,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetCompanyInfoModel($response["data"] ?? []);
+		return new Common\GetCompanyInfoModel($response->getData());
 	}
 
 	/**
@@ -123,7 +123,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetMenu($response["data"] ?? []);
+		return new Common\GetMenu($response->getData());
 	}
 
 }

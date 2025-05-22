@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Haikiri\MikBiLL\Cabinet;
 
 use Haikiri\MikBiLL\Exception;
+use Haikiri\MikBiLL\Response;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
 
 class AuthController
@@ -37,24 +38,27 @@ class AuthController
 			params: $params,
 		);
 
-		return new Auth\Login\LoginModels($response["data"] ?? []);
+		return new Auth\Login\LoginModels($response->getData());
 	}
 
 	/**
-	 * Авторизация по телефону. TODO: Нет возможности проверить работоспособность метода.
+	 * Авторизация по телефону.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#a65b8db9-0c0c-4227-a1f6-8109eedfe61a
 	 * @param int|string $phone # Например: '380934708280'
-	 * @return array|null
+	 * @return Response
 	 * @throws Exception\BillApiException
 	 */
-	public function phone(int|string $phone): ?array
+	public function phone(int|string $phone): Response
 	{
 		$params = [
 			"phone" => $phone,
 		];
 
-		return $this->billInterface->sendRequest(uri: "/api/v1/cabinet/auth/phone", params: $params);
+		return $this->billInterface->sendRequest(
+			uri: "/api/v1/cabinet/auth/phone",
+			params: $params,
+		);
 	}
 
 	/**
@@ -76,7 +80,7 @@ class AuthController
 			params: $params,
 		);
 
-		return new Auth\Phone\PhoneOtpModels($response["data"] ?? []);
+		return new Auth\Phone\PhoneOtpModels($response->getData());
 	}
 
 }

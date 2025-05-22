@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Haikiri\MikBiLL\Tests;
 
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
+use Haikiri\MikBiLL\Helper\DeclensionHelper;
 use PHPUnit\Framework\TestCase;
 
 class UserServicesTest extends TestCase
@@ -27,6 +28,21 @@ class UserServicesTest extends TestCase
 
 		# Записываем токен пользователя.
 		self::$MikBiLL->setUserToken(self::$token);
+	}
+
+	public function test_activation_cost($expected = "Стоимость активации 15 рублей!"): void
+	{
+		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/services/credit-before.get.json");
+		$response = self::$MikBiLL->cabinet->Services()->getCredit();
+
+		$cost = $response->getActivateCost(); # "15.00"
+		$currency = $response->getCurrency(); # "руб."
+		$template = "Стоимость активации {item} {form}!"; # маска
+
+		DeclensionHelper::set($currency, ["рубль", "рубля", "рублей"]);
+		$data = DeclensionHelper::format(number: $cost, key: $currency, template: $template);
+
+		$this->assertEquals(expected: $expected, actual: $data);
 	}
 
 	public function test_getCredit_before($expected = "21.05.2025"): void

@@ -4,13 +4,11 @@ namespace Haikiri\MikBiLL\Tests;
 
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
-use Haikiri\MikBiLL\Tests\Trait\CabinetUserFeeTraitTest;
 use PHPUnit\Framework\TestCase;
 
 class CabinetUserTest extends TestCase
 {
 	use InitTrait;
-	use CabinetUserFeeTraitTest;
 
 	private static MikBiLLApi $MikBiLL;
 	private static bool $debug = false;

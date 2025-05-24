@@ -37,17 +37,17 @@ class SubscriptionsController
 	 * Метод выполняет подписку или отписку клиента от услуги по ID относительно middleware.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#b7e82f1a-c4d7-4c9b-a126-a23d67de8c6f
-	 * @param int $id - 123 - ID подписки;
-	 * @param int $activate - 0 - для отписки; 1 - для подписки;
+	 * @param $id - 123 - ID подписки;
+	 * @param int|bool $activate - 0 - для отписки; 1 - для подписки;
 	 * @param string $service - Название сервиса middleware: "MegoGo", "wink" и.т.д. Актуальный список смотри ссылку выше.
 	 * @return bool
 	 * @throws Exception\BillApiException
 	 */
-	public function setSubscription(int $id, int $activate = 0, string $service = "other"): bool
+	public function setSubscription($id, int|bool $activate = 0, string $service = "other"): bool
 	{
 		$params = [
 			"id" => $id,
-			"activate" => $activate,
+			"activate" => (int)$activate,
 		];
 
 		$response = $this->billInterface->sendRequest(
@@ -99,16 +99,16 @@ class SubscriptionsController
 	 * Метод выполняет подписку или отписку клиента от услуги используя ID услуги и токен как идентификатор.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#828c0e2c-6bb8-4f90-9cbb-40798ab644a2
-	 * @param int $id - 123 - ID подписки;
-	 * @param int $activate - 0 - для отписки; 1 - для подписки;
+	 * @param $id - 123 - ID подписки;
+	 * @param int|bool $activate - 0 - для отписки; 1 - для подписки;
 	 * @return bool
 	 * @throws Exception\BillApiException
 	 */
-	public function setAdditional(int $id, int $activate = 0): bool
+	public function setAdditional($id, int|bool $activate = 0): bool
 	{
 		$params = [
 			"id" => $id,
-			"activate" => $activate,
+			"activate" => (int)$activate,
 		];
 
 		$response = $this->billInterface->sendRequest(

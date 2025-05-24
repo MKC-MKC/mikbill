@@ -12,7 +12,7 @@
     ],
     "homepage": "https://github.com/MKC-MKC/mikbill",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Haikiri\\MikBiLL\\": "src/"

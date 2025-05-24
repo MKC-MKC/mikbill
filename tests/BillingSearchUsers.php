@@ -8,6 +8,7 @@ use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 
+/** @billing - Административный запрос требующий подпись. */
 class BillingSearchUsers extends TestCase
 {
 	use InitTrait;

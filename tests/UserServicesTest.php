@@ -8,6 +8,10 @@ use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use Haikiri\DeclensionHelper\Declension;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Тестирование системы услуг.
+ * @cabinet - Клиентский запрос требующий токен клиента. 
+ */
 class UserServicesTest extends TestCase
 {
 	private static MikBiLLApi $MikBiLL;
@@ -30,7 +34,10 @@ class UserServicesTest extends TestCase
 		self::$MikBiLL->setUserToken(self::$token);
 	}
 
-	public function test_activation_cost($expected = "Стоимость активации 15 рублей!"): void
+	/**
+	 * Получаем данные об кредите.
+	 */
+	public function test_1($expected = "Стоимость активации 15 рублей!"): void
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/services/credit-before.get.json");
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
@@ -45,14 +52,20 @@ class UserServicesTest extends TestCase
 		$this->assertEquals(expected: $expected, actual: $data);
 	}
 
-	public function test_getCredit_before($expected = "21.05.2025"): void
+	/**
+	 * Проверяем дату начала кредита.
+	 */
+	public function test_2($expected = "21.05.2025"): void
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/services/credit-before.get.json");
 		$data = self::$MikBiLL->cabinet->Services()->getCredit();
 		$this->assertEquals(expected: $expected, actual: $data->getDateStart()->format("d.m.Y"));
 	}
 
-	public function test_getCredit_after($expected = "24.05.2025"): void
+	/**
+	 * Проверяем дату окончания кредита.
+	 */
+	public function test_3($expected = "24.05.2025"): void
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/services/credit-after.get.json");
 		$data = self::$MikBiLL->cabinet->Services()->getCredit();

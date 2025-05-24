@@ -8,6 +8,7 @@ use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 
+/** @billing - Административный запрос требующий подпись. */
 class BillingGetTokenTest extends TestCase
 {
 	use InitTrait;
@@ -18,9 +19,24 @@ class BillingGetTokenTest extends TestCase
 	private static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
 	private static string $dataFile = __DIR__ . "/Responses/valid/Billing/Users/token.post.json";
 
-	public function test_Billing_Users_getUserToken($uid = 7): void
+	/**
+	 * Получение токена.
+	 */
+	public function test()
 	{
-		$data = self::$MikBiLL->billing->Users()->getUserToken($uid);
+		# Валидация данных.
+		$uid = "Здесь должен быть токен клиента";
+
+		# Выполняем запрос в Billing.
+		$token = self::$MikBiLL->billing->Users()->getUserToken($uid);
+
+		# Обязательно записываем токен в stateless хранилище SDK для последующих запросов.
+		self::$MikBiLL->setUserToken(token: $token);
+
+		# Получаем токен из хранилища.
+		$data = self::$MikBiLL->getUserToken();
+
+		# Убеждаемся в корректности полученных данных.
 		$this->assertEquals(expected: self::$token, actual: $data);
 	}
 

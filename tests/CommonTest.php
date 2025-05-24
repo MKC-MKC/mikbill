@@ -7,6 +7,7 @@ namespace Haikiri\MikBiLL\Tests;
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use PHPUnit\Framework\TestCase;
 
+/** @cabinet - Клиентский запрос требующий токен клиента. */
 class CommonTest extends TestCase
 {
 	private static MikBiLLApi $MikBiLL;
@@ -29,21 +30,21 @@ class CommonTest extends TestCase
 		self::$MikBiLL->setUserToken(self::$token);
 	}
 
-	public function test_getIp($expected = "10.11.12.13"): void
+	public function test_1($expected = "10.11.12.13"): void
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/getip.get.json");
 		$data = self::$MikBiLL->cabinet->Common()->getIp();
 		$this->assertEquals(expected: $expected, actual: $data->getIp());
 	}
 
-	public function test_getDatePlain($expected = "2025-05-22 15:00:00"): void
+	public function test_2($expected = "2025-05-22 15:00:00"): void
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/serverdate.get.json");
 		$data = self::$MikBiLL->cabinet->Common()->getDate();
 		$this->assertEquals(expected: $expected, actual: $data->getFormat());
 	}
 
-	public function test_getDateTimeInEuropeanFormat($expected = "22.05.2025 15:00:00"): void
+	public function test_3($expected = "22.05.2025 15:00:00"): void
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/serverdate.get.json");
 		$result = self::$MikBiLL->cabinet->Common()->getDate();

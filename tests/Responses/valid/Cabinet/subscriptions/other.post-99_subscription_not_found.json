@@ -1,0 +1,5 @@
+{
+    "success": false,
+    "code": -99,
+    "message": "service_portal for subscription={%ID%} not found"
+}

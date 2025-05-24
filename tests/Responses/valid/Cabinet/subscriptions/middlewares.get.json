@@ -1,0 +1,13 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "0": "services_additional",
+        "1": "iptvportal",
+        "6": "trinitytv",
+        "7": "omegatv",
+        "19": "sweettv",
+        "23": "tvip"
+    },
+    "message": "OK"
+}

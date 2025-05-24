@@ -1,0 +1,31 @@
+{
+    "success": true,
+    "code": 0,
+    "data": [
+        {
+            "unread": "0",
+            "messageid": "10",
+            "date": "2020-02-02 15:49:29",
+            "ticketid": "5",
+            "stuffid": "0",
+            "useruid": "1639",
+            "message": "Сообщение с которым будет открыт тикет.",
+            "fio": "Иванов Иван Иванович",
+            "user": "username",
+            "login": ""
+        },
+        {
+            "unread": "1",
+            "messageid": "11",
+            "date": "2020-02-02 16:11:55",
+            "ticketid": "5",
+            "stuffid": "2",
+            "useruid": "0",
+            "message": "Супер, буду знать!",
+            "fio": "",
+            "user": "",
+            "login": "admin_username"
+        }
+    ],
+    "message": "ОК"
+}

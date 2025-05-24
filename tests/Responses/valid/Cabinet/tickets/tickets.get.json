@@ -1,0 +1,25 @@
+{
+    "success": true,
+    "code": 0,
+    "data": [
+        {
+            "ticketid": "258",
+            "statustypeid": "1",
+            "creationdate": "2022-11-14 15:17:36",
+            "prioritytypeid": "2",
+            "prioritytypename": "normal",
+            "statustypename": "opened",
+            "first_message": "Тест системи повідомлень"
+        },
+        {
+            "ticketid": "259",
+            "statustypeid": "1",
+            "creationdate": "2022-11-14 15:42:07",
+            "prioritytypeid": "2",
+            "prioritytypename": "normal",
+            "statustypename": "opened",
+            "first_message": "Допоможіть не працює інтернет"
+        }
+    ],
+    "message": "ОК"
+}

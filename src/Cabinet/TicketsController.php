@@ -19,6 +19,7 @@ class TicketsController
 	 *
 	 * @return Tickets\Ticket
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#dc173a89-274f-4741-aee0-a700ac28d88d
 	 */
 	public function getTickets(): object
 	{
@@ -37,6 +38,7 @@ class TicketsController
 	 * @param string $message
 	 * @return Tickets\NewTicketModel
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#ad86043a-0f71-43ff-b9c3-3963fc944ec1
 	 */
 	public function newTicket(string $message): object
 	{
@@ -59,6 +61,7 @@ class TicketsController
 	 * @param string|int $ticketId
 	 * @return Tickets\TicketMessenger
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d794ec97-fcfc-4857-ad42-24b874c831c3
 	 */
 	public function getTicketsDialog(string|int $ticketId): object
 	{
@@ -78,6 +81,7 @@ class TicketsController
 	 * @param string $message
 	 * @return bool
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#98ae7817-8b46-4eec-8ce6-f59373e39ba8
 	 */
 	public function sendMessage(string|int $ticketId, string $message): bool
 	{

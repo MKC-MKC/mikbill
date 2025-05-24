@@ -17,10 +17,10 @@ class CommonController
 	/**
 	 * Метод возвращает IP клиента относительно web-сервера.
 	 *
-	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#e15b3e31-61c6-4eea-9b2c-b32ce49d09a3
 	 * @return Common\GetIpModel
 	 * @noinspection SpellCheckingInspection
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#e15b3e31-61c6-4eea-9b2c-b32ce49d09a3
 	 */
 	public function getIp(): object
 	{
@@ -36,10 +36,10 @@ class CommonController
 	/**
 	 * Метод возвращает время с backend`а
 	 *
-	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#590cf34a-1467-4199-9406-45458d5fde06
 	 * @return Common\GetServerDateModel
 	 * @noinspection SpellCheckingInspection
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#590cf34a-1467-4199-9406-45458d5fde06
 	 */
 	public function getDate(): object
 	{
@@ -57,9 +57,9 @@ class CommonController
 	 * Нет планов по реализации моделей для данного API метода.
 	 * Используйте ->getAsArray() для получения массива данных.
 	 *
-	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#8313a870-e586-426c-80b4-b646316bc533
 	 * @return Common\GetConfig
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#8313a870-e586-426c-80b4-b646316bc533
 	 */
 	public function getConfig(): object
 	{
@@ -75,9 +75,9 @@ class CommonController
 	/**
 	 * Метод возвращает версию MikBiLL.
 	 *
-	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#ef5cb672-9695-4c1e-a4a6-e10e0e9489c7
 	 * @return string|null
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#ef5cb672-9695-4c1e-a4a6-e10e0e9489c7
 	 */
 	public function getVersion(): string|null
 	{
@@ -93,9 +93,9 @@ class CommonController
 	/**
 	 * Метод возвращает контактные данные организации.
 	 *
-	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#2949d3f0-a201-477b-9de5-cee4566b61ec
 	 * @return Common\GetCompanyInfoModel
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#2949d3f0-a201-477b-9de5-cee4566b61ec
 	 */
 	public function getContact(): object
 	{
@@ -111,9 +111,9 @@ class CommonController
 	/**
 	 * Метод вообще что-то возвращает?
 	 *
-	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d8fc182c-2200-4a06-80df-f12d54e94b3b
 	 * @return Common\GetMenu
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d8fc182c-2200-4a06-80df-f12d54e94b3b
 	 */
 	public function getMenu(): object
 	{

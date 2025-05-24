@@ -17,9 +17,9 @@ class NewsController
 	/**
 	 * Метод возвращает список новостей.
 	 *
-	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d0716ec8-0af2-46ae-97d4-56a47ea888aa
 	 * @return News\News
 	 * @throws Exception\BillApiException
+	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d0716ec8-0af2-46ae-97d4-56a47ea888aa
 	 */
 	public function getNews(): object
 	{

@@ -350,7 +350,7 @@ echo $status
 ```php
 echo "<h3>Доступные Middleware как модель:</h3>";
 $wares = $MikBiLL->cabinet->Subscriptions()->getMiddlewares();
-foreach ($wares->getMiddleware() as $ware) {
+foreach ($wares->getMiddlewares() as $ware) {
 	echo "<hr><h2><code>[id:{$ware->getId()}] " . $ware->getName() . "</code></h2>";
 }
 ```
@@ -541,7 +541,7 @@ echo "<pre>" . print_r($getConfig->getAsArray(), true) . "</pre>";
 ```php
 $getNews = $MikBiLL->cabinet->News()->getNews();
 echo "<h3>Получаем: Новости</h3>";
-foreach ($getNews->getAllNews() as $news) {
+foreach ($getNews->getNews() as $news) {
 	echo "<hr><ul>";
 	echo "<li>ID: <code>{$news->getId()}</code></li>";
 	echo "<li>Тема: <code>{$news->getSubject()}</code></li>";
@@ -557,7 +557,7 @@ foreach ($getNews->getAllNews() as $news) {
 ```php
 $getPackets = $MikBiLL->cabinet->Packet()->getPackets();
 echo "<h3>Получаем: Список тарифов</h3>";
-foreach ($getPackets->getPacket() as $packet) {
+foreach ($getPackets->getPackets() as $packet) {
 	echo "<hr><ul>";
 	echo "<li>Тариф <code>{$packet->getName()} [{$packet->getId()}]</code></li>";
 	echo "<li>Цена: <code>{$packet->getPrice()} {$packet->getCurrency()}.</code></li>";
@@ -583,4 +583,3 @@ echo "<li>Скорость: <code>{$packet->getSpeedRate()}</code></li>";
 echo "</ul>";
 echo "<pre>" . print_r($packet->getData(), true) . "</pre>";
 ```
-

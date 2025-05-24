@@ -14,13 +14,21 @@ class News extends ResponseWrapper
 		$this->items = array_map(fn($i) => new NewsModel($i), $data);
 	}
 
+	/**
+	 * @deprecated
+	 * @use self::getNews
+	 */
+	public function getAllNews(): array
+	{
+		return $this->getNews();
+	}
 
 	/**
-	 * Метод возвращает результат как модель.
+	 * Метод возвращает результат как массив моделей.
 	 *
 	 * @return NewsModel[]
 	 */
-	public function getAllNews(): array
+	public function getNews(): array
 	{
 		return $this->items;
 	}

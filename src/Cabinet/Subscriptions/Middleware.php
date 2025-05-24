@@ -55,11 +55,20 @@ class Middleware extends ResponseWrapper
 	}
 
 	/**
-	 * Метод возвращает результат как модель.
+	 * @deprecated
+	 * @use self::getMiddlewares
+	 */
+	public function getMiddleware(): array
+	{
+		return $this->getMiddlewares();
+	}
+
+	/**
+	 * Метод возвращает результат как массив моделей.
 	 *
 	 * @return MiddlewareModel[]
 	 */
-	public function getMiddleware(): array
+	public function getMiddlewares(): array
 	{
 		return $this->items;
 	}

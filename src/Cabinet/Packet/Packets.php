@@ -16,11 +16,20 @@ class Packets extends ResponseWrapper
 	}
 
 	/**
-	 * Метод возвращает результат как модель.
+	 * @deprecated
+	 * @use self::getPackets
+	 */
+	public function getPacket(): array
+	{
+		return $this->getPackets();
+	}
+
+	/**
+	 * Метод возвращает результат как массив моделей.
 	 *
 	 * @return PacketsModel[]
 	 */
-	public function getPacket(): array
+	public function getPackets(): array
 	{
 		return $this->items;
 	}

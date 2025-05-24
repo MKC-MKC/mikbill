@@ -14,7 +14,7 @@ class Credit extends ResponseWrapper
 	 */
 	public function isAvailable(): bool
 	{
-		return $this->getData("available", false);
+		return (bool)$this->getData("available", false);
 	}
 
 	/**
@@ -23,11 +23,11 @@ class Credit extends ResponseWrapper
 	 */
 	public function isActive(): bool
 	{
-		return $this->getData("active", false);
+		return (bool)$this->getData("active", false);
 	}
 
 	/**
-	 * Метод возвращает информацию о кредите.
+	 * Метод возвращает информацию об услуге.
 	 * @return array|null
 	 */
 	public function getInfo(): array|null
@@ -36,7 +36,7 @@ class Credit extends ResponseWrapper
 	}
 
 	/**
-	 * Метод возвращает стоимость активации кредита.
+	 * Метод возвращает стоимость активации услуги.
 	 * @return float|null
 	 */
 	public function getActivateCost(): float|null
@@ -63,7 +63,7 @@ class Credit extends ResponseWrapper
 	}
 
 	/**
-	 * Метод возвращает тип кредита.
+	 * Метод возвращает валюту расчёта.
 	 * @return string|null
 	 */
 	public function getCurrency(): string|null
@@ -95,7 +95,7 @@ class Credit extends ResponseWrapper
 	 */
 	public function getAvailableDays(): int|null
 	{
-		return $this->getData("info.will_be_avilable_days");
+		return $this->getData("info.will_be_avilable_days") ?? $this->getData("info.will_be_available_days");
 	}
 
 	/**

@@ -1,0 +1,27 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "available": 0,
+        "active": 1,
+        "info": {
+            "cost_activate": 0,
+            "cost_deactivate": "0.00",
+            "cost_day": "0.00",
+            "min_day": "1",
+            "count_free": "0",
+            "count_free_used": "1",
+            "date_start": "2020-02-22",
+            "date_stop": "2020-02-23",
+            "date_stop_ever": 1,
+            "freeze_ever": "1",
+            "return_ap": "0",
+            "balanse_plus": "1",
+            "fixed_month": false,
+            "unfreeze_earlier_pay": false,
+            "unfreeze_earlier_disallow": false,
+            "currency": "руб"
+        }
+    },
+    "message": "ОК"
+}

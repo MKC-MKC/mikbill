@@ -48,13 +48,17 @@ composer require haikiri/mikbill
         - type 2
     - Payments [LP]
     - Services [MP]
-        - Turbo
-        - Freeze
-        - Real IP
-        - Credit
-        - Change MAC
-        - Money Transfers 🆕
+        - Turbo [F]
+        - Freeze [F]
+        - Real IP [MP]
+        - Credit [F]
+        - Change MAC [LP]
+        - Money Transfers [LP]
     - [Subscriptions](#8-подписки) [MD]
+        - Additional [F]
+        - Middleware [F]
+        - Other [F]
+        - Прочие Middleware [LP]
     - Devices 🆕 [LP]
     - Reports [LP]
     - [News](#11-новости) [F]

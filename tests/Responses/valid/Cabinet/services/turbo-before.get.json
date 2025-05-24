@@ -1,0 +1,19 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "available": 1,
+        "active": 0,
+        "info": {
+            "cost_activate": "20.00",
+            "speed_in": "102400",
+            "speed_out": "102400",
+            "time": "24",
+            "stop_time": "",
+            "in": 100,
+            "out": 100,
+            "currency": "грн"
+        }
+    },
+    "message": "ОК"
+}

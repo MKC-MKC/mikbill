@@ -9,6 +9,7 @@ use Haikiri\MikBiLL\MikBiLLApi;
 class MikBiLLApiMock extends MikBiLLApi
 {
 	private static ?string $mockedData;
+	private static ?string $received_key = null;
 	private static string $expected_key = "mockedSignKey";
 	private static string $expected_token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
 
@@ -16,6 +17,7 @@ class MikBiLLApiMock extends MikBiLLApi
 	{
 		parent::__construct($url, $key);
 		self::$mockedData = $mockedData;
+		self::$received_key = $key;
 	}
 
 	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): Response
@@ -27,7 +29,7 @@ class MikBiLLApiMock extends MikBiLLApi
 		if ($sign) {
 			# Генерация ключа HMAC.
 			$salt = uniqid();
-			$sign = hash_hmac("sha512", $salt, self::$expected_key);
+			$sign = hash_hmac("sha512", $salt, self::$received_key);
 
 			# Имитируем проверку ключа на стороне Api.
 			$expectedSign = hash_hmac("sha512", $salt, self::$expected_key);

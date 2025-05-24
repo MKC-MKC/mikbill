@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Haikiri\MikBiLL\Tests;
 
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
-use Haikiri\MikBiLL\Helper\DeclensionHelper;
+use Haikiri\DeclensionHelper\Declension;
 use PHPUnit\Framework\TestCase;
 
 class UserServicesTest extends TestCase
@@ -39,8 +39,8 @@ class UserServicesTest extends TestCase
 		$currency = $response->getCurrency(); # "руб."
 		$template = "Стоимость активации {item} {form}!"; # маска
 
-		DeclensionHelper::set($currency, ["рубль", "рубля", "рублей"]);
-		$data = DeclensionHelper::format(number: $cost, key: $currency, template: $template);
+		Declension::set($currency, ["рубль", "рубля", "рублей"]);
+		$data = Declension::format(number: $cost, key: $currency, template: $template);
 
 		$this->assertEquals(expected: $expected, actual: $data);
 	}

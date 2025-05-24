@@ -26,7 +26,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.0",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "haikiri/declension-helper": "^1.0"
     },
     "authors": [
         {

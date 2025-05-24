@@ -184,34 +184,34 @@ class SubscriptionModel extends ResponseWrapper
 		return DateTimeImmutable::createFromFormat(format: "Y-m-d H:i:s", datetime: $dateString) ?: null;
 	}
 
-	public function getTrial(): string
+	public function getTrial(): ?string
 	{
-		return $this->getData("info.trial", "");
+		return $this->getData("info.trial");
 	}
 
-	public function getTrialPrice(): string
+	public function getTrialPrice(): ?string
 	{
-		return $this->getData("info.trial_price", "");
+		return $this->getData("info.trial_price");
 	}
 
-	public function getTrialPeriodOn(): string
+	public function getTrialPeriodOn(): ?string
 	{
-		return $this->getData("info.trial_period_on", "");
+		return $this->getData("info.trial_period_on");
 	}
 
-	public function getTrialPeriodDays(): string
+	public function getTrialPeriodDays(): ?string
 	{
-		return $this->getData("info.trial_period_days", "");
+		return $this->getData("info.trial_period_days");
 	}
 
-	public function getTrialChangeOn(): string
+	public function getTrialChangeOn(): ?string
 	{
-		return $this->getData("info.trial_change_on", "");
+		return $this->getData("info.trial_change_on");
 	}
 
-	public function getTrialChangeServiceId(): string
+	public function getTrialChangeServiceId(): ?string
 	{
-		return $this->getData("info.trial_change_serviceid", "");
+		return $this->getData("info.trial_change_serviceid");
 	}
 
 }

@@ -6,7 +6,7 @@ namespace Haikiri\MikBiLL;
 
 use Haikiri\MikBiLL\Cabinet as MikBiLLCabinet;
 
-class Cabinet implements CabinetInterface
+class Cabinet
 {
 
 	protected MikBiLLApiInterface $billInterface;

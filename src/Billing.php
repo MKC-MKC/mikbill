@@ -6,7 +6,7 @@ namespace Haikiri\MikBiLL;
 
 use Haikiri\MikBiLL\Billing as MikBiLLBilling;
 
-class Billing implements BillingInterface
+class Billing
 {
 
 	protected MikBiLLApiInterface $billInterface;

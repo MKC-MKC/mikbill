@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Haikiri\MikBiLL;
 
 use Haikiri\MikBiLL\Cabinet as MikBiLLCabinet;
@@ -41,6 +39,7 @@ class Cabinet
 		return new MikBiLLCabinet\UserController(interface: $this->billInterface);
 	}
 
+	/** @deprecated Функционал не запланирован. */
 	public function RegisterHotPost(): object
 	{
 		return new MikBiLLCabinet\RegisterHotPostController(interface: $this->billInterface);
@@ -61,6 +60,7 @@ class Cabinet
 		return new MikBiLLCabinet\SubscriptionsController(interface: $this->billInterface);
 	}
 
+	/** @deprecated Функционал временно не запланирован. */
 	public function Devices(): object
 	{
 		return new MikBiLLCabinet\DevicesController(interface: $this->billInterface);

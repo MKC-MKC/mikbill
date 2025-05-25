@@ -90,6 +90,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 			-24 => throw new Exception\NoMoneyException(message: $message, code: $code),
 			-23 => throw new Exception\WrongPasswordException(message: $message, code: $code),
 			-22, => throw new Exception\AlreadyActivatedException(message: $message, code: $code),
+			-10, => throw new Exception\NotEnabled(message: $message, code: $code),
 			default => throw new Exception\BillApiException(message: $message, code: $code),
 		};
 	}

@@ -1,0 +1,33 @@
+{
+    "success": true,
+    "code": 0,
+    "data": [
+        {
+            "before_billing": "332.718616",
+            "billing_minus": "0.000000",
+            "framedipaddress": "10.100.111.254",
+            "username": "username",
+            "start_time": "2024-12-04 11:17:47",
+            "stop_time": "2024-12-19 12:26:34",
+            "time_on": "1300127",
+            "call_from": "",
+            "in_bytes": 28120.4,
+            "out_bytes": 3860.2,
+            "ipaddress": "10.100.111.254"
+        },
+        {
+            "before_billing": "165.363771",
+            "billing_minus": "0.000000",
+            "framedipaddress": "10.100.111.254",
+            "username": "OPT100.01C200300A.FCK2FAK71766CE",
+            "start_time": "2024-12-19 12:26:35",
+            "stop_time": "2024-12-22 12:48:04",
+            "time_on": "260489",
+            "call_from": "AA:BB:CC:11:22:33",
+            "in_bytes": 7966.4,
+            "out_bytes": 483.6,
+            "ipaddress": "10.100.111.254"
+        }
+    ],
+    "message": "ОК"
+}

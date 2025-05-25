@@ -1,0 +1,61 @@
+{
+    "success": true,
+    "code": 0,
+    "data": [
+        {
+            "date": "2025-05-25 14:00:54",
+            "bughtypeid": "34",
+            "bugh_type": "Услуга \"Турбо\"",
+            "before_billing": 603.59,
+            "sign": "?",
+            "summa": 20,
+            "comment": ""
+        },
+        {
+            "date": "2025-05-24 23:58:06",
+            "bughtypeid": "2",
+            "bugh_type": "Абонентская плата за текущий день",
+            "before_billing": 616.49,
+            "sign": "-",
+            "summa": 12.9,
+            "comment": ""
+        },
+        {
+            "date": "2025-05-24 14:00:59",
+            "bughtypeid": "78",
+            "bugh_type": "Дополнительные услуги - пополнение абонента",
+            "before_billing": 616.49,
+            "sign": "+",
+            "summa": 0,
+            "comment": "[service 100] Подписка на супер-сервис"
+        },
+        {
+            "date": "2025-05-24 14:00:59",
+            "bughtypeid": "75",
+            "bugh_type": "Возврат абонплаты при смене тарифа",
+            "before_billing": 616.49,
+            "sign": "+",
+            "summa": 0,
+            "comment": ""
+        },
+        {
+            "date": "2025-05-01 00:01:02",
+            "bughtypeid": "75",
+            "bugh_type": "Возврат абонплаты при смене тарифа",
+            "before_billing": 28.27,
+            "sign": "+",
+            "summa": 0,
+            "comment": ""
+        },
+        {
+            "date": "2025-04-21 09:42:43",
+            "bughtypeid": "75",
+            "bugh_type": "Возврат абонплаты при смене тарифа",
+            "before_billing": 161.6,
+            "sign": "+",
+            "summa": 0,
+            "comment": ""
+        }
+    ],
+    "message": "ОК"
+}

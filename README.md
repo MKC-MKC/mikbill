@@ -86,7 +86,7 @@ composer require haikiri/mikbill
         - Other [F]
         - Прочие Middleware [LP]
     - Devices 🆕 [LP]
-    - Reports [LP]
+    - Reports [F]
     - [News](#11-новости) [F]
 
 ---

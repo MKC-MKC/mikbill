@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Тестирование системы подписок.
- * @cabinet - Клиентский запрос требующий токен клиента.
+ * @cabinet - Клиентские запросы требуют токен клиента.
  */
 class UserSubscriptionsTest extends TestCase
 {

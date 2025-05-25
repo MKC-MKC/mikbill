@@ -2,7 +2,8 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Subscriptions;
 
-use DateTimeImmutable;
+use DateTime;
+use Exception;
 use Haikiri\MikBiLL\ResponseWrapper;
 
 class SubscriptionModel extends ResponseWrapper
@@ -10,7 +11,7 @@ class SubscriptionModel extends ResponseWrapper
 
 	public function getId(): int
 	{
-		return $this->getData("id", 0);
+		return (int)$this->getData("id");
 	}
 
 	public function getName(): string
@@ -25,17 +26,17 @@ class SubscriptionModel extends ResponseWrapper
 
 	public function isConnected(): bool
 	{
-		return $this->getData("connected", 0);
+		return (bool)$this->getData("connected");
 	}
 
 	public function isActive(): bool
 	{
-		return $this->getData("active", 0);
+		return (bool)$this->getData("active");
 	}
 
 	public function isAvailable(): bool
 	{
-		return $this->getData("available", 0);
+		return (bool)$this->getData("available");
 	}
 
 	public function getInfo(): array|null
@@ -120,37 +121,37 @@ class SubscriptionModel extends ResponseWrapper
 
 	public function getServicePrice(): float
 	{
-		return $this->getData("info.service_price", 0.0);
+		return (float)$this->getData("info.service_price");
 	}
 
 	public function isServiceLoyalRecalculation(): bool
 	{
-		return $this->getData("info.service_loyal_recalculation", 0);
+		return (bool)$this->getData("info.service_loyal_recalculation");
 	}
 
 	public function isActivationByAdmin(): bool
 	{
-		return $this->getData("info.activation_by_admin", 0);
+		return (bool)$this->getData("info.activation_by_admin");
 	}
 
 	public function isActivationByUser(): bool
 	{
-		return $this->getData("info.activation_by_user", 0);
+		return (bool)$this->getData("info.activation_by_user");
 	}
 
 	public function isDeactivationByAdmin(): bool
 	{
-		return $this->getData("info.deactivation_by_admin", 0);
+		return (bool)$this->getData("info.deactivation_by_admin");
 	}
 
 	public function isDeactivationByUser(): bool
 	{
-		return $this->getData("info.deactivation_by_user", 0);
+		return (bool)$this->getData("info.deactivation_by_user");
 	}
 
 	public function getDiscountOn(): int
 	{
-		return $this->getData("info.discount_on", 0);
+		return (int)$this->getData("info.discount_on");
 	}
 
 	public function getCurrency(): string
@@ -168,20 +169,22 @@ class SubscriptionModel extends ResponseWrapper
 		return $this->getData("info.service_date_stop", "");
 	}
 
-	public function startedAt(): ?DateTimeImmutable
+	public function startedAt(): DateTime|null
 	{
-		$dateString = $this->getServiceDateStart();
-		if (empty($dateString)) return null;
-
-		return DateTimeImmutable::createFromFormat(format: "Y-m-d H:i:s", datetime: $dateString) ?: null;
+		try {
+			return new DateTime($this->getServiceDateStart());
+		} catch (Exception) {
+			return null;
+		}
 	}
 
-	public function stoppedAt(): ?DateTimeImmutable
+	public function stoppedAt(): DateTime|null
 	{
-		$dateString = $this->getServiceDateStop();
-		if (empty($dateString)) return null;
-
-		return DateTimeImmutable::createFromFormat(format: "Y-m-d H:i:s", datetime: $dateString) ?: null;
+		try {
+			return new DateTime($this->getServiceDateStop());
+		} catch (Exception) {
+			return null;
+		}
 	}
 
 	public function getTrial(): ?string

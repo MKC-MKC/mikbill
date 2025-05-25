@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Haikiri\MikBiLL\Cabinet\Services;
 
+use DateTime;
 use Haikiri\MikBiLL\ResponseWrapper;
 
 class Turbo extends ResponseWrapper
@@ -38,84 +39,66 @@ class Turbo extends ResponseWrapper
 
 	/**
 	 * Метод возвращает стоимость активации услуги.
-	 * @return float|string|null
+	 * @return float
 	 */
-	public function getActivationCost(): float|string|null
+	public function getActivationCost(): float
 	{
-		return $this->getData("info.cost_activate");
-	}
-
-	/**
-	 * @return int|float|string|null
-	 * @deprecated Метод возвращает стоимость активации услуги.
-	 * @use self::getActivationCost
-	 */
-	public function getActivateCost(): int|float|string|null
-	{
-		return $this->getData("info.activate_cost");
+		return (float)$this->getData("info.cost_activate");
 	}
 
 	/**
 	 * Метод возвращает входящую скорость в байтах-в-секунду.
-	 * @return int|string|null
+	 * @return int
 	 */
-	public function getSpeedInBites(): int|string|null
+	public function getSpeedInBites(): int
 	{
-		return $this->getData("info.speed_in");
+		return (int)$this->getData("info.speed_in");
 	}
 
 	/**
 	 * Метод возвращает исходящую скорость в байтах-в-секунду.
-	 * @return int|string|null
+	 * @return int
 	 */
-	public function getSpeedOutBites(): int|string|null
+	public function getSpeedOutBites(): int
 	{
-		return $this->getData("info.speed_out");
-	}
-
-	/**
-	 * @return int|float|string|null
-	 * @deprecated Метод возвращает стоимость услуги.
-	 */
-	public function getCost(): int|float|string|null
-	{
-		return $this->getData("info.cost");
+		return (int)$this->getData("info.speed_out");
 	}
 
 	/**
 	 * Метод возвращает время на которое будет активирована услуга.
-	 * @return int|string|null
+	 * @return int
 	 */
-	public function getTime(): int|string|null
+	public function getTime(): int
 	{
-		return $this->getData("info.time");
+		return (int)$this->getData("info.time");
 	}
 
 	/**
 	 * Метод возвращает время когда будет остановлена услуга.
-	 * @return int|string|null
+	 * @return DateTime|null
 	 */
-	public function getStopTime(): int|string|null
+	public function getStopTime(): DateTime|null
 	{
-		return $this->getData("info.stop_time");
+		$date = DateTime::createFromFormat("Y-m-d H:i:s", $this->getData("info.stop_time", ""));
+		return $date !== false ? $date : null;
 	}
 
 	/**
 	 * Метод возвращает входящую скорость в мегабитах-в-секунду.
-	 * @return int|null
+	 * @return int
 	 */
-	public function getSpeedIn(): int|null
+	public function getSpeedIn(): int
 	{
-		return $this->getData("info.in");
+		return (int)$this->getData("info.in");
 	}
 
 	/**
 	 * Метод возвращает исходящую скорость в мегабитах-в-секунду.
-	 * @return int|null
+	 * @return int
 	 */
-	public function getSpeedOut(): int|null
+	public function getSpeedOut(): int
 	{
-		return $this->getData("info.out");
+		return (int)$this->getData("info.out");
 	}
 
 	/**

@@ -9,7 +9,7 @@ class MiddlewareModel extends ResponseWrapper
 
 	public function getId(): int
 	{
-		return $this->getData("id", 0);
+		return (int)$this->getData("id");
 	}
 
 	public function getName(): string

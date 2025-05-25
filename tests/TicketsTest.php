@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Тестирование системы тикетов.
- * @cabinet - Клиентский запрос требующий токен клиента. 
+ * @cabinet - Клиентские запросы требуют токен клиента.
  */
 class TicketsTest extends TestCase
 {
@@ -37,7 +37,7 @@ class TicketsTest extends TestCase
 	/**
 	 * Клиент может увидеть список своих тикетов.
 	 */
-	public function test_1($expected = "14.11.2022 в 15:17:36")
+	public function test_view_tickets($expected = "14.11.2022 в 15:17:36")
 	{
 		# Имитируем получение ответа от API.
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/tickets/tickets.get.json");
@@ -71,7 +71,7 @@ class TicketsTest extends TestCase
 	/**
 	 * Клиент может создать новый тикет.
 	 */
-	public function test_2()
+	public function test_new_ticket()
 	{
 		# Имитируем получение ответа от API.
 		$json = json_encode(
@@ -113,7 +113,7 @@ class TicketsTest extends TestCase
 	/**
 	 * Клиент может видеть переписку с оператором.
 	 */
-	public function test_3($expected = "Сообщение с которым будет открыт тикет.")
+	public function test_view_ticket_messages($expected = "Сообщение с которым будет открыт тикет.")
 	{
 		# Имитируем получение ответа от API.
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/tickets/tickets.get-ID.json");

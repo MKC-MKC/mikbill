@@ -9,12 +9,12 @@ class NewTicketModel extends ResponseWrapper
 
 	/**
 	 * Метод возвращает ID только что созданного тикета.
-	 * @return int|null
+	 * @return int
 	 * @noinspection SpellCheckingInspection
 	 */
-	public function getId(): int|null
+	public function getId(): int
 	{
-		return $this->getData("ticketid");
+		return (int)$this->getData("ticketid");
 	}
 
 }

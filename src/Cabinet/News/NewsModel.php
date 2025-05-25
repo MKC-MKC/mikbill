@@ -9,7 +9,7 @@ class NewsModel extends ResponseWrapper
 
 	public function getId(): int
 	{
-		return $this->getData("newsid", 0);
+		return (int)$this->getData("newsid");
 	}
 
 	public function getSubject(): string

@@ -1,10 +1,9 @@
-<?php /** @noinspection SpellCheckingInspection */
-
-declare(strict_types=1);
+<?php
 
 namespace Haikiri\MikBiLL\Cabinet\Tickets;
 
-use DateTimeImmutable;
+use DateTime;
+use Exception;
 use Haikiri\MikBiLL\ResponseWrapper;
 
 class TicketModel extends ResponseWrapper
@@ -19,7 +18,7 @@ class TicketModel extends ResponseWrapper
 	 */
 	public function getId(): int
 	{
-		return $this->getData("ticketid", 0);
+		return (int)$this->getData("ticketid");
 	}
 
 	/**
@@ -30,7 +29,7 @@ class TicketModel extends ResponseWrapper
 	 */
 	public function getStatusTypeId(): int
 	{
-		return $this->getData("statustypeid", 0);
+		return (int)$this->getData("statustypeid");
 	}
 
 	/**
@@ -52,7 +51,7 @@ class TicketModel extends ResponseWrapper
 	 */
 	public function getPriorityTypeId(): int
 	{
-		return $this->getData("prioritytypeid", 0);
+		return (int)$this->getData("prioritytypeid");
 	}
 
 	/**
@@ -69,14 +68,15 @@ class TicketModel extends ResponseWrapper
 	/**
 	 * Метод возвращает дату создания тикета.
 	 *
-	 * @return DateTimeImmutable|null
+	 * @return DateTime|null
 	 */
-	public function getDate(): ?DateTimeImmutable
+	public function getDate(): DateTime|null
 	{
-		$dateString = $this->getData("creationdate");
-		if ($dateString === null) return null;
-
-		return DateTimeImmutable::createFromFormat("Y-m-d H:i:s", $dateString) ?: null;
+		try {
+			return new DateTime($this->getData("creationdate", ""));
+		} catch (Exception) {
+			return null;
+		}
 	}
 
 	/**

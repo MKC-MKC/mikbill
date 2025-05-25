@@ -65,7 +65,7 @@ class GetCompanyInfoModel extends ResponseWrapper
 
 	public function isShowMap(): bool
 	{
-		return $this->getData("show_map", false);
+		return (bool)$this->getData("show_map", false);
 	}
 
 }

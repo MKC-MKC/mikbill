@@ -9,12 +9,12 @@ class PacketInfoModel extends ResponseWrapper
 
 	public function getId(): int
 	{
-		return $this->getData("gid", 0);
+		return (int)$this->getData("gid");
 	}
 
 	public function getNum(): int
 	{
-		return $this->getData("num", 0);
+		return (int)$this->getData("num");
 	}
 
 	public function getName(): string
@@ -24,12 +24,12 @@ class PacketInfoModel extends ResponseWrapper
 
 	public function getCost(): float
 	{
-		return $this->getData("fixed_cost", 0);
+		return (float)$this->getData("fixed_cost");
 	}
 
 	public function getDailyCost(): float
 	{
-		return $this->getData("fixed_cost2", "");
+		return (float)$this->getData("fixed_cost2", "");
 	}
 
 	public function getCurrency(): string
@@ -69,7 +69,7 @@ class PacketInfoModel extends ResponseWrapper
 
 	public function isMinusAllowed(): bool
 	{
-		return $this->getData("razresh_minus", false);
+		return (bool)$this->getData("razresh_minus", false);
 	}
 
 	public function getHowMuch(): array|null

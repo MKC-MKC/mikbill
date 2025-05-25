@@ -9,7 +9,8 @@ use Haikiri\MikBiLL\Tests\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @cabinet - Клиентский запрос требующий токен клиента. 
+ * Тестирование авторизации клиента через Логин и Пароль.
+ * @cabinet - Клиентские запросы требуют токен клиента.
  */
 class CabinetLoginTest extends TestCase
 {

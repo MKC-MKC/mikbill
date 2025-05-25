@@ -1,12 +1,17 @@
 <?php /** @noinspection PhpUnhandledExceptionInspection */
 
+declare(strict_types=1);
+
 namespace Haikiri\MikBiLL\Tests;
 
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 
-/** @billing - Административные запросы требуют подпись. */
+/**
+ * Тестирование поиска клиента и обработки его данных.
+ * @billing - Административные запросы требуют подпись.
+ */
 class BillingSearchUsersTest extends TestCase
 {
 	use InitTrait;

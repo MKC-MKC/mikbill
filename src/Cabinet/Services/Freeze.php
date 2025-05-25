@@ -37,90 +37,90 @@ class Freeze extends ResponseWrapper
 		return $this->getData("info");
 	}
 
-	public function getActivationCost(): int|float|string|null
+	public function getActivationCost(): float
 	{
-		return $this->getData("info.cost_activate");
+		return (float)$this->getData("info.cost_activate");
 	}
 
-	public function getCostDay(): float|int|string|null
+	public function getDeactivationCost(): float
 	{
-		return $this->getData("info.cost_day");
+		return (float)$this->getData("info.cost_deactivate");
 	}
 
-	public function getDeactivationCost(): float|int|string|null
+	public function getCostDay(): float
 	{
-		return $this->getData("info.cost_deactivate");
+		return (float)$this->getData("info.cost_day");
 	}
 
-	public function getMinDat(): int|string|null
+	public function getMinDay(): int
 	{
-		return $this->getData("info.min_day");
+		return (int)$this->getData("info.min_day");
 	}
 
-	public function getFreeCount(): int|string|null
+	public function getFreeCount(): int
 	{
-		return $this->getData("info.count_free");
+		return (int)$this->getData("info.count_free");
 	}
 
-	public function getFreeCountUsed(): int|string|null
+	public function getFreeCountUsed(): int
 	{
-		return $this->getData("info.count_free_used");
+		return (int)$this->getData("info.count_free_used");
 	}
 
 	public function getDateStop(): DateTime|null
-	{
-		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_start", ""));
-		return $date !== false ? $date : null;
-	}
-
-	public function getDateStart(): DateTime|null
 	{
 		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_stop", ""));
 		return $date !== false ? $date : null;
 	}
 
-	public function getDateStopEver(): mixed
+	public function getDateStart(): DateTime|null
 	{
-		return $this->getData("info.date_stop_ever");
+		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_start", ""));
+		return $date !== false ? $date : null;
 	}
 
-	public function getUnfreezeEver(): mixed
+	public function hasDateStopEver(): bool
 	{
-		return $this->getData("info.freeze_ever");
+		return (bool)$this->getData("info.date_stop_ever");
 	}
 
-	public function getReturnAp(): mixed
+	public function getFreezeEver(): bool
 	{
-		return $this->getData("info.return_ap");
+		return (bool)$this->getData("info.freeze_ever");
 	}
 
-	public function isBalancePlus(): mixed
+	public function getReturnAp(): bool
 	{
-		return $this->getData("info.balanse_plus");
+		return (bool)$this->getData("info.return_ap");
 	}
 
-	public function isFixedMonth(): bool|null
+	public function isBalancePlus(): bool
 	{
-		return $this->getData("info.fixed_month");
+		return (bool)$this->getData("info.balance_plus") ?? (bool)$this->getData("info.balanse_plus");
 	}
 
-	public function canUnfreezeEarlierPay(): bool|null
+	public function isFixedMonth(): bool
 	{
-		return $this->getData("info.unfreeze_earlier_pay");
+		return (bool)$this->getData("info.fixed_month");
 	}
 
-	public function canUnfreezeEarlierDisallow(): bool|null
+	public function canUnfreezeEarlierPay(): bool
 	{
-		return $this->getData("info.unfreeze_earlier_disallow");
+		return (bool)$this->getData("info.unfreeze_earlier_pay");
+	}
+
+	public function canUnfreezeEarlierDisallow(): bool
+	{
+		return (bool)$this->getData("info.unfreeze_earlier_disallow");
 	}
 
 	/**
 	 * Метод возвращает валюту расчёта.
-	 * @return string|null
+	 * @return string
 	 */
-	public function getCurrency(): string|null
+	public function getCurrency(): string
 	{
-		return $this->getData("info.currency");
+		return $this->getData("info.currency", "");
 	}
 
 }

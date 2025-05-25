@@ -2,7 +2,8 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Tickets;
 
-use DateTimeImmutable;
+use DateTime;
+use Exception;
 use Haikiri\MikBiLL\ResponseWrapper;
 
 class TicketMessengerModel extends ResponseWrapper
@@ -15,7 +16,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function getMessageId(): int
 	{
-		return $this->getData("messageid", 0);
+		return (int)$this->getData("messageid");
 	}
 
 	/**
@@ -25,7 +26,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function getTicketId(): int
 	{
-		return $this->getData("ticketid", 0);
+		return (int)$this->getData("ticketid");
 	}
 
 	/**
@@ -35,7 +36,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function getUserId(): int
 	{
-		return $this->getData("useruid", 0);
+		return (int)$this->getData("useruid");
 	}
 
 	/**
@@ -45,7 +46,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function isMessageFromClient(): bool
 	{
-		return $this->getUserId() ?? 0;
+		return (bool)$this->getUserId() ?? false;
 	}
 
 	/**
@@ -55,7 +56,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function getStuffId(): int
 	{
-		return $this->getData("stuffid", 0);
+		return (int)$this->getData("stuffid");
 	}
 
 	/**
@@ -65,7 +66,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function isMessageUnread(): bool
 	{
-		return $this->getData("unread", 0);
+		return (bool)$this->getData("unread");
 	}
 
 	/**
@@ -144,14 +145,15 @@ class TicketMessengerModel extends ResponseWrapper
 	/**
 	 * Метод возвращает время написания сообщения.
 	 *
-	 * @return DateTimeImmutable|null
+	 * @return DateTime|null
 	 */
-	public function getDate(): ?DateTimeImmutable
+	public function getDate(): DateTime|null
 	{
-		$dateString = $this->getData("date");
-		if ($dateString === null) return null;
-
-		return DateTimeImmutable::createFromFormat("Y-m-d H:i:s", $dateString) ?: null;
+		try {
+			return new DateTime($this->getData("date", ""));
+		} catch (Exception) {
+			return null;
+		}
 	}
 
 }

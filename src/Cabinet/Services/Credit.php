@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Haikiri\MikBiLL\Cabinet\Services;
 
 use DateTime;
@@ -37,29 +39,29 @@ class Credit extends ResponseWrapper
 
 	/**
 	 * Метод возвращает стоимость активации услуги.
-	 * @return float|null
+	 * @return float
 	 */
-	public function getActivateCost(): float|null
+	public function getActivationCost(): float
 	{
-		return $this->getData("info.active_cena");
+		return (float)$this->getData("info.active_cena");
 	}
 
 	/**
 	 * Метод возвращает процент кредита.
-	 * @return int|null
+	 * @return int
 	 */
-	public function getCreditPercent(): int|null
+	public function getCreditPercent(): int
 	{
-		return $this->getData("info.credit_procent");
+		return (int)$this->getData("info.credit_procent");
 	}
 
 	/**
 	 * Метод возвращает тип кредита.
-	 * @return int|null
+	 * @return int
 	 */
-	public function getType(): int|null
+	public function getType(): int
 	{
-		return $this->getData("info.type");
+		return (int)$this->getData("info.type");
 	}
 
 	/**
@@ -73,29 +75,29 @@ class Credit extends ResponseWrapper
 
 	/**
 	 * Метод возвращает сумму кредита.
-	 * @return float|null
+	 * @return float
 	 */
-	public function getCreditSum(): float|null
+	public function getCreditSum(): float
 	{
-		return $this->getData("info.credit_summa");
+		return (float)$this->getData("info.credit_summa");
 	}
 
 	/**
 	 * Метод проверяет возможность досрочного погашения кредита.
-	 * @return bool|null
+	 * @return bool
 	 */
-	public function canEarlyLoanRepayment(): bool|null
+	public function canEarlyLoanRepayment(): bool
 	{
-		return $this->getData("info.early_loan_repayment");
+		return (bool)$this->getData("info.early_loan_repayment");
 	}
 
 	/**
 	 * Метод возвращает количество дней, на которое будут доступны услуги.
-	 * @return int|null
+	 * @return int
 	 */
-	public function getAvailableDays(): int|null
+	public function getAvailableDays(): int
 	{
-		return $this->getData("info.will_be_avilable_days") ?? $this->getData("info.will_be_available_days");
+		return $this->getData("info.will_be_avilable_days") ?? (int)$this->getData("info.will_be_available_days");
 	}
 
 	/**
@@ -138,11 +140,11 @@ class Credit extends ResponseWrapper
 
 	/**
 	 * Метод возвращает количество дней на которое будет активирован кредит.
-	 * @return int|null
+	 * @return int
 	 */
-	public function getActivationDays(): int|null
+	public function getActivationDays(): int
 	{
-		return $this->getData("info.credit_active_days");
+		return (int)$this->getData("info.credit_active_days");
 	}
 
 }

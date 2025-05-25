@@ -8,7 +8,10 @@ use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 
-/** @billing - Административные запросы требуют подпись. */
+/**
+ * Тестирование получения токена по UID клиента.
+ * @billing - Административные запросы требуют подпись.
+ */
 class BillingGetTokenTest extends TestCase
 {
 	use InitTrait;
@@ -39,5 +42,4 @@ class BillingGetTokenTest extends TestCase
 		# Убеждаемся в корректности полученных данных.
 		$this->assertEquals(expected: self::$token, actual: $data);
 	}
-
 }

@@ -7,7 +7,10 @@ namespace Haikiri\MikBiLL\Tests;
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use PHPUnit\Framework\TestCase;
 
-/** @cabinet - Клиентский запрос требующий токен клиента. */
+/**
+ * Тестирование получения конфигурации сервера.
+ * @cabinet - Клиентские запросы требуют токен клиента.
+ */
 class CommonTest extends TestCase
 {
 	private static MikBiLLApi $MikBiLL;
@@ -37,20 +40,11 @@ class CommonTest extends TestCase
 		$this->assertEquals(expected: $expected, actual: $data->getIp());
 	}
 
-	public function test_2($expected = "2025-05-22 15:00:00"): void
+	public function test_2($expected = "22.05.2025 15:00:00"): void
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/serverdate.get.json");
-		$data = self::$MikBiLL->cabinet->Common()->getDate();
-		$this->assertEquals(expected: $expected, actual: $data->getFormat());
-	}
-
-	public function test_3($expected = "22.05.2025 15:00:00"): void
-	{
-		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/serverdate.get.json");
-		$result = self::$MikBiLL->cabinet->Common()->getDate();
-		$date = $result->getDateTime(to: "UTC"); # Преобразовать время сервера в UTC.
-		$data = $date->format("d.m.Y H:i:s"); # Возвращаем время в формате Европы.
-		$this->assertEquals(expected: $expected, actual: $data);
+		$data = self::$MikBiLL->cabinet->Common()->getDate()->getDateTime();
+		$this->assertEquals(expected: $expected, actual: $data?->format("d.m.Y H:i:s"));
 	}
 
 }

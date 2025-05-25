@@ -2,68 +2,64 @@
 
 namespace Haikiri\MikBiLL\Cabinet\Common;
 
+use DateTime;
 use Exception;
-use DateTimeZone;
-use DateTimeImmutable;
 use Haikiri\MikBiLL\ResponseWrapper;
 
 class GetServerDateModel extends ResponseWrapper
 {
 
-	public function getDate(): string|null
+	public function getDate(): string
 	{
-		return $this->getData("date");
+		return $this->getData("date", "");
 	}
 
-	public function getTimeStamp(): string|null
+	public function getTimeStamp(): int
 	{
-		return $this->getData("timestamp");
+		return (int)$this->getData("timestamp", 0);
 	}
 
-	public function getFormat(): string|null
+	public function getFormat(): string
 	{
-		return $this->getData("format");
+		return $this->getData("format", "");
 	}
 
-	public function getDay(): string|null
+	public function getDay(): string
 	{
-		return $this->getData("day");
+		return $this->getData("day", "");
 	}
 
-	public function getMonth(): string|null
+	public function getMonth(): string
 	{
-		return $this->getData("month");
+		return $this->getData("month", "");
 	}
 
-	public function getDd(): string|null
+	public function getDd(): string
 	{
-		return $this->getData("dd");
+		return $this->getData("dd", "");
 	}
 
-	public function getTime(): string|null
+	public function getTime(): string
 	{
-		return $this->getData("time");
+		return $this->getData("time", "");
 	}
 
-	public function getYear(): string|null
+	public function getYear(): string
 	{
-		return $this->getData("year");
+		return $this->getData("year", "");
 	}
 
-	public function getNowDate(): string|null
+	public function getNowDate(): string
 	{
-		return $this->getData("now_date");
+		return $this->getData("now_date", "");
 	}
 
-	public function getDateTime($to = "utc"): DateTimeImmutable|bool
+	public function getDateTime(): DateTime|null
 	{
 		try {
-			$timestamp = $this->getTimeStamp();
-			$timezone = new DateTimeZone(timezone: $to);
-
-			return (new DateTimeImmutable("@" . $timestamp))->setTimezone($timezone);
+			return new DateTime("@{$this->getTimeStamp()}");
 		} catch (Exception) {
-			return false;
+			return null;
 		}
 	}
 

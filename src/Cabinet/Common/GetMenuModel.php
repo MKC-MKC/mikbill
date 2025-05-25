@@ -9,7 +9,7 @@ class GetMenuModel extends ResponseWrapper
 
 	public function getId(): int
 	{
-		return $this->getData("id", 0);
+		return (int)$this->getData("id");
 	}
 
 	public function getName(): string
@@ -24,22 +24,22 @@ class GetMenuModel extends ResponseWrapper
 
 	public function getUserGroupId(): int
 	{
-		return $this->getData("usersgroupid", 0);
+		return (int)$this->getData("usersgroupid");
 	}
 
 	public function getParent(): int
 	{
-		return $this->getData("parent", 0);
+		return (int)$this->getData("parent");
 	}
 
 	public function getSort(): int
 	{
-		return $this->getData("sort", 0);
+		return (int)$this->getData("sort");
 	}
 
 	public function getHide(): int
 	{
-		return $this->getData("hide", 0);
+		return (int)$this->getData("hide");
 	}
 
 	public function getIcon(): string

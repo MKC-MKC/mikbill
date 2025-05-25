@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Haikiri\MikBiLL\Cabinet;
 
 use Haikiri\MikBiLL\Exception;

@@ -59,7 +59,7 @@ class UserServicesTest extends TestCase
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/services/credit-before.get.json");
 		$data = self::$MikBiLL->cabinet->Services()->getCredit();
-		$this->assertEquals(expected: $expected, actual: $data->getDateStart()->format("d.m.Y"));
+		$this->assertEquals(expected: $expected, actual: $data->getDateStart()?->format("d.m.Y"));
 	}
 
 	/**
@@ -69,7 +69,7 @@ class UserServicesTest extends TestCase
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/services/credit-after.get.json");
 		$data = self::$MikBiLL->cabinet->Services()->getCredit();
-		$this->assertEquals(expected: $expected, actual: $data->getDateStop()->format("d.m.Y"));
+		$this->assertEquals(expected: $expected, actual: $data->getDateStop()?->format("d.m.Y"));
 	}
 
 	/**

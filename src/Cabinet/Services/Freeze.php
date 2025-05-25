@@ -69,12 +69,14 @@ class Freeze extends ResponseWrapper
 
 	public function getDateStop(): DateTime|null
 	{
-		return DateTime::createFromFormat("Y-m-d", $this->getData("info.date_start"));
+		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_start", ""));
+		return $date !== false ? $date : null;
 	}
 
 	public function getDateStart(): DateTime|null
 	{
-		return DateTime::createFromFormat("Y-m-d", $this->getData("info.date_stop"));
+		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_stop", ""));
+		return $date !== false ? $date : null;
 	}
 
 	public function getDateStopEver(): mixed

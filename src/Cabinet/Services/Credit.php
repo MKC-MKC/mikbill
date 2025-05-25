@@ -118,20 +118,22 @@ class Credit extends ResponseWrapper
 
 	/**
 	 * Метод возвращает объект даты активации кредита.
-	 * @return DateTime|bool|null
+	 * @return DateTime|null
 	 */
-	public function getDateStart(): DateTime|bool|null
+	public function getDateStart(): DateTime|null
 	{
-		return DateTime::createFromFormat("Y-m-d", $this->getData("info.date_start"));
+		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_start", ""));
+		return $date !== false ? $date : null;
 	}
 
 	/**
 	 * Метод возвращает объект даты отключения кредита.
-	 * @return DateTime|bool|null
+	 * @return DateTime|null
 	 */
-	public function getDateStop(): DateTime|bool|null
+	public function getDateStop(): DateTime|null
 	{
-		return DateTime::createFromFormat("Y-m-d", $this->getData("info.date_stop"));
+		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_stop", ""));
+		return $date !== false ? $date : null;
 	}
 
 	/**

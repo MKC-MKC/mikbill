@@ -460,7 +460,7 @@ echo "</ul>";
 $getDate = $MikBiLL->cabinet->Common()->getDate();
 echo "<h3>Получаем: Дата и Время</h3>";
 echo "<ul>";
-echo "<li>Управляемая дата и время: <code>" . $getDate->getDateTime()->format("d.m.Y H:i:s") . "</code></li>";
+echo "<li>Управляемая дата и время: <code>" . $getDate->getDateTime()?->format("d.m.Y H:i:s") . "</code></li>";
 echo "<li>Дата из массива: <code>" . $getDate->getData()["format"] . "</code></li>";
 echo "<li>Time Stamp: <code>" . $getDate->getTimeStamp() . "</code></li>";
 echo "</ul>";

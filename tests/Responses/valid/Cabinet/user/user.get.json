@@ -100,7 +100,7 @@
         "local_mask": "255.255.0.0",
         "tarif": "Unlim-130",
         "shapers_day_night_active": "0",
-        "UE": "₹",
+        "UE": "руб",
         "turbo_active": 0,
         "packet_name": "оптика_5Mb",
         "speed_in": 5,

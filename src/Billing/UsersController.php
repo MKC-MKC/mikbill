@@ -26,12 +26,12 @@ class UsersController
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#f0e8660b-bc5b-42d9-99ad-a53c866b844e
 	 * @param string $key - Возможные ключи: ['user', 'uid', 'state', 'gid', 'deposit', 'credit', и.т.д...]
-	 * @param string|int $value - Значение по которому будет производиться поиск.
+	 * @param mixed $value - Значение по которому будет производиться поиск.
 	 * @param string $operator - Возможные операторы: ['<', '=', '>', '>=', '!='] или ['меньше', 'равно', 'больше', 'больше или равно', 'не равно'].
 	 * @return UsersSearchController
 	 * @throws Exception\BillApiException
 	 */
-	public function searchUser(string $key = "uid", string|int $value = "1", string $operator = "="): object
+	public function searchUser(string $key = "uid", mixed $value = "1", string $operator = "="): object
 	{
 		$params = [
 			"field" => $key,

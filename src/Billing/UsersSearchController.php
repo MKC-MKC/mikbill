@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Haikiri\MikBiLL\Billing;
 
-use Haikiri\MikBiLL\Cabinet\User;
 use Haikiri\MikBiLL\ResponseWrapper;
+use Haikiri\MikBiLL\Billing\Search\UserSearch;
 
 class UsersSearchController extends ResponseWrapper
 {
@@ -14,13 +14,12 @@ class UsersSearchController extends ResponseWrapper
 	public function __construct(?array $data)
 	{
 		parent::__construct($data);
-		$this->items = array_map(fn($i) => new User\UserModels($i), $data);
+		$this->items = array_map(fn($i) => new UserSearch($i), $data);
 	}
 
 	/**
-	 * Метод возвращает результат как модель.
-	 * Обратите внимание, что модель User содержит в себе больше данных чем может вернуть метод поиска по клиенту MikBiLL.
-	 * @return User\UserModels[]
+	 * Метод возвращает результат как массив моделей.
+	 * @return UserSearch[]
 	 */
 	public function getUsers(): array
 	{
@@ -30,9 +29,9 @@ class UsersSearchController extends ResponseWrapper
 	/**
 	 * Метод возвращает модель первого клиента.
 	 * Используйте с осторожностью, и только если уверены что вернётся только один клиент.
-	 * @return User\UserModels|null
+	 * @return UserSearch|null
 	 */
-	public function getOne(): ?User\UserModels
+	public function getOne(): ?UserSearch
 	{
 		return $this->getUsers()[0] ?? null;
 	}

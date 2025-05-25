@@ -20,9 +20,9 @@ trait UserFeeModelsTrait
 		return $this->getData("fee.devices");
 	}
 
-	public function getUserFeePacketPrice(): float|int|string|null
+	public function getUserFeePacketPrice(): int
 	{
-		return $this->getData("fee.packet.price");
+		return (int)$this->getData("fee.packet.price");
 	}
 
 	public function getUserFeePacketDiscount(): array|null
@@ -30,29 +30,29 @@ trait UserFeeModelsTrait
 		return $this->getData("fee.packet.discount");
 	}
 
-	public function getUserFeePacketPriceWithDiscount(): float|int|string|null
+	public function getUserFeePacketPriceWithDiscount(): int
 	{
-		return $this->getData("fee.packet.price_with_discount");
+		return (int)$this->getData("fee.packet.price_with_discount");
 	}
 
-	public function getUserFeePacketDiscountValue(): int|string|null
+	public function getUserFeePacketDiscountValue(): int
 	{
-		return $this->getData("fee.packet.discount.value");
+		return (int)$this->getData("fee.packet.discount.value");
 	}
 
-	public function getUserFeePacketDiscountSign(): string|null
+	public function getUserFeePacketDiscountSign(): string
 	{
-		return $this->getData("fee.packet.discount.sign");
+		return $this->getData("fee.packet.discount.sign", "");
 	}
 
-	public function getUserFeeSubscriptionsTotal(): float|int|string|null
+	public function getUserFeeSubscriptionsTotal(): int
 	{
-		return $this->getData("fee.subscriptions.total");
+		return (int)$this->getData("fee.subscriptions.total");
 	}
 
-	public function getUserFeeSubscriptionsTotalWithDiscount(): float|int|string|null
+	public function getUserFeeSubscriptionsTotalWithDiscount(): int
 	{
-		return $this->getData("fee.subscriptions.total_with_discount");
+		return (int)$this->getData("fee.subscriptions.total_with_discount");
 	}
 
 	public function getUserFeeSubscriptionsDiscount(): array|null
@@ -65,24 +65,24 @@ trait UserFeeModelsTrait
 		return $this->getData("fee.subscriptions.detailed");
 	}
 
-	public function getUserFeeSubscriptionsDiscountValue(): int|string|null
+	public function getUserFeeSubscriptionsDiscountValue(): int
 	{
-		return $this->getData("fee.subscriptions.discount.value");
+		return (int)$this->getData("fee.subscriptions.discount.value");
 	}
 
-	public function getUserFeeSubscriptionsDiscountSign(): string|null
+	public function getUserFeeSubscriptionsDiscountSign(): string
 	{
-		return $this->getData("fee.subscriptions.discount.sign");
+		return $this->getData("fee.subscriptions.discount.sign", "");
 	}
 
-	public function getUserFeeDevicesTotal(): float|int|string|null
+	public function getUserFeeDevicesTotal(): int
 	{
-		return $this->getData("fee.devices.total");
+		return (int)$this->getData("fee.devices.total");
 	}
 
-	public function getUserFeeDevicesTotalWithDiscount(): float|int|string|null
+	public function getUserFeeDevicesTotalWithDiscount(): int
 	{
-		return $this->getData("fee.devices.total_with_discount");
+		return (int)$this->getData("fee.devices.total_with_discount");
 	}
 
 	public function getUserFeeDevicesDetailed(): array|null
@@ -95,34 +95,34 @@ trait UserFeeModelsTrait
 		return $this->getData("fee.devices.discount");
 	}
 
-	public function getUserFeeDevicesDiscountValue(): int|string|null
+	public function getUserFeeDevicesDiscountValue(): int
 	{
-		return $this->getData("fee.devices.discount.value");
+		return (int)$this->getData("fee.devices.discount.value");
 	}
 
-	public function getUserFeeDevicesDiscountSign(): string|null
+	public function getUserFeeDevicesDiscountSign(): string
 	{
-		return $this->getData("fee.devices.discount.sign");
+		return $this->getData("fee.devices.discount.sign", "");
 	}
 
-	public function getUserFeeRealIp(): int|string|null
+	public function getUserFeeRealIp(): int
 	{
-		return $this->getData("fee.realip");
+		return (int)$this->getData("fee.realip");
 	}
 
-	public function getUserFeeInstallments(): int|string|null
+	public function getUserFeeInstallments(): int
 	{
-		return $this->getData("fee.installments");
+		return (int)$this->getData("fee.installments");
 	}
 
-	public function getUserFeeTotal(): float|int|string|null
+	public function getUserFeeTotal(): int
 	{
-		return $this->getData("fee.total");
+		return (int)$this->getData("fee.total");
 	}
 
-	public function getUserFeeTotalWithDiscount(): float|int|string|null
+	public function getUserFeeTotalWithDiscount(): int
 	{
-		return $this->getData("fee.total_with_discount");
+		return (int)$this->getData("fee.total_with_discount");
 	}
 
 }

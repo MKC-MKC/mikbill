@@ -5,54 +5,54 @@ namespace Haikiri\MikBiLL\Cabinet\User;
 trait UserShowModelsTrait
 {
 
-	public function isUserAllowedToShowSpeedIn(): bool|null
+	public function isUserAllowedToShowSpeedIn(): bool
 	{
-		return $this->getData("show.speed_in");
+		return (bool)$this->getData("show.speed_in");
 	}
 
-	public function isUserAllowedToShowSpeedOut(): bool|null
+	public function isUserAllowedToShowSpeedOut(): bool
 	{
-		return $this->getData("show.speed_out");
+		return (bool)$this->getData("show.speed_out");
 	}
 
-	public function isUserAllowedToShowDaysLeft(): bool|null
+	public function isUserAllowedToShowDaysLeft(): bool
 	{
-		return $this->getData("show.index_daysleft");
+		return (bool)$this->getData("show.index_daysleft");
 	}
 
-	public function isUserAllowedToShowEndDate(): bool|null
+	public function isUserAllowedToShowEndDate(): bool
 	{
-		return $this->getData("show.index_enddate");
+		return (bool)$this->getData("show.index_enddate");
 	}
 
-	public function isUserAllowedToShowFee(): bool|null
+	public function isUserAllowedToShowFee(): bool
 	{
-		return $this->getData("show.fee");
+		return (bool)$this->getData("show.fee");
 	}
 
-	public function isUserAllowedToShowInn(): bool|null
+	public function isUserAllowedToShowInn(): bool
 	{
-		return $this->getData("show.inn");
+		return (bool)$this->getData("show.inn");
 	}
 
-	public function isUserAllowedToShowDogovor(): bool|null
+	public function isUserAllowedToShowDogovor(): bool
 	{
-		return $this->getData("show.numdogovor");
+		return (bool)$this->getData("show.numdogovor");
 	}
 
-	public function isUserAllowedToShowUid(): bool|null
+	public function isUserAllowedToShowUid(): bool
 	{
-		return $this->getData("show.uid");
+		return (bool)$this->getData("show.uid");
 	}
 
-	public function isUserAllowedToShowPaymentsTile(): bool|null
+	public function isUserAllowedToShowPaymentsTile(): bool
 	{
-		return $this->getData("show.payments_tile");
+		return (bool)$this->getData("show.payments_tile");
 	}
 
-	public function isUserAllowedToShowDiscount(): bool|null
+	public function isUserAllowedToShowDiscount(): bool
 	{
-		return $this->getData("show.discount");
+		return (bool)$this->getData("show.discount");
 	}
 
 }

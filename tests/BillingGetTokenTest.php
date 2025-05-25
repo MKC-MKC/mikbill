@@ -8,7 +8,7 @@ use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 
-/** @billing - Административный запрос требующий подпись. */
+/** @billing - Административные запросы требуют подпись. */
 class BillingGetTokenTest extends TestCase
 {
 	use InitTrait;

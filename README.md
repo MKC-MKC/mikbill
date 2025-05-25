@@ -72,7 +72,9 @@ composer require haikiri/mikbill
     - Register Hotpost [LP]
         - type 1
         - type 2
-    - Payments [LP]
+    - Payments [MD]
+        - Voucher [F]
+        - Прочие методы не планируются!
     - Services [MP]
         - Turbo [F]
         - Freeze [F]

@@ -10,8 +10,8 @@ use Haikiri\MikBiLL\Exception\OverLimitException;
 class UserController
 {
 	protected MikBiLLApiInterface $billInterface;
-	public const int NEXT_MONTH = 1; # В начале нового месяца.
-	public const int NOW = 0; # Моментально.
+	public const NEXT_MONTH = 1; # В начале нового месяца.
+	public const NOW = 0; # Моментально.
 
 	public function __construct(MikBiLLApiInterface $interface)
 	{

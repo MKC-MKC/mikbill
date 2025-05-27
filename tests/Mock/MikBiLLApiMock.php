@@ -31,14 +31,14 @@ class MikBiLLApiMock extends MikBiLLApi
 			$salt = uniqid();
 			$sign = hash_hmac("sha512", $salt, self::$received_key);
 
-			# Имитируем проверку ключа на стороне Api.
-			$expectedSign = hash_hmac("sha512", $salt, self::$expected_key);
-			if (!hash_equals($expectedSign, $sign)) $response = self::onUnauthorized();
-
 			if (self::$debug) {
 				error_log("SALT: " . $salt);
 				error_log("SIGN: " . $sign);
 			}
+
+			# Имитируем проверку ключа на стороне Api.
+			$expectedSign = hash_hmac("sha512", $salt, self::$expected_key);
+			if (!hash_equals($expectedSign, $sign)) $response = self::onUnauthorized();
 		} else {
 			if (self::$debug) {
 				error_log("Received Token: " . $token);

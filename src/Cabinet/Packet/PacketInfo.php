@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet\Packet;
 
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class PacketInfoModel extends ResponseWrapper
+class PacketInfo extends ResponseWrapper
 {
 
 	public function getId(): int
@@ -29,7 +29,7 @@ class PacketInfoModel extends ResponseWrapper
 
 	public function getDailyCost(): float
 	{
-		return (float)$this->getData("fixed_cost2", "");
+		return (float)$this->getData("fixed_cost2");
 	}
 
 	public function getCurrency(): string
@@ -69,7 +69,7 @@ class PacketInfoModel extends ResponseWrapper
 
 	public function isMinusAllowed(): bool
 	{
-		return (bool)$this->getData("razresh_minus", false);
+		return (bool)$this->getData("razresh_minus");
 	}
 
 	public function getHowMuch(): array

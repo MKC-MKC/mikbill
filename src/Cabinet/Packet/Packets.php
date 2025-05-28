@@ -7,31 +7,54 @@ use Haikiri\MikBiLL\ResponseWrapper;
 class Packets extends ResponseWrapper
 {
 
-	private array|null $items;
-
-	public function __construct(?array $data)
+	public function getId(): int
 	{
-		parent::__construct($data);
-		$this->items = array_map(fn($i) => new PacketsModel($i), $data);
+		return (int)$this->getData("gid");
 	}
 
-	/**
-	 * @deprecated
-	 * @use self::getPackets
-	 */
-	public function getPacket(): array
+	public function getNum(): int
 	{
-		return $this->getPackets();
+		return (int)$this->getData("num");
 	}
 
-	/**
-	 * Метод возвращает результат как массив моделей.
-	 *
-	 * @return PacketsModel[]
-	 */
-	public function getPackets(): array
+	public function getName(): string
 	{
-		return $this->items;
+		return (string)$this->getData("packet");
+	}
+
+	public function getPrice(): float
+	{
+		return (float)$this->getData("full_price");
+	}
+
+	public function getPriceDiscounted(): float
+	{
+		return (float)$this->getData("full_price_discounted");
+	}
+
+	public function getCurrency(): string
+	{
+		return (string)$this->getData("currency");
+	}
+
+	public function getDoPerevodAkciya(): int
+	{
+		return (int)$this->getData("do_perevod_akciya");
+	}
+
+	public function getDoPerevodAkciyaCena(): int
+	{
+		return (int)$this->getData("do_perevod_akciya_cena");
+	}
+
+	public function getResidualPrice(): int
+	{
+		return (int)$this->getData("residual_price");
+	}
+
+	public function getResidualPriceDiscounted(): float
+	{
+		return (float)$this->getData("residual_price_discounted");
 	}
 
 }

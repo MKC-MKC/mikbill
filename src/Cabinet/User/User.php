@@ -4,11 +4,11 @@ namespace Haikiri\MikBiLL\Cabinet\User;
 
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class UserModels extends ResponseWrapper
+class User extends ResponseWrapper
 {
 	use UserTrait;
-	use UserFeeModelsTrait;
-	use UserShowModelsTrait;
+	use UserFeeTrait;
+	use UserShowTrait;
 
 	/**
 	 * Метод возвращает условную единицу расчёта с клиентом (Валюта).
@@ -94,7 +94,7 @@ class UserModels extends ResponseWrapper
 	 */
 	public function getPacket(): string
 	{
-		return (string)$this->getData("packet", "");
+		return (string)$this->getData("packet");
 	}
 
 	/**
@@ -104,7 +104,7 @@ class UserModels extends ResponseWrapper
 	 */
 	public function getPacketName(): string
 	{
-		return (string)$this->getData("packet_name", "");
+		return (string)$this->getData("packet_name");
 	}
 
 	/**

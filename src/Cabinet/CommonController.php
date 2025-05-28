@@ -17,7 +17,7 @@ class CommonController
 	/**
 	 * Метод возвращает IP клиента относительно web-сервера.
 	 *
-	 * @return Common\GetIpModel
+	 * @return Common\GetIp
 	 * @noinspection SpellCheckingInspection
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#e15b3e31-61c6-4eea-9b2c-b32ce49d09a3
@@ -30,7 +30,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetIpModel($response->getData());
+		return new Common\GetIp($response->getData());
 	}
 
 	/**

@@ -2,7 +2,7 @@
 
 namespace Haikiri\MikBiLL\Cabinet\User;
 
-trait UserShowModelsTrait
+trait UserShowTrait
 {
 
 	public function isUserAllowedToShowSpeedIn(): bool

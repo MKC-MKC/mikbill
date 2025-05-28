@@ -2,7 +2,7 @@
 
 namespace Haikiri\MikBiLL\Cabinet\User;
 
-trait UserFeeModelsTrait
+trait UserFeeTrait
 {
 
 	public function getUserFeePacket(): array

@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet\Common;
 
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class GetIpModel extends ResponseWrapper
+class GetIp extends ResponseWrapper
 {
 
 	public function getIp(): string

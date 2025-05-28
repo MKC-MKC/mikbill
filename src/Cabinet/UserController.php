@@ -22,7 +22,7 @@ class UserController
 	 * Метод возвращает модель с данными клиента.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#de3b335f-628e-418d-bf7d-294afec72f82
-	 * @return User\UserModels
+	 * @return User\User
 	 * @throws BillApiException
 	 */
 	public function getUser(): object
@@ -33,7 +33,7 @@ class UserController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new User\UserModels($response->getData());
+		return new User\User($response->getData());
 	}
 
 	/**

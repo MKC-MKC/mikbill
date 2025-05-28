@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet\Auth\Phone;
 
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class PhoneOtpModels extends ResponseWrapper
+class PhoneOtp extends ResponseWrapper
 {
 
 	/**

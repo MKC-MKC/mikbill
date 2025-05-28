@@ -9,6 +9,4 @@ interface MikBiLLApiInterface
 
 	public function setUserToken($token);
 
-	public static function validate(string $json, ?bool $asArray, int $depth, int $flags);
-
 }

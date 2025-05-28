@@ -189,15 +189,6 @@ trait UserTrait
 	}
 
 	/**
-	 * @return bool
-	 * @deprecated
-	 */
-	public function getUserBirthdayDo(): bool
-	{
-		return (bool)$this->getData("date_birth_do", false);
-	}
-
-	/**
 	 * Метод возвращает скорость клиента.
 	 *
 	 * @return int
@@ -482,15 +473,6 @@ trait UserTrait
 	public function isCreditUnlimited(): bool
 	{
 		return (bool)$this->getData("credit_unlimited", false);
-	}
-
-	/**
-	 * @deprecated Вероятнее всего это boolean
-	 * @use self::isCreditUnlimited
-	 */
-	public function getUserCreditUnlimited(): string
-	{
-		return (string)$this->getData("credit_unlimited");
 	}
 
 	/**

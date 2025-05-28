@@ -71,15 +71,6 @@ class User extends ResponseWrapper
 	}
 
 	/**
-	 * @deprecated Метод возвращает суточную стоимость тарифа.
-	 * @use self::getFixedCostOnPerDay
-	 */
-	public function getUserFixedCost2()
-	{
-		return $this->getFixedCostOnPerDay();
-	}
-
-	/**
 	 * @return float (string->int->float)
 	 */
 	public function getUserCharge(): float

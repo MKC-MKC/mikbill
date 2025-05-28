@@ -14,12 +14,12 @@ class NewsModel extends ResponseWrapper
 
 	public function getSubject(): string
 	{
-		return $this->getData("subject", "");
+		return (string)$this->getData("subject");
 	}
 
 	public function getText(): string
 	{
-		return $this->getData("text", "");
+		return (string)$this->getData("text");
 	}
 
 }

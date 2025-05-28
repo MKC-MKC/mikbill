@@ -16,12 +16,12 @@ class SubscriptionModel extends ResponseWrapper
 
 	public function getName(): string
 	{
-		return $this->getData("name", "");
+		return (string)$this->getData("name");
 	}
 
 	public function getType(): string
 	{
-		return $this->getData("type", "");
+		return (string)$this->getData("type");
 	}
 
 	public function isConnected(): bool
@@ -39,84 +39,84 @@ class SubscriptionModel extends ResponseWrapper
 		return (bool)$this->getData("available");
 	}
 
-	public function getInfo(): array|null
+	public function getInfo(): array
 	{
-		return $this->getData("info");
+		return (array)$this->getData("info");
 	}
 
 	public function getServiceId(): string
 	{
-		return $this->getData("info.serviceid", "");
+		return (string)$this->getData("info.serviceid");
 	}
 
 	public function getServiceAlias(): string
 	{
-		return $this->getData("info.service_alias", "");
+		return (string)$this->getData("info.service_alias");
 	}
 
 	public function getServiceName(): string
 	{
-		return $this->getData("info.servicename", "");
+		return (string)$this->getData("info.servicename");
 	}
 
 	public function getServiceType(): string
 	{
-		return $this->getData("info.service_type", "");
+		return (string)$this->getData("info.service_type");
 	}
 
 	public function getTriggerCondition(): string
 	{
-		return $this->getData("info.trigger_condition", "");
+		return (string)$this->getData("info.trigger_condition");
 	}
 
 	public function getServiceLikePacket(): string
 	{
-		return $this->getData("info.service_like_packet", "");
+		return (string)$this->getData("info.service_like_packet");
 	}
 
 	public function getPeriod(): string
 	{
-		return $this->getData("info.period", "");
+		return (string)$this->getData("info.period");
 	}
 
 	public function getServiceGroupId(): string
 	{
-		return $this->getData("info.service_groupid", "");
+		return (string)$this->getData("info.service_groupid");
 	}
 
 	public function getPriority(): string
 	{
-		return $this->getData("info.priority", "");
+		return (string)$this->getData("info.priority");
 	}
 
 	public function getDescription(): string
 	{
-		return $this->getData("info.description", "");
+		return (string)$this->getData("info.description");
 	}
 
 	public function getServicePortal(): string
 	{
-		return $this->getData("info.service_portal", "");
+		return (string)$this->getData("info.service_portal");
 	}
 
 	public function getUsersStates(): string
 	{
-		return $this->getData("info.users_states", "");
+		return (string)$this->getData("info.users_states");
 	}
 
 	public function getSqlCondition(): string
 	{
-		return $this->getData("info.sql_condition", "");
+		return (string)$this->getData("info.sql_condition");
 	}
 
 	public function getTariffService(): string
 	{
-		return $this->getData("info.tarifservice", "");
+		return (string)$this->getData("info.tarifservice");
 	}
 
 	public function getSuspended(): string
 	{
-		return $this->getData("info.suspended", "");
+		return (string)$this->getData("info.suspended");
 	}
 
 	public function getServicePrice(): float
@@ -156,17 +156,17 @@ class SubscriptionModel extends ResponseWrapper
 
 	public function getCurrency(): string
 	{
-		return $this->getData("info.currency", "");
+		return (string)$this->getData("info.currency");
 	}
 
 	public function getServiceDateStart(): string
 	{
-		return $this->getData("info.service_date_start", "");
+		return (string)$this->getData("info.service_date_start");
 	}
 
 	public function getServiceDateStop(): string
 	{
-		return $this->getData("info.service_date_stop", "");
+		return (string)$this->getData("info.service_date_stop");
 	}
 
 	public function startedAt(): DateTime|null
@@ -187,34 +187,34 @@ class SubscriptionModel extends ResponseWrapper
 		}
 	}
 
-	public function getTrial(): ?string
+	public function getTrial(): string
 	{
-		return $this->getData("info.trial");
+		return (string)$this->getData("info.trial");
 	}
 
-	public function getTrialPrice(): ?string
+	public function getTrialPrice(): string
 	{
-		return $this->getData("info.trial_price");
+		return (string)$this->getData("info.trial_price");
 	}
 
-	public function getTrialPeriodOn(): ?string
+	public function getTrialPeriodOn(): string
 	{
-		return $this->getData("info.trial_period_on");
+		return (string)$this->getData("info.trial_period_on");
 	}
 
-	public function getTrialPeriodDays(): ?string
+	public function getTrialPeriodDays(): string
 	{
-		return $this->getData("info.trial_period_days");
+		return (string)$this->getData("info.trial_period_days");
 	}
 
-	public function getTrialChangeOn(): ?string
+	public function getTrialChangeOn(): string
 	{
-		return $this->getData("info.trial_change_on");
+		return (string)$this->getData("info.trial_change_on");
 	}
 
-	public function getTrialChangeServiceId(): ?string
+	public function getTrialChangeServiceId(): string
 	{
-		return $this->getData("info.trial_change_serviceid");
+		return (string)$this->getData("info.trial_change_serviceid");
 	}
 
 }

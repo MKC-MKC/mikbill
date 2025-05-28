@@ -50,7 +50,7 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
 	 */
 	public function getUserToken(): string
 	{
-		return $this->token ?? "";
+		return (string)$this->token ?? "";
 	}
 
 	/**

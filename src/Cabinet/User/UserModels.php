@@ -13,21 +13,21 @@ class UserModels extends ResponseWrapper
 	/**
 	 * Метод возвращает условную единицу расчёта с клиентом (Валюта).
 	 *
-	 * @return string|null
+	 * @return string
 	 */
-	public function getUserCurrency(): string|null
+	public function getUserCurrency(): string
 	{
-		return $this->getData("UE");
+		return (string)$this->getData("UE");
 	}
 
 	/**
 	 * Метод возвращает название тарифа клиента.
 	 *
-	 * @return string|null
+	 * @return string
 	 */
-	public function getUserTariffName(): string|null
+	public function getUserTariffName(): string
 	{
-		return $this->getData("packet_name");
+		return (string)$this->getData("packet_name");
 	}
 
 	/**

@@ -19,7 +19,7 @@ class PacketsModel extends ResponseWrapper
 
 	public function getName(): string
 	{
-		return $this->getData("packet", "");
+		return (string)$this->getData("packet");
 	}
 
 	public function getPrice(): float
@@ -34,7 +34,7 @@ class PacketsModel extends ResponseWrapper
 
 	public function getCurrency(): string
 	{
-		return $this->getData("currency", "");
+		return (string)$this->getData("currency");
 	}
 
 	public function getDoPerevodAkciya(): int

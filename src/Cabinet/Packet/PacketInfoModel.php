@@ -19,7 +19,7 @@ class PacketInfoModel extends ResponseWrapper
 
 	public function getName(): string
 	{
-		return $this->getData("packet", "");
+		return (string)$this->getData("packet");
 	}
 
 	public function getCost(): float
@@ -34,37 +34,37 @@ class PacketInfoModel extends ResponseWrapper
 
 	public function getCurrency(): string
 	{
-		return $this->getData("currency", "");
+		return (string)$this->getData("currency");
 	}
 
 	public function getSpeedRate(): string
 	{
-		return $this->getData("speed_rate", "");
+		return (string)$this->getData("speed_rate");
 	}
 
 	public function getSpeedBurst(): string
 	{
-		return $this->getData("speed_burst", "");
+		return (string)$this->getData("speed_burst");
 	}
 
 	public function getTurboTime(): string
 	{
-		return $this->getData("turbo_time", "");
+		return (string)$this->getData("turbo_time");
 	}
 
 	public function getTurboActivationCost(): string
 	{
-		return $this->getData("turbo_active_cena", "");
+		return (string)$this->getData("turbo_active_cena");
 	}
 
 	public function getTurboSpeedIn(): string
 	{
-		return $this->getData("turbo_speed_in", "");
+		return (string)$this->getData("turbo_speed_in");
 	}
 
 	public function getTurboSpeedOut(): string
 	{
-		return $this->getData("turbo_speed_out", "");
+		return (string)$this->getData("turbo_speed_out");
 	}
 
 	public function isMinusAllowed(): bool
@@ -72,9 +72,9 @@ class PacketInfoModel extends ResponseWrapper
 		return (bool)$this->getData("razresh_minus", false);
 	}
 
-	public function getHowMuch(): array|null
+	public function getHowMuch(): array
 	{
-		return $this->getData("howmuch");
+		return (array)$this->getData("howmuch");
 	}
 
 }

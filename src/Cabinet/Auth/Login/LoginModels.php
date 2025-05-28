@@ -7,9 +7,9 @@ use Haikiri\MikBiLL\ResponseWrapper;
 class LoginModels extends ResponseWrapper
 {
 
-	public function getToken(): string|null
+	public function getToken(): string
 	{
-		return $this->getData("token");
+		return (string)$this->getData("token");
 	}
 
 }

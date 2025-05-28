@@ -9,7 +9,7 @@ class GetIpModel extends ResponseWrapper
 
 	public function getIp(): string
 	{
-		return $this->getData("ip", "");
+		return (string)$this->getData("ip");
 	}
 
 }

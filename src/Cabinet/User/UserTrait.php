@@ -47,7 +47,7 @@ trait UserTrait
 	 */
 	public function getUserLogin(): string
 	{
-		return $this->getData("user", "");
+		return (string)$this->getData("user");
 	}
 
 	/**
@@ -57,7 +57,7 @@ trait UserTrait
 	 */
 	public function getUserPassword(): string
 	{
-		return $this->getData("password", "");
+		return (string)$this->getData("password");
 	}
 
 	/**
@@ -67,7 +67,7 @@ trait UserTrait
 	 */
 	public function getUserDogovor(): string
 	{
-		return $this->getData("numdogovor");
+		return (string)$this->getData("numdogovor");
 	}
 
 	/**
@@ -77,7 +77,7 @@ trait UserTrait
 	 */
 	public function getUserNotes(): string
 	{
-		return $this->getData("prim", "");
+		return (string)$this->getData("prim");
 	}
 
 	/**
@@ -133,7 +133,7 @@ trait UserTrait
 	 */
 	public function getUserFIO(): string
 	{
-		return $this->getData("fio", "");
+		return (string)$this->getData("fio");
 	}
 
 	/**
@@ -222,7 +222,7 @@ trait UserTrait
 	 */
 	public function getUserEmail(): string
 	{
-		return $this->getData("email", "");
+		return (string)$this->getData("email");
 	}
 
 	/**
@@ -232,7 +232,7 @@ trait UserTrait
 	 */
 	public function getUserPhone(): string
 	{
-		return $this->getData("phone", "");
+		return (string)$this->getData("phone");
 	}
 
 	/**
@@ -242,7 +242,7 @@ trait UserTrait
 	 */
 	public function getUserPhoneSms(): string
 	{
-		return $this->getData("sms_tel", "");
+		return (string)$this->getData("sms_tel");
 	}
 
 	/**
@@ -252,7 +252,7 @@ trait UserTrait
 	 */
 	public function getUserPhoneMobile(): string
 	{
-		return $this->getData("mob_tel", "");
+		return (string)$this->getData("mob_tel");
 	}
 
 	/**
@@ -295,7 +295,7 @@ trait UserTrait
 	 */
 	public function getUserInn(): string
 	{
-		return $this->getData("inn", "");
+		return (string)$this->getData("inn");
 	}
 
 	/**
@@ -305,7 +305,7 @@ trait UserTrait
 	 */
 	public function getUserPassportSeries(): string
 	{
-		return $this->getData("passportserie", "");
+		return (string)$this->getData("passportserie");
 	}
 
 	/**
@@ -315,7 +315,7 @@ trait UserTrait
 	 */
 	public function getUserPassportRegistration(): string
 	{
-		return $this->getData("passportpropiska", "");
+		return (string)$this->getData("passportpropiska");
 	}
 
 	/**
@@ -323,7 +323,7 @@ trait UserTrait
 	 */
 	public function getUserPassportVoenkomat(): string
 	{
-		return $this->getData("passportvoenkomat", "");
+		return (string)$this->getData("passportvoenkomat");
 	}
 
 	/**
@@ -333,7 +333,7 @@ trait UserTrait
 	 */
 	public function getUserPassportAuthority(): string
 	{
-		return $this->getData("passportgdevidan", "");
+		return (string)$this->getData("passportgdevidan");
 	}
 
 	/**
@@ -353,7 +353,7 @@ trait UserTrait
 	 */
 	public function getUserSector(): string
 	{
-		return $this->getData("sectorid", "");
+		return (string)$this->getData("sectorid");
 	}
 
 	/**
@@ -371,7 +371,7 @@ trait UserTrait
 	 */
 	public function getUserRouterModel(): string
 	{
-		return $this->getData("router_model", "");
+		return (string)$this->getData("router_model");
 	}
 
 	/**
@@ -381,7 +381,7 @@ trait UserTrait
 	 */
 	public function getUserRouterSsid(): string
 	{
-		return $this->getData("router_ssid", "");
+		return (string)$this->getData("router_ssid");
 	}
 
 	/**
@@ -391,7 +391,7 @@ trait UserTrait
 	 */
 	public function getUserRouterLogin(): string
 	{
-		return $this->getData("router_login", "");
+		return (string)$this->getData("router_login");
 	}
 
 	/**
@@ -401,7 +401,7 @@ trait UserTrait
 	 */
 	public function getUserRouterPassword(): string
 	{
-		return $this->getData("router_pass", "");
+		return (string)$this->getData("router_pass");
 	}
 
 	/**
@@ -427,7 +427,7 @@ trait UserTrait
 	 */
 	public function getUserRouterPort(): string
 	{
-		return $this->getData("router_port", "");
+		return (string)$this->getData("router_port");
 	}
 
 	/**
@@ -437,7 +437,7 @@ trait UserTrait
 	 */
 	public function getUserRouterSerialNumber(): string
 	{
-		return $this->getData("router_serial", "");
+		return (string)$this->getData("router_serial");
 	}
 
 	/**
@@ -490,7 +490,7 @@ trait UserTrait
 	 */
 	public function getUserCreditUnlimited(): string
 	{
-		return $this->getData("credit_unlimited", "");
+		return (string)$this->getData("credit_unlimited");
 	}
 
 	/**
@@ -508,7 +508,7 @@ trait UserTrait
 	 */
 	public function getUserFramedIp(): string
 	{
-		return $this->getData("framed_ip", "");
+		return (string)$this->getData("framed_ip");
 	}
 
 	/**
@@ -518,7 +518,7 @@ trait UserTrait
 	 */
 	public function getUserFramedMask(): string
 	{
-		return $this->getData("framed_mask", "");
+		return (string)$this->getData("framed_mask");
 	}
 
 	/**
@@ -526,7 +526,7 @@ trait UserTrait
 	 */
 	public function getUserLocalIp(): string
 	{
-		return $this->getData("local_ip", "");
+		return (string)$this->getData("local_ip");
 	}
 
 	/**
@@ -534,7 +534,7 @@ trait UserTrait
 	 */
 	public function getUserLocalMac(): string
 	{
-		return $this->getData("local_mac", "");
+		return (string)$this->getData("local_mac");
 	}
 
 	/**
@@ -544,7 +544,7 @@ trait UserTrait
 	 */
 	public function getUserAddress(): string
 	{
-		return $this->getData("address", "");
+		return (string)$this->getData("address");
 	}
 
 }

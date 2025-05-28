@@ -27,7 +27,7 @@ class Payment extends ResponseWrapper
 
 	public function getName(): string
 	{
-		return $this->getData("bugh_type", "");
+		return (string)$this->getData("bugh_type");
 	}
 
 	public function getBeforeBilling(): float
@@ -46,7 +46,7 @@ class Payment extends ResponseWrapper
 	 */
 	public function getSignRaw(): string
 	{
-		return $this->getData("sign", "N/A");
+		return (string)$this->getData("sign");
 	}
 
 	public function getSumma(): int
@@ -56,7 +56,7 @@ class Payment extends ResponseWrapper
 
 	public function getComment(): string
 	{
-		return $this->getData("comment", "");
+		return (string)$this->getData("comment");
 	}
 
 }

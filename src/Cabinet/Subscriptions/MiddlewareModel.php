@@ -14,7 +14,7 @@ class MiddlewareModel extends ResponseWrapper
 
 	public function getName(): string
 	{
-		return $this->getData("name", "");
+		return (string)$this->getData("name");
 	}
 
 }

@@ -11,7 +11,7 @@ class GetServerDateModel extends ResponseWrapper
 
 	public function getDate(): string
 	{
-		return $this->getData("date", "");
+		return (string)$this->getData("date");
 	}
 
 	public function getTimeStamp(): int
@@ -21,37 +21,37 @@ class GetServerDateModel extends ResponseWrapper
 
 	public function getFormat(): string
 	{
-		return $this->getData("format", "");
+		return (string)$this->getData("format");
 	}
 
 	public function getDay(): string
 	{
-		return $this->getData("day", "");
+		return (string)$this->getData("day");
 	}
 
 	public function getMonth(): string
 	{
-		return $this->getData("month", "");
+		return (string)$this->getData("month");
 	}
 
 	public function getDd(): string
 	{
-		return $this->getData("dd", "");
+		return (string)$this->getData("dd");
 	}
 
 	public function getTime(): string
 	{
-		return $this->getData("time", "");
+		return (string)$this->getData("time");
 	}
 
 	public function getYear(): string
 	{
-		return $this->getData("year", "");
+		return (string)$this->getData("year");
 	}
 
 	public function getNowDate(): string
 	{
-		return $this->getData("now_date", "");
+		return (string)$this->getData("now_date");
 	}
 
 	public function getDateTime(): DateTime|null

@@ -76,7 +76,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function getMessageTest(): string
 	{
-		return $this->getData("message", "");
+		return (string)$this->getData("message");
 	}
 
 	/**
@@ -86,7 +86,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function getFIO(): string
 	{
-		return $this->getData("fio", "");
+		return (string)$this->getData("fio");
 	}
 
 	/**
@@ -129,7 +129,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function getUserLogin(): string
 	{
-		return $this->getData("user", "");
+		return (string)$this->getData("user");
 	}
 
 	/**
@@ -139,7 +139,7 @@ class TicketMessengerModel extends ResponseWrapper
 	 */
 	public function getOperatorLogin(): string
 	{
-		return $this->getData("login", "");
+		return (string)$this->getData("login");
 	}
 
 	/**

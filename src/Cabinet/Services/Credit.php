@@ -30,11 +30,11 @@ class Credit extends ResponseWrapper
 
 	/**
 	 * Метод возвращает информацию об услуге.
-	 * @return array|null
+	 * @return array
 	 */
-	public function getInfo(): array|null
+	public function getInfo(): array
 	{
-		return $this->getData("info");
+		return (array)$this->getData("info");
 	}
 
 	/**
@@ -66,11 +66,11 @@ class Credit extends ResponseWrapper
 
 	/**
 	 * Метод возвращает валюту расчёта.
-	 * @return string|null
+	 * @return string
 	 */
-	public function getCurrency(): string|null
+	public function getCurrency(): string
 	{
-		return $this->getData("info.currency");
+		return (string)$this->getData("info.currency");
 	}
 
 	/**
@@ -102,20 +102,20 @@ class Credit extends ResponseWrapper
 
 	/**
 	 * Метод возвращает число 'G' активации кредита.
-	 * @return string|null
+	 * @return string
 	 */
-	public function getCreditDayStart(): string|null
+	public function getCreditDayStart(): string
 	{
-		return $this->getData("info.start_credit_day");
+		return (string)$this->getData("info.start_credit_day");
 	}
 
 	/**
 	 * Метод возвращает число 'G' отключения кредита.
-	 * @return string|null
+	 * @return string
 	 */
-	public function getCreditDayStop(): string|null
+	public function getCreditDayStop(): string
 	{
-		return $this->getData("info.stop_credit_day");
+		return (string)$this->getData("info.stop_credit_day");
 	}
 
 	/**

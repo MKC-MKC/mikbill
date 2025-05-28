@@ -10,21 +10,21 @@ class PhoneOtpModels extends ResponseWrapper
 	/**
 	 * Метод возвращает UID клиента.
 	 *
-	 * @return int|null
+	 * @return int
 	 */
-	public function getUserId(): int|null
+	public function getUserId(): int
 	{
-		return $this->getData("uid");
+		return (int)$this->getData("uid");
 	}
 
 	/**
 	 * Метод возвращает токен клиента.
 	 *
-	 * @return string|null
+	 * @return string
 	 */
-	public function getUserToken(): string|null
+	public function getUserToken(): string
 	{
-		return $this->getData("token");
+		return (string)$this->getData("token");
 	}
 
 }

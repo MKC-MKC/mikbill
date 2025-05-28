@@ -33,7 +33,7 @@ class Session extends ResponseWrapper
 
 	public function getUsername(): string
 	{
-		return $this->getData("username", "");
+		return (string)$this->getData("username");
 	}
 
 	public function getBillingBefore(): float
@@ -53,7 +53,7 @@ class Session extends ResponseWrapper
 
 	public function getCallFrom(): string
 	{
-		return $this->getData("call_from", "");
+		return (string)$this->getData("call_from");
 	}
 
 	public function getIn(): float
@@ -68,12 +68,12 @@ class Session extends ResponseWrapper
 
 	public function getIpAddress(): string
 	{
-		return $this->getData("ipaddress", "");
+		return (string)$this->getData("ipaddress");
 	}
 
 	public function getFramedIpAddress(): string
 	{
-		return $this->getData("framedipaddress", "");
+		return (string)$this->getData("framedipaddress");
 	}
 
 }

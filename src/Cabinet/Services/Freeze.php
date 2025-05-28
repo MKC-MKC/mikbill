@@ -30,11 +30,11 @@ class Freeze extends ResponseWrapper
 
 	/**
 	 * Метод возвращает информацию об услуге.
-	 * @return array|null
+	 * @return array
 	 */
-	public function getInfo(): array|null
+	public function getInfo(): array
 	{
-		return $this->getData("info");
+		return (array)$this->getData("info");
 	}
 
 	public function getActivationCost(): float
@@ -120,7 +120,7 @@ class Freeze extends ResponseWrapper
 	 */
 	public function getCurrency(): string
 	{
-		return $this->getData("info.currency", "");
+		return (string)$this->getData("info.currency");
 	}
 
 }

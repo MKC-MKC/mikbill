@@ -40,7 +40,7 @@ class TicketModel extends ResponseWrapper
 	 */
 	public function getStatusTypeName(): string
 	{
-		return $this->getData("statustypename", "");
+		return (string)$this->getData("statustypename");
 	}
 
 	/**
@@ -62,7 +62,7 @@ class TicketModel extends ResponseWrapper
 	 */
 	public function getPriorityTypeName(): string
 	{
-		return $this->getData("prioritytypename", "");
+		return (string)$this->getData("prioritytypename");
 	}
 
 	/**
@@ -86,7 +86,7 @@ class TicketModel extends ResponseWrapper
 	 */
 	public function getMessage(): string
 	{
-		return $this->getData("first_message", "");
+		return (string)$this->getData("first_message");
 	}
 
 	/**

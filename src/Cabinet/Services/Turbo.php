@@ -30,11 +30,11 @@ class Turbo extends ResponseWrapper
 
 	/**
 	 * Метод возвращает информацию об услуге.
-	 * @return array|null
+	 * @return array
 	 */
-	public function getInfo(): array|null
+	public function getInfo(): array
 	{
-		return $this->getData("info");
+		return (array)$this->getData("info");
 	}
 
 	/**
@@ -103,11 +103,11 @@ class Turbo extends ResponseWrapper
 
 	/**
 	 * Метод возвращает валюту расчёта.
-	 * @return string|null
+	 * @return string
 	 */
-	public function getCurrency(): string|null
+	public function getCurrency(): string
 	{
-		return $this->getData("info.currency");
+		return (string)$this->getData("info.currency");
 	}
 
 }

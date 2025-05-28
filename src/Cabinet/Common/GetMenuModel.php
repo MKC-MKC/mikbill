@@ -14,12 +14,12 @@ class GetMenuModel extends ResponseWrapper
 
 	public function getName(): string
 	{
-		return $this->getData("name", "");
+		return (string)$this->getData("name");
 	}
 
 	public function getUri(): string
 	{
-		return $this->getData("link", "");
+		return (string)$this->getData("link");
 	}
 
 	public function getUserGroupId(): int
@@ -44,27 +44,27 @@ class GetMenuModel extends ResponseWrapper
 
 	public function getIcon(): string
 	{
-		return $this->getData("icon", "");
+		return (string)$this->getData("icon");
 	}
 
 	public function getHook(): string
 	{
-		return $this->getData("hook", "");
+		return (string)$this->getData("hook");
 	}
 
 	public function getTitle(): string
 	{
-		return $this->getData("title", "");
+		return (string)$this->getData("title");
 	}
 
 	public function getDescription(): string
 	{
-		return $this->getData("description", "");
+		return (string)$this->getData("description");
 	}
 
 	public function getKeywords(): string
 	{
-		return $this->getData("keywords", "");
+		return (string)$this->getData("keywords");
 	}
 
 }

@@ -5,19 +5,19 @@ namespace Haikiri\MikBiLL\Cabinet\User;
 trait UserFeeModelsTrait
 {
 
-	public function getUserFeePacket(): array|null
+	public function getUserFeePacket(): array
 	{
-		return $this->getData("fee.packet");
+		return (array)$this->getData("fee.packet");
 	}
 
-	public function getUserFeeSubscriptions(): array|null
+	public function getUserFeeSubscriptions(): array
 	{
-		return $this->getData("fee.subscriptions");
+		return (array)$this->getData("fee.subscriptions");
 	}
 
-	public function getUserFeeDevices(): array|null
+	public function getUserFeeDevices(): array
 	{
-		return $this->getData("fee.devices");
+		return (array)$this->getData("fee.devices");
 	}
 
 	public function getUserFeePacketPrice(): int
@@ -25,9 +25,9 @@ trait UserFeeModelsTrait
 		return (int)$this->getData("fee.packet.price");
 	}
 
-	public function getUserFeePacketDiscount(): array|null
+	public function getUserFeePacketDiscount(): array
 	{
-		return $this->getData("fee.packet.discount");
+		return (array)$this->getData("fee.packet.discount");
 	}
 
 	public function getUserFeePacketPriceWithDiscount(): int
@@ -42,7 +42,7 @@ trait UserFeeModelsTrait
 
 	public function getUserFeePacketDiscountSign(): string
 	{
-		return $this->getData("fee.packet.discount.sign", "");
+		return (string)$this->getData("fee.packet.discount.sign");
 	}
 
 	public function getUserFeeSubscriptionsTotal(): int
@@ -55,14 +55,14 @@ trait UserFeeModelsTrait
 		return (int)$this->getData("fee.subscriptions.total_with_discount");
 	}
 
-	public function getUserFeeSubscriptionsDiscount(): array|null
+	public function getUserFeeSubscriptionsDiscount(): array
 	{
-		return $this->getData("fee.subscriptions.discount");
+		return (array)$this->getData("fee.subscriptions.discount");
 	}
 
-	public function getUserFeeSubscriptionsDetailed(): array|null
+	public function getUserFeeSubscriptionsDetailed(): array
 	{
-		return $this->getData("fee.subscriptions.detailed");
+		return (array)$this->getData("fee.subscriptions.detailed");
 	}
 
 	public function getUserFeeSubscriptionsDiscountValue(): int
@@ -72,7 +72,7 @@ trait UserFeeModelsTrait
 
 	public function getUserFeeSubscriptionsDiscountSign(): string
 	{
-		return $this->getData("fee.subscriptions.discount.sign", "");
+		return (string)$this->getData("fee.subscriptions.discount.sign");
 	}
 
 	public function getUserFeeDevicesTotal(): int
@@ -85,14 +85,14 @@ trait UserFeeModelsTrait
 		return (int)$this->getData("fee.devices.total_with_discount");
 	}
 
-	public function getUserFeeDevicesDetailed(): array|null
+	public function getUserFeeDevicesDetailed(): array
 	{
-		return $this->getData("fee.devices.detailed");
+		return (array)$this->getData("fee.devices.detailed");
 	}
 
-	public function getUserFeeDevicesDiscount(): array|null
+	public function getUserFeeDevicesDiscount(): array
 	{
-		return $this->getData("fee.devices.discount");
+		return (array)$this->getData("fee.devices.discount");
 	}
 
 	public function getUserFeeDevicesDiscountValue(): int
@@ -102,7 +102,7 @@ trait UserFeeModelsTrait
 
 	public function getUserFeeDevicesDiscountSign(): string
 	{
-		return $this->getData("fee.devices.discount.sign", "");
+		return (string)$this->getData("fee.devices.discount.sign");
 	}
 
 	public function getUserFeeRealIp(): int

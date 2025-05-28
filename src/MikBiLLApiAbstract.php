@@ -9,16 +9,17 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
 	protected string $url;
 	protected string $key;
 	protected string|null $token = null;
-	public static bool $debug = false;
+	public static bool $debug;
 	public Billing $billing;
 	public Cabinet $cabinet;
 
-	public function __construct(string $url, string $key)
+	public function __construct(string $url, string $key, $debug = false)
 	{
 		$this->url = $url;
 		$this->key = $key;
 		$this->billing = new Billing($this);
 		$this->cabinet = new Cabinet($this);
+		self::$debug = filter_var($debug, FILTER_VALIDATE_BOOLEAN);
 	}
 
 	/**

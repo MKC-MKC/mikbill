@@ -32,29 +32,6 @@ class Middleware extends ResponseWrapper
 	}
 
 	/**
-	 * Метод возвращает результат как-есть, без каких либо обработок.
-	 * @return array|null
-	 * @deprecated Используй getData();
-	 */
-	public function getAsIs(): array|null
-	{
-		return $this->getData();
-	}
-
-	/**
-	 * Метод возвращает массив ["id", "name"] доступных middleware.
-	 *
-	 * @return array
-	 */
-	public function getAsArray(): array
-	{
-		return array_map(fn($i) => [
-			"id" => $i->getId(),
-			"name" => $i->getName()
-		], $this->items);
-	}
-
-	/**
 	 * @deprecated
 	 * @use self::getMiddlewares
 	 */

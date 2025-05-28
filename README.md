@@ -352,16 +352,16 @@ foreach ($wares->getAsArray() as $ware) {
 
 ```php
 echo "<h3>Массив Middleware как-есть:</h3>";
-$wares = $MikBiLL->cabinet->Subscriptions()->getMiddlewares()->getAsIs();
+$wares = $MikBiLL->cabinet->Subscriptions()->getMiddlewares()->getAsArray();
 echo "<pre>" . print_r($wares, true) . "</pre>";
 ```
 
 Ты можешь получить список дополнительных подписок (не привязанных к middleware).
-> Используй метод `getAsIs()` чтобы получить массив данных как-есть и работать с ним самостоятельно.
+> Используй метод `getAsArray()` чтобы получить массив данных как-есть и работать с ним самостоятельно.
 
 ```php
 $getAdditional = $MikBiLL->cabinet->Subscriptions()->getAdditional();
-echo "<pre>" . print_r($getAdditional->getAsIs(), true) . "</pre>";
+echo "<pre>" . print_r($getAdditional->getAsArray(), true) . "</pre>";
 ```
 
 Метод управления подписками не привязанным к middleware схожий с setSubscription:

@@ -22,16 +22,16 @@ class UsersController
 	 *
 	 * Пример использования:
 	 * $this->searchUser(key: "local_ip", value: "10.0.0.2", operator: "=");
-	 * # Это найдёт всех пользователей с local_ip равным 10.0.0.2.
+	 * # Это вернёт массив объектов всех пользователей с local_ip равным 10.0.0.2.
 	 *
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#f0e8660b-bc5b-42d9-99ad-a53c866b844e
 	 * @param string $key - Возможные ключи: ['user', 'uid', 'state', 'gid', 'deposit', 'credit', и.т.д...]
 	 * @param mixed $value - Значение по которому будет производиться поиск.
 	 * @param string $operator - Возможные операторы: ['<', '=', '>', '>=', '!='] или ['меньше', 'равно', 'больше', 'больше или равно', 'не равно'].
-	 * @return UsersSearchController
+	 * @return Search\User[]
 	 * @throws Exception\BillApiException
 	 */
-	public function searchUser(string $key = "uid", mixed $value = "1", string $operator = "="): object
+	public function searchUser(string $key = "uid", mixed $value = "1", string $operator = "="): array
 	{
 		$params = [
 			"field" => $key,
@@ -45,7 +45,7 @@ class UsersController
 			sign: true,
 		);
 
-		return new UsersSearchController($response->getData());
+		return array_map(fn(array $item): Search\User => new Search\User($item), $response->getData());
 	}
 
 	/**

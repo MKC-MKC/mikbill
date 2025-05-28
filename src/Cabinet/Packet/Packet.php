@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet\Packet;
 
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class Packets extends ResponseWrapper
+class Packet extends ResponseWrapper
 {
 
 	public function getId(): int

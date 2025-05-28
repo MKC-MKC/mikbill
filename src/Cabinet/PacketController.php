@@ -17,7 +17,7 @@ class PacketController
 	/**
 	 * Метод возвращает массив объектов доступных тарифов.
 	 *
-	 * @return Packet\Packets[]
+	 * @return Packet\Packet[]
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#293d8da0-8967-4367-b74f-92db69e839aa
 	 */
@@ -29,7 +29,7 @@ class PacketController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return array_map(fn(array $item): Packet\Packets => new Packet\Packets($item), $response->getData());
+		return array_map(fn(array $item): Packet\Packet => new Packet\Packet($item), $response->getData());
 	}
 
 	/**

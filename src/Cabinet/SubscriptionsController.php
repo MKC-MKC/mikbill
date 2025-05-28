@@ -15,14 +15,14 @@ class SubscriptionsController
 	}
 
 	/**
-	 * Метод возвращает модель доступных подписок middleware.
+	 * Метод возвращает массив объектов доступных подписок middleware.
 	 *
 	 * @param string $service - Название сервиса middleware: "MegoGo", "wink" и.т.д. Актуальный список смотри ссылку выше.
-	 * @return Subscriptions\Subscription
+	 * @return Subscriptions\Subscription[]
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#aa0c7b39-2525-44a7-a1f6-d8aa7f9b8677
 	 */
-	public function getSubscriptions(string $service = "other"): object
+	public function getSubscriptions(string $service = "other"): array
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/user/subscriptions/" . trim(strtolower($service), "/"),
@@ -30,7 +30,7 @@ class SubscriptionsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Subscriptions\Subscription($response->getData());
+		return array_map(fn(array $item): Subscriptions\Subscription => new Subscriptions\Subscription($item), $response->getData());
 	}
 
 	/**
@@ -60,7 +60,7 @@ class SubscriptionsController
 	}
 
 	/**
-	 * Метод возвращает список всех Middleware.
+	 * Метод возвращает объект Middleware в котором сможете получить массив всех объектов Middleware.
 	 *
 	 * @return Subscriptions\Middleware
 	 * @throws Exception\BillApiException

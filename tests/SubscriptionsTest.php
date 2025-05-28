@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * Тестирование системы подписок.
  * @cabinet - Клиентские запросы требуют токен клиента.
  */
-class UserSubscriptionsTest extends TestCase
+class SubscriptionsTest extends TestCase
 {
 	private static MikBiLLApi $MikBiLL;
 	private static bool $debug = false;
@@ -46,13 +46,10 @@ class UserSubscriptionsTest extends TestCase
 		$middleware = "other";
 		$response = self::$MikBiLL->cabinet->Subscriptions()->getSubscriptions(service: $middleware);
 
-		# Получаем массив объектов.
-		$subs = $response->getSubscription();
-
 		# Можете посмотреть на массив, если включен debug.
 		if (self::$debug) {
 			echo "<h3>Доступные подписки клиенту:</h3>";
-			foreach ($subs as $sub) {
+			foreach ($response as $sub) {
 				echo "<hr><h2><code>[id:{$sub->getId()}] " . $sub->getName() . "</code></h2>";
 				echo "<li>Цена: {$sub->getServicePrice()} {$sub->getCurrency()}.</li>";
 				echo "<p>Описание: {$sub->getDescription()}</p>";
@@ -60,7 +57,7 @@ class UserSubscriptionsTest extends TestCase
 		}
 
 		# Проверяем для теста количество массивов в ответе.
-		$data = count($subs);
+		$data = count($response);
 		$this->assertEquals($expected, $data, "Получено получено: `$data/$expected`.");
 	}
 

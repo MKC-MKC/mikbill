@@ -23,12 +23,6 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
 
 	/**
 	 * Метод отправки запроса на сервер MikBiLL API.
-	 *
-	 * @param $uri
-	 * @param $method
-	 * @param $params
-	 * @param $sign
-	 * @param $token
 	 */
 	abstract public function sendRequest($uri, $method, $params, $sign, $token);
 

@@ -24,7 +24,7 @@ class ReportsController
 	 * @param string|null $order
 	 * @param DateTime|null $from
 	 * @param DateTime|null $to
-	 * @return Reports\PaymentItems
+	 * @return Reports\Payment[]
 	 * @throws BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#0c1b52f5-96c2-4e8e-adf8-11f534108bd3
 	 */
@@ -34,7 +34,7 @@ class ReportsController
 		string|null     $order = "DESC",
 		DateTime|null   $from = null,
 		DateTime|null   $to = null,
-	): object
+	): array
 	{
 		$params = [
 			"offset" => $offset,
@@ -51,7 +51,7 @@ class ReportsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Reports\PaymentItems($response->getData());
+		return array_map(fn(array $item): Reports\Payment => new Reports\Payment($item), $response->getData());
 	}
 
 	/**
@@ -62,7 +62,7 @@ class ReportsController
 	 * @param string|null $order
 	 * @param DateTime|null $from
 	 * @param DateTime|null $to
-	 * @return Reports\Session
+	 * @return Reports\Session[]
 	 * @throws BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#21e400a3-ae46-4ac1-8bb1-66121e483873
 	 */
@@ -72,7 +72,7 @@ class ReportsController
 		string|null     $order = "DESC",
 		DateTime|null   $from = null,
 		DateTime|null   $to = null,
-	): object
+	): array
 	{
 		$params = [
 			"offset" => $offset,
@@ -89,7 +89,7 @@ class ReportsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Reports\SessionItems($response->getData());
+		return array_map(fn(array $item): Reports\Session => new Reports\Session($item), $response->getData());
 	}
 
 }

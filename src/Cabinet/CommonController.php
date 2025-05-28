@@ -17,7 +17,7 @@ class CommonController
 	/**
 	 * Метод возвращает IP клиента относительно web-сервера.
 	 *
-	 * @return Common\GetIpModel
+	 * @return Common\GetIp
 	 * @noinspection SpellCheckingInspection
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#e15b3e31-61c6-4eea-9b2c-b32ce49d09a3
@@ -30,13 +30,13 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetIpModel($response->getData());
+		return new Common\GetIp($response->getData());
 	}
 
 	/**
 	 * Метод возвращает время с backend`а
 	 *
-	 * @return Common\GetServerDateModel
+	 * @return Common\GetServerDate
 	 * @noinspection SpellCheckingInspection
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#590cf34a-1467-4199-9406-45458d5fde06
@@ -49,7 +49,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetServerDateModel($response->getData());
+		return new Common\GetServerDate($response->getData());
 	}
 
 	/**
@@ -93,7 +93,7 @@ class CommonController
 	/**
 	 * Метод возвращает контактные данные организации.
 	 *
-	 * @return Common\GetCompanyInfoModel
+	 * @return Common\GetCompanyInfo
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#2949d3f0-a201-477b-9de5-cee4566b61ec
 	 */
@@ -105,17 +105,17 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetCompanyInfoModel($response->getData());
+		return new Common\GetCompanyInfo($response->getData());
 	}
 
 	/**
 	 * Метод вообще что-то возвращает?
 	 *
-	 * @return Common\GetMenu
+	 * @return Common\GetMenu[]
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d8fc182c-2200-4a06-80df-f12d54e94b3b
 	 */
-	public function getMenu(): object
+	public function getMenu(): array
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/menu",
@@ -123,7 +123,7 @@ class CommonController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Common\GetMenu($response->getData());
+		return array_map(fn(array $item): Common\GetMenu => new Common\GetMenu($item), $response->getData());
 	}
 
 }

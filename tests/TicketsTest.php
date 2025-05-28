@@ -45,12 +45,9 @@ class TicketsTest extends TestCase
 		# Выполняем запрос в биллинг.
 		$response = self::$MikBiLL->cabinet->Tickets()->getTickets();
 
-		# Получаем массив объектов.
-		$ticketMessages = $response->getMessages();
-
 		# Можете посмотреть на массив, если включен debug.
 		if (self::$debug) {
-			foreach ($ticketMessages as $ticket) {
+			foreach ($response as $ticket) {
 				$status = $ticket->isClosed() ? "📛 [закрыто]" : "⏳ [открыто]";
 				echo sprintf(
 					"<hr><h2><small>%s</small> Обращение: <code>[id:%s]</code> | открыто %s</h2>",
@@ -63,7 +60,7 @@ class TicketsTest extends TestCase
 		}
 
 		# Для теста, сравниваем время создания первого тикета.
-		$getOne = $ticketMessages[0];
+		$getOne = $response[0];
 		$data = $getOne->getDate()?->format("d.m.Y в H:i:s");
 		$this->assertEquals($expected, $data);
 	}
@@ -121,12 +118,9 @@ class TicketsTest extends TestCase
 		# Выполняем запрос в биллинг.
 		$response = self::$MikBiLL->cabinet->Tickets()->getTicketsDialog("Тут ваш ID тикета");
 
-		# Получаем массив объектов.
-		$ticketMessages = $response->getMessages();
-
 		# Можете посмотреть на массив, если включен debug.
 		if (self::$debug) {
-			foreach ($ticketMessages as $ticket) {
+			foreach ($response as $ticket) {
 				$type = $ticket->isMessageFromClient() ? "клиент" : "оператор";
 
 				$name = $ticket->isMessageFromClient()
@@ -140,7 +134,7 @@ class TicketsTest extends TestCase
 		}
 
 		# Для теста получаем текст первого сообщения.
-		$getOne = $ticketMessages[0];
+		$getOne = $response[0];
 		$data = $getOne->getMessageTest();
 		$this->assertEquals($expected, $data);
 	}

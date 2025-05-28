@@ -6,7 +6,7 @@ use DateTime;
 use Exception;
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class GetServerDateModel extends ResponseWrapper
+class GetServerDate extends ResponseWrapper
 {
 
 	public function getDate(): string

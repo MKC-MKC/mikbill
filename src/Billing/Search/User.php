@@ -5,7 +5,7 @@ namespace Haikiri\MikBiLL\Billing\Search;
 use Haikiri\MikBiLL\Cabinet;
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class UserSearch extends ResponseWrapper
+class User extends ResponseWrapper
 {
 	/**
 	 * Методы доступные в поиске Billing – внутри UserTrait.

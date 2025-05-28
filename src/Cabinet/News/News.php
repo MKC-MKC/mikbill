@@ -6,31 +6,20 @@ use Haikiri\MikBiLL\ResponseWrapper;
 
 class News extends ResponseWrapper
 {
-	private array|null $items;
 
-	public function __construct(?array $data)
+	public function getId(): int
 	{
-		parent::__construct($data);
-		$this->items = array_map(fn($i) => new NewsModel($i), $data);
+		return (int)$this->getData("newsid");
 	}
 
-	/**
-	 * @deprecated
-	 * @use self::getNews
-	 */
-	public function getAllNews(): array
+	public function getSubject(): string
 	{
-		return $this->getNews();
+		return (string)$this->getData("subject");
 	}
 
-	/**
-	 * Метод возвращает результат как массив моделей.
-	 *
-	 * @return NewsModel[]
-	 */
-	public function getNews(): array
+	public function getText(): string
 	{
-		return $this->items;
+		return (string)$this->getData("text");
 	}
 
 }

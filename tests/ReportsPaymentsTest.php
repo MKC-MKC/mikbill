@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Haikiri\MikBiLL\Tests;
 
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
+use Haikiri\MikBiLL\Exception\BillApiException;
+use Haikiri\MikBiLL\Cabinet\Reports\Payment;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 use DateTime;
@@ -24,10 +26,11 @@ class ReportsPaymentsTest extends TestCase
 	private static string $dataFile = __DIR__ . "/Responses/valid/Cabinet/reports/payments.json";
 
 	/**
-	 * Возвращаем объекты платежей.
-	 * @noinspection PhpUnhandledExceptionInspection
+	 * Возвращаем массив объектов платежей.
+	 * @return Payment[]
+	 * @throws BillApiException
 	 */
-	private static function getData(): object
+	private static function getData(): array
 	{
 		return self::$MikBiLL->cabinet->Reports()->getPayments(
 			limit: 5,
@@ -41,11 +44,10 @@ class ReportsPaymentsTest extends TestCase
 	public function test_getAll($expected = true)
 	{
 		$response = self::getData(); # Получаем объекты платежей.
-		$data = $response->getPayments(); # Получаем массив объектов.
 
 		# Можете посмотреть на массив, если включен debug.
 		if (self::$debug) {
-			foreach ($data as $payment) {
+			foreach ($response as $payment) {
 				echo PHP_EOL . str_repeat("=", 30) . PHP_EOL;
 				echo "Время события: {$payment->getDate()?->format("d.m.Y в H:i:s")}" . PHP_EOL . PHP_EOL;
 				echo "ID: {$payment->getId()}" . PHP_EOL;
@@ -55,55 +57,55 @@ class ReportsPaymentsTest extends TestCase
 			}
 		}
 
-		$data = count($data) > 1;
+		$data = count($response) > 1;
 		$this->assertEquals(expected: $expected, actual: $data);
 	}
 
 	public function test_1($expected = 34)
 	{
 		$response = self::getData(); # Получаем объекты платежей.
-		$data = $response->getOne(); # Получаем первый результат.
+		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $data->getId());
+		$this->assertEquals(expected: $expected, actual: $getOne->getId());
 	}
 
 	public function test_2($expected = 'Услуга "Турбо"')
 	{
 		$response = self::getData(); # Получаем объекты платежей.
-		$data = $response->getOne(); # Получаем первый результат.
+		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $data->getName());
+		$this->assertEquals(expected: $expected, actual: $getOne->getName());
 	}
 
 	public function test_3($expected = 20)
 	{
 		$response = self::getData(); # Получаем объекты платежей.
-		$data = $response->getOne(); # Получаем первый результат.
+		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $data->getSumma());
+		$this->assertEquals(expected: $expected, actual: $getOne->getSumma());
 	}
 
 	public function test_4($expected = "?")
 	{
 		$response = self::getData(); # Получаем объекты платежей.
-		$data = $response->getOne(); # Получаем первый результат.
+		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $data->getSign());
+		$this->assertEquals(expected: $expected, actual: $getOne->getSign());
 	}
 
 	public function test_5($expected = "")
 	{
 		$response = self::getData(); # Получаем объекты платежей.
-		$data = $response->getOne(); # Получаем первый результат.
+		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $data->getComment());
+		$this->assertEquals(expected: $expected, actual: $getOne->getComment());
 	}
 
 	public function test_6($expected = "25.05.2025 в 14:00:54")
 	{
 		$response = self::getData(); # Получаем объекты платежей.
-		$data = $response->getOne(); # Получаем первый результат.
-		$data = $data->getDate()->format("d.m.Y в H:i:s");
+		$getOne = $response[0]; # Получаем первый результат.
+		$data = $getOne->getDate()->format("d.m.Y в H:i:s");
 
 		$this->assertEquals(expected: $expected, actual: $data);
 	}

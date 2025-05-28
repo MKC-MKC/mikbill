@@ -15,13 +15,13 @@ class PacketController
 	}
 
 	/**
-	 * Метод возвращает список тарифов.
+	 * Метод возвращает массив объектов доступных тарифов.
 	 *
-	 * @return Packet\Packets
+	 * @return Packet\Packets[]
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#293d8da0-8967-4367-b74f-92db69e839aa
 	 */
-	public function getPackets(): object
+	public function getPackets(): array
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/packets",
@@ -29,7 +29,7 @@ class PacketController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Packet\Packets($response->getData());
+		return array_map(fn(array $item): Packet\Packets => new Packet\Packets($item), $response->getData());
 	}
 
 	/**
@@ -38,7 +38,7 @@ class PacketController
 	 * Используйте ->getData() для получения массива данных.
 	 *
 	 * @param $packetId
-	 * @return Packet\PacketInfoModel
+	 * @return Packet\PacketInfo
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#11e9027f-c26e-4927-b25f-898d63c2664a
 	 */
@@ -50,7 +50,7 @@ class PacketController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Packet\PacketInfoModel($response->getData());
+		return new Packet\PacketInfo($response->getData());
 	}
 
 }

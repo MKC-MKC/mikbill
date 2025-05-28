@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet\Tickets;
 
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class NewTicketModel extends ResponseWrapper
+class NewTicket extends ResponseWrapper
 {
 
 	/**

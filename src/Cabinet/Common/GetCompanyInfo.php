@@ -4,7 +4,7 @@ namespace Haikiri\MikBiLL\Cabinet\Common;
 
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class GetCompanyInfoModel extends ResponseWrapper
+class GetCompanyInfo extends ResponseWrapper
 {
 
 	/**

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Haikiri\MikBiLL\Tests;
 
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
+use Haikiri\MikBiLL\Exception\BillApiException;
+use Haikiri\MikBiLL\Cabinet\Reports\Session;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 use DateTime;
@@ -24,10 +26,11 @@ class ReportsSessionsTest extends TestCase
 	private static string $dataFile = __DIR__ . "/Responses/valid/Cabinet/reports/sessions.json";
 
 	/**
-	 * Возвращаем объекты сессий.
-	 * @noinspection PhpUnhandledExceptionInspection
+	 * Возвращаем массив объектов сессий.
+	 * @return Session[]
+	 * @throws BillApiException
 	 */
-	private static function getData(): object
+	private static function getData(): array
 	{
 		return self::$MikBiLL->cabinet->Reports()->getSessions(
 			limit: 2,
@@ -40,12 +43,12 @@ class ReportsSessionsTest extends TestCase
 
 	public function test_getAll($expected = true)
 	{
-		$response = self::getData(); # Получаем объекты сессий.
-		$data = $response->getSessions(); # Получаем массив сессий.
+		# Получаем объекты сессий.
+		$response = self::getData();
 
 		# Можете посмотреть на массив, если включен debug.
 		if (self::$debug) {
-			foreach ($data as $session) {
+			foreach ($response as $session) {
 				echo PHP_EOL . str_repeat("=", 30) . PHP_EOL;
 				echo "Time On: {$session->getTimeOn()}" . PHP_EOL;
 				echo "Начало сессии: {$session->getStartDateTime()?->format("d.m.Y в H:i:s")}" . PHP_EOL;
@@ -63,47 +66,47 @@ class ReportsSessionsTest extends TestCase
 			}
 		}
 
-		$data = count($data) > 1;
+		$data = count($response) > 1;
 		$this->assertEquals(expected: $expected, actual: $data);
 	}
 
 	public function test_1($expected = "username")
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getUsername());
+		$this->assertEquals(expected: $expected, actual: $getOne->getUsername());
 	}
 
 	public function test_2($expected = 332.718616)
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getBillingBefore());
+		$this->assertEquals(expected: $expected, actual: $getOne->getBillingBefore());
 	}
 
 	public function test_3($expected = 0.0)
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getBillingMinus());
+		$this->assertEquals(expected: $expected, actual: $getOne->getBillingMinus());
 	}
 
 	public function test_4($expected = 1300127)
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getTimeOn());
+		$this->assertEquals(expected: $expected, actual: $getOne->getTimeOn());
 	}
 
 	public function test_5($expected = "04.12.2024 в 11:17:47")
 	{
 		$response = self::getData();
-		$data = $response->getOne();
-		$data = $data->getStartDateTime()?->format("d.m.Y в H:i:s");
+		$getOne = $response[0];
+		$data = $getOne->getStartDateTime()?->format("d.m.Y в H:i:s");
 
 		$this->assertEquals(expected: $expected, actual: $data);
 	}
@@ -111,8 +114,8 @@ class ReportsSessionsTest extends TestCase
 	public function test_6($expected = "19.12.2024 в 12:26:34")
 	{
 		$response = self::getData();
-		$data = $response->getOne();
-		$data = $data->getStopDateTime()?->format("d.m.Y в H:i:s");
+		$getOne = $response[0];
+		$data = $getOne->getStopDateTime()?->format("d.m.Y в H:i:s");
 
 		$this->assertEquals(expected: $expected, actual: $data);
 	}
@@ -120,41 +123,41 @@ class ReportsSessionsTest extends TestCase
 	public function test_7($expected = "")
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getCallFrom());
+		$this->assertEquals(expected: $expected, actual: $getOne->getCallFrom());
 	}
 
 	public function test_8($expected = "10.100.111.254")
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getIpAddress());
+		$this->assertEquals(expected: $expected, actual: $getOne->getIpAddress());
 	}
 
 	public function test_9($expected = "10.100.111.254")
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getFramedIpAddress());
+		$this->assertEquals(expected: $expected, actual: $getOne->getFramedIpAddress());
 	}
 
 	public function test_10($expected = 28120.4)
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getIn());
+		$this->assertEquals(expected: $expected, actual: $getOne->getIn());
 	}
 
 	public function test_11($expected = 3860.2)
 	{
 		$response = self::getData();
-		$data = $response->getOne();
+		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $data->getOut());
+		$this->assertEquals(expected: $expected, actual: $getOne->getOut());
 	}
 
 }

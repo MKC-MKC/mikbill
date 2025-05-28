@@ -20,7 +20,7 @@ class AuthController
 	 *
 	 * @param string $login
 	 * @param string $pass
-	 * @return Auth\Login\LoginModels
+	 * @return Auth\Login\Login
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#a19e1a83-9c70-4a3c-97ea-56c1ab3f7cbb
 	 */
@@ -36,7 +36,7 @@ class AuthController
 			params: $params,
 		);
 
-		return new Auth\Login\LoginModels($response->getData());
+		return new Auth\Login\Login($response->getData());
 	}
 
 	/**
@@ -63,7 +63,7 @@ class AuthController
 	 * Авторизация по телефону.
 	 *
 	 * @param int|string $otp # Например: '71-49-05-18' - Код из SMS
-	 * @return Auth\Phone\PhoneOtpModels
+	 * @return Auth\Phone\PhoneOtp
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#0c62d445-3b55-4732-8b37-88aae1bb0773
 	 */
@@ -78,7 +78,7 @@ class AuthController
 			params: $params,
 		);
 
-		return new Auth\Phone\PhoneOtpModels($response->getData());
+		return new Auth\Phone\PhoneOtp($response->getData());
 	}
 
 }

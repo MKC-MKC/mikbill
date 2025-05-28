@@ -6,22 +6,65 @@ use Haikiri\MikBiLL\ResponseWrapper;
 
 class GetMenu extends ResponseWrapper
 {
-	private array|null $items;
 
-	public function __construct(?array $data)
+	public function getId(): int
 	{
-		parent::__construct($data);
-		$this->items = array_map(fn($i) => new GetMenuModel($i), $data);
+		return (int)$this->getData("id");
 	}
 
-	/**
-	 * Метод возвращает результат как модель.
-	 *
-	 * @return GetMenuModel[]
-	 */
-	public function getMenus(): array
+	public function getName(): string
 	{
-		return $this->items;
+		return (string)$this->getData("name");
+	}
+
+	public function getUri(): string
+	{
+		return (string)$this->getData("link");
+	}
+
+	public function getUserGroupId(): int
+	{
+		return (int)$this->getData("usersgroupid");
+	}
+
+	public function getParent(): int
+	{
+		return (int)$this->getData("parent");
+	}
+
+	public function getSort(): int
+	{
+		return (int)$this->getData("sort");
+	}
+
+	public function getHide(): int
+	{
+		return (int)$this->getData("hide");
+	}
+
+	public function getIcon(): string
+	{
+		return (string)$this->getData("icon");
+	}
+
+	public function getHook(): string
+	{
+		return (string)$this->getData("hook");
+	}
+
+	public function getTitle(): string
+	{
+		return (string)$this->getData("title");
+	}
+
+	public function getDescription(): string
+	{
+		return (string)$this->getData("description");
+	}
+
+	public function getKeywords(): string
+	{
+		return (string)$this->getData("keywords");
 	}
 
 }

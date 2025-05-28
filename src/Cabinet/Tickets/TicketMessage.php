@@ -6,7 +6,7 @@ use DateTime;
 use Exception;
 use Haikiri\MikBiLL\ResponseWrapper;
 
-class TicketMessengerModel extends ResponseWrapper
+class TicketMessage extends ResponseWrapper
 {
 
 	/**

@@ -15,13 +15,13 @@ class TicketsController
 	}
 
 	/**
-	 * Метод возвращает все тикеты клиента.
+	 * Метод возвращает массив объектов тикета клиента.
 	 *
-	 * @return Tickets\Ticket
+	 * @return Tickets\Ticket[]
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#dc173a89-274f-4741-aee0-a700ac28d88d
 	 */
-	public function getTickets(): object
+	public function getTickets(): array
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/tickets",
@@ -29,14 +29,14 @@ class TicketsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Tickets\Ticket($response->getData());
+		return array_map(fn(array $item): Tickets\Ticket => new Tickets\Ticket($item), $response->getData());
 	}
 
 	/**
 	 * Метод возвращает модель объект тикета.
 	 *
 	 * @param string $message
-	 * @return Tickets\NewTicketModel
+	 * @return Tickets\NewTicket
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#ad86043a-0f71-43ff-b9c3-3963fc944ec1
 	 */
@@ -52,18 +52,18 @@ class TicketsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Tickets\NewTicketModel($response->getData());
+		return new Tickets\NewTicket($response->getData());
 	}
 
 	/**
-	 * Метод возвращает модель объект тикета.
+	 * Метод возвращает массив объектов сообщения тикета.
 	 *
-	 * @param string|int $ticketId
-	 * @return Tickets\TicketMessenger
+	 * @param $ticketId
+	 * @return Tickets\TicketMessage[]
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d794ec97-fcfc-4857-ad42-24b874c831c3
 	 */
-	public function getTicketsDialog(string|int $ticketId): object
+	public function getTicketsDialog($ticketId): array
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/tickets/$ticketId",
@@ -71,19 +71,19 @@ class TicketsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new Tickets\TicketMessenger($response->getData());
+		return array_map(fn(array $item): Tickets\TicketMessage => new Tickets\TicketMessage($item), $response->getData());
 	}
 
 	/**
 	 * Метод отправляет сообщение в тикет.
 	 *
-	 * @param string|int $ticketId
+	 * @param $ticketId
 	 * @param string $message
 	 * @return bool
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#98ae7817-8b46-4eec-8ce6-f59373e39ba8
 	 */
-	public function sendMessage(string|int $ticketId, string $message): bool
+	public function sendMessage($ticketId, string $message): bool
 	{
 		$params = [
 			"message" => $message,

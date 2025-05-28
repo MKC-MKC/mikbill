@@ -17,11 +17,11 @@ class NewsController
 	/**
 	 * Метод возвращает список новостей.
 	 *
-	 * @return News\News
+	 * @return News\News[]
 	 * @throws Exception\BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#d0716ec8-0af2-46ae-97d4-56a47ea888aa
 	 */
-	public function getNews(): object
+	public function getNews(): array
 	{
 		$response = $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/news",
@@ -29,7 +29,7 @@ class NewsController
 			token: $this->billInterface->getUserToken(),
 		);
 
-		return new News\News($response->getData());
+		return array_map(fn(array $item): News\News => new News\News($item), $response->getData());
 	}
 
 }

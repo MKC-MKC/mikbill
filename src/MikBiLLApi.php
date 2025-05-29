@@ -6,6 +6,7 @@ namespace Haikiri\MikBiLL;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Haikiri\MikBiLL\Exception\BillApiException;
 
 class MikBiLLApi extends MikBiLLApiAbstract
 {
@@ -37,7 +38,6 @@ class MikBiLLApi extends MikBiLLApiAbstract
 	 * @param bool $sign
 	 * @param string|null $token
 	 * @return Response
-	 * @throws GuzzleException
 	 * @throws Exception\BillApiException
 	 */
 	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): Response
@@ -69,9 +69,13 @@ class MikBiLLApi extends MikBiLLApiAbstract
 			];
 		}
 
-		$url = rtrim($this->url, "/") . "/" . ltrim($uri, "/");
-		$response = $this->client->request($method, $url, $options);
-		$body = $response->getBody()->getContents();
+		try {
+			$url = rtrim($this->url, "/") . "/" . ltrim($uri, "/");
+			$response = $this->client->request($method, $url, $options);
+			$body = $response->getBody()->getContents();
+		} catch (GuzzleException $ex) {
+			throw new BillApiException($ex->getMessage(), $ex->getCode(), $ex);
+		}
 
 		$validResponse = self::validate($body, true);
 		self::billResponseValidate($validResponse);

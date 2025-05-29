@@ -6,9 +6,9 @@ use LogicException;
 
 class OverLimitException extends LogicException
 {
-	public function __construct(string $message = "Превышен лимит операции", int $code = -14)
+	public function __construct(string $message = "Превышен лимит операции", int $code = -14, $previous = null)
 	{
-		parent::__construct($message, $code);
+		parent::__construct($message, $code, $previous);
 	}
 
 }

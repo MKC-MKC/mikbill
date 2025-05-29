@@ -27,7 +27,8 @@
     "require": {
         "php": ">=8.0",
         "ext-curl": "*",
-        "haikiri/declension-helper": "^1.0"
+        "haikiri/declension-helper": "^1.0",
+        "guzzlehttp/guzzle": "^7.9"
     },
     "authors": [
         {

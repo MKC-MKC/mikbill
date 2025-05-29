@@ -4,18 +4,30 @@ declare(strict_types=1);
 
 namespace Haikiri\MikBiLL;
 
-use Exception as InternalException;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use Haikiri\MikBiLL\Exception\BillApiException;
 
 class MikBiLLApi extends MikBiLLApiAbstract
 {
+	private Client $client;
+
 	#	Proxy SOCKS:
 	public bool $isProxy = false;    # true - enable proxy ; false - disable proxy ;
-	public int $proxy_opt = CURLOPT_PROXYUSERPWD;
 	public int $proxy_type = CURLPROXY_SOCKS5;
 	public int $proxy_port = 8080;
 	public string $proxy_addr = "";
 	public string $proxy_user = "";
 	public string $proxy_pass = "";
+
+	public function __construct(string $url, string $key, $debug = false)
+	{
+		parent::__construct($url, $key, $debug);
+		$this->client = new Client([
+			"timeout" => 10,
+			"http_errors" => false,
+		]);
+	}
 
 	/**
 	 * Метод отправки запроса на сервер MikBiLL API.
@@ -26,39 +38,46 @@ class MikBiLLApi extends MikBiLLApiAbstract
 	 * @param bool $sign
 	 * @param string|null $token
 	 * @return Response
-	 * @throws InternalException
 	 * @throws Exception\BillApiException
 	 */
 	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): Response
 	{
 		$headers = [];
+		$options = [];
 
 		if ($sign) {
 			$params["salt"] = uniqid();
 			$params["sign"] = hash_hmac("sha512", $params["salt"], $this->key);
 		} else {
 			if ($token === "") throw new Exception\UnauthorizedException("The token was not found: The storage with token is empty.", -999);
-			$headers[] = "Authorization: " . $token;
+			$headers["Authorization"] = $token;
 		}
 
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, rtrim($this->url, "/") . "/" . ltrim($uri, "/"));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-		if (!empty($headers)) curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		if ($method == "POST") curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+		$options["headers"] = $headers;
+
+		if (strtoupper($method) == "POST") {
+			$options["form_params"] = $params;
+		} elseif (!empty($params)) {
+			$options["query"] = $params;
+		}
 
 		if ($this->isProxy) {
-			curl_setopt($ch, CURLOPT_PROXY, $this->proxy_addr);
-			curl_setopt($ch, CURLOPT_PROXYPORT, $this->proxy_port);
-			curl_setopt($ch, CURLOPT_PROXYTYPE, $this->proxy_type);
-			if (!empty($this->proxy_user)) curl_setopt($ch, $this->proxy_opt, $this->proxy_user . ":" . $this->proxy_pass);
+			$proxy = "socks$this->proxy_type://$this->proxy_user:$this->proxy_pass@$this->proxy_addr:$this->proxy_port";
+			$options["proxy"] = [
+				"http" => $proxy,
+				"https" => $proxy
+			];
 		}
 
-		$response = curl_exec($ch);
-		curl_close($ch);
+		try {
+			$url = rtrim($this->url, "/") . "/" . ltrim($uri, "/");
+			$response = $this->client->request($method, $url, $options);
+			$body = $response->getBody()->getContents();
+		} catch (GuzzleException $ex) {
+			throw new BillApiException($ex->getMessage(), $ex->getCode(), $ex);
+		}
 
-		$validResponse = self::validate($response, true);
+		$validResponse = self::validate($body, true);
 		self::billResponseValidate($validResponse);
 		return Response::fromResponse($validResponse);
 	}

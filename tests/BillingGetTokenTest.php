@@ -28,7 +28,7 @@ class BillingGetTokenTest extends TestCase
 	public function test()
 	{
 		# Валидация данных.
-		$uid = "Здесь должен быть токен клиента";
+		$uid = "Здесь должен быть UID клиента";
 
 		# Выполняем запрос в Billing.
 		$token = self::$MikBiLL->billing->Users()->getUserToken($uid);

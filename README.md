@@ -186,7 +186,7 @@ $MikBiLL->proxy_type = CURLPROXY_SOCKS4;
 # 💬 Напоследок:
 
 Не забывай после получения токена клиента
-[ЗАПИСАТЬ ЕГО!](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/tests/BillingGetTokenTest.php#L36)
+[ЗАПИСАТЬ ЕГО!](https://github.com/MKC-MKC/mikbill/blob/main/tests/BillingGetTokenTest.php#L36)
 
 Токен нужно записывать в stateless хранилище каждый раз для отправки запросов к `Cabinet API`. Пример записи токена:
 

@@ -109,7 +109,7 @@ class CommonController
 	}
 
 	/**
-	 * Метод вообще что-то возвращает?
+	 * Метод возвращает массив объектов меню.
 	 *
 	 * @return Common\GetMenu[]
 	 * @throws Exception\BillApiException

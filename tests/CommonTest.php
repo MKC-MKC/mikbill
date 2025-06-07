@@ -23,7 +23,7 @@ class CommonTest extends TestCase
 		$json = file_get_contents($path);
 
 		# Инициализация MikBiLL SDK.
-		self::$MikBiLL = new Mock\MikBiLLApiMock(
+		self::$MikBiLL = new MikBiLLApi(
 			url: "http://api.mikbill.local",
 			key: self::$signKey,
 			mockedData: $json,

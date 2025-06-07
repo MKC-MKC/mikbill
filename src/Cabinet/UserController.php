@@ -6,6 +6,7 @@ use Haikiri\MikBiLL\MikBiLLApiInterface;
 use Haikiri\MikBiLL\Exception\BillApiException;
 use Haikiri\MikBiLL\Exception\SmsSendException;
 use Haikiri\MikBiLL\Exception\OverLimitException;
+use Haikiri\MikBiLL\Response;
 
 class UserController
 {
@@ -68,7 +69,6 @@ class UserController
 	 * @return bool
 	 * @throws BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#8116776e-bf9c-4ef6-a232-09b8547f55c2
-	 * @deprecated TODO: Не получилось проверить метод.
 	 */
 	public function changePassword(string $old, string $new): bool
 	{
@@ -92,28 +92,25 @@ class UserController
 	 *
 	 * @param $gid
 	 * @param $password
-	 * @param int $next_month
-	 * @return bool
+	 * @param int|bool $next_month
+	 * @return Response
 	 * @throws BillApiException
 	 * @see https://documenter.getpostman.com/view/5969645/TVCfXTtK#655108d0-c999-457f-b01c-0ef4faf3747d
-	 * @deprecated TODO: Не получилось проверить метод.
 	 */
-	public function changePacket($gid, $password = null, int $next_month = self::NOW): bool
+	public function changePacket($gid, $password = null, int|bool $next_month = self::NOW): Response
 	{
 		$params = [
 			"gid" => (int)$gid,
 			"password" => $password,
-			"from_next_month" => $next_month,
+			"from_next_month" => (int)$next_month,
 		];
 
-		$response = $this->billInterface->sendRequest(
+		return $this->billInterface->sendRequest(
 			uri: "/api/v1/cabinet/user/packet",
 			method: "POST",
 			params: $params,
 			token: $this->billInterface->getUserToken(),
 		);
-
-		return $response->isSuccess();
 	}
 
 }

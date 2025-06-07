@@ -156,9 +156,6 @@ fabric.properties
 # JetBrains Rider
 *.sln.iml
 
-# Local History for Visual Studio Code
-.history/
-
 # Built Visual Studio Code Extensions
 *.vsix
 

@@ -1,0 +1,10 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "id": "9",
+        "uid": "7",
+        "labels": "[4,5]"
+    },
+    "message": "ОК"
+}

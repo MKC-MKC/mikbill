@@ -1,0 +1,12 @@
+{
+    "success": true,
+    "code": 0,
+    "data": {
+        "uid": "7",
+        "contact_type_id": "3",
+        "contact": "user@example.com",
+        "id": 9,
+        "labels": []
+    },
+    "message": "ОК"
+}

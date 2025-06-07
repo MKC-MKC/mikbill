@@ -1,0 +1,37 @@
+{
+    "success": true,
+    "code": 0,
+    "data": [
+        {
+            "id": "1",
+            "contact_type_id": "1",
+            "contact": "+380123456789",
+            "name": "Мобильный",
+            "labels": [
+                "1",
+                "2",
+                "4"
+            ]
+        },
+        {
+            "id": "2",
+            "contact_type_id": "3",
+            "contact": "email@example.com",
+            "name": "EMail",
+            "labels": [
+                "4"
+            ]
+        },
+        {
+            "id": "3",
+            "contact_type_id": "4",
+            "contact": "TelegramUserName",
+            "name": "Telegram",
+            "labels": [
+                "3",
+                "5"
+            ]
+        }
+    ],
+    "message": "ОК"
+}

@@ -1,0 +1,55 @@
+{
+    "success": true,
+    "code": 0,
+    "data": [
+        {
+            "id": "1",
+            "type": "mobile",
+            "name": "Мобильный",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "2",
+            "type": "home",
+            "name": "Домашний",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "3",
+            "type": "email",
+            "name": "EMail",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "4",
+            "type": "telegram",
+            "name": "Telegram",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "5",
+            "type": "viber",
+            "name": "Viber",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "6",
+            "type": "skype",
+            "name": "Skype",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "7",
+            "type": "whatsapp",
+            "name": "Whatsapp",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "8",
+            "type": "subscription",
+            "name": "Подписки",
+            "usersgroupid": "0"
+        }
+    ],
+    "message": "ОК"
+}

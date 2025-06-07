@@ -1,0 +1,43 @@
+{
+    "success": true,
+    "code": 0,
+    "data": [
+        {
+            "id": "1",
+            "label": "calls",
+            "name": "Звонки",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "2",
+            "label": "messages",
+            "name": "Сообщения",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "3",
+            "label": "notify",
+            "name": "Уведомление",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "4",
+            "label": "letters",
+            "name": "Рассылка",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "5",
+            "label": "news",
+            "name": "Новости",
+            "usersgroupid": "0"
+        },
+        {
+            "id": "6",
+            "label": "omnicell_sub",
+            "name": "Lifecell",
+            "usersgroupid": "0"
+        }
+    ],
+    "message": "ОК"
+}

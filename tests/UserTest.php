@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Тестирование системы возврата данных авторизованного клиента.
  * @cabinet - Клиентские запросы требуют токен клиента.
  */
-class CabinetUserTest extends TestCase
+class UserTest extends TestCase
 {
 	use InitTrait;
 

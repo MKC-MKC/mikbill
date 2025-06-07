@@ -77,7 +77,7 @@ composer require haikiri/mikbill
         - [Доступные тарифы](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PacketController.php#L24) [F]
         - [Информация об тарифе](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PacketController.php#L45) [MD]
     - User [MD]
-        - Contacts [MP]
+        - Contacts [P]
         - [Данные Клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/CabinetUserTest.php#L13) [F]
         - [Напомнить пароль](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L47) [F]
         - [Изменить пароль](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L73) [F]

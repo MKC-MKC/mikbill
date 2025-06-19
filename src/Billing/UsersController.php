@@ -78,7 +78,6 @@ class UsersController
 	 * @return Response
 	 * @throws Exception\BillApiException
 	 * @use https://documenter.getpostman.com/view/5969645/TVCfXTtK#e0a2b1c3-4d8f-4a6b-9c7d-0e1f2a3b5c8e
-	 * @deprecated Метод был удалён
 	 */
 	public function kickUser($uid): Response
 	{

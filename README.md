@@ -54,7 +54,7 @@ composer require haikiri/mikbill
     - Users [F]
         - [Получить токен клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/BillingGetTokenTest.php#L36) [F]
         - [Поиск клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/BillingSearchUsersTest.php#L34) [F]
-        - [Kick User](https://github.com/MKC-MKC/mikbill/blob/main/src/Billing/UsersController.php#L81) [deprecated]
+        - [Kick User](https://github.com/MKC-MKC/mikbill/blob/main/src/Billing/UsersController.php#L81)
         - [Bind User](https://github.com/MKC-MKC/mikbill/blob/main/src/Billing/UsersController.php#L101) [deprecated]
 - **Cabinet API**
     - Auth [F]

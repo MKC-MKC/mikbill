@@ -6,7 +6,6 @@ namespace Haikiri\MikBiLL\Tests;
 
 use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
 use Haikiri\MikBiLL\Tests\Trait\InitTrait;
-use Haikiri\DeclensionHelper\Declension;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,24 +21,6 @@ class ServicesCreditInactiveTest extends TestCase
 	private static string $signKey = "not-expected";
 	private static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
 	private static string $dataFile = __DIR__ . "/Responses/valid/Cabinet/services/credit-before.get.json";
-
-	/**
-	 * Проверяем стоимость активации услуги "Турбо".
-	 */
-	public function test_cost($expected = "Стоимость активации 15 рублей!"): void
-	{
-		# Запрашиваем данные.
-		$response = self::$MikBiLL->cabinet->Services()->getCredit();
-
-		$cost = $response->getActivationCost(); # "15.00"
-		$currency = $response->getCurrency(); # "руб."
-		$template = "Стоимость активации {item} {form}!"; # маска
-
-		Declension::set($currency, ["рубль", "рубля", "рублей"]);
-		$data = Declension::format(number: $cost, key: $currency, template: $template);
-
-		$this->assertEquals(expected: $expected, actual: $data);
-	}
 
 	public function test_1($expected = false): void
 	{

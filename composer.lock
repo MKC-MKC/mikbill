@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "476af21fbf7bfbcba4f0b281ac53c51a",
+    "content-hash": "8ba74dab01c37dd42f2f18a42f69dbee",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -330,56 +330,6 @@
                 }
             ],
             "time": "2025-08-23T21:21:41+00:00"
-        },
-        {
-            "name": "haikiri/declension-helper",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/MKC-MKC/DeclensionHelper.git",
-                "reference": "9116deac6cdd43bd135351db2761780d2b2cfcdc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MKC-MKC/DeclensionHelper/zipball/9116deac6cdd43bd135351db2761780d2b2cfcdc",
-                "reference": "9116deac6cdd43bd135351db2761780d2b2cfcdc",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^12.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Haikiri\\DeclensionHelper\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Haikiri",
-                    "email": "haikiri@ya.ru",
-                    "homepage": "https://haikiri.t.me"
-                }
-            ],
-            "description": "This package is made for work with the declensions of pronouns in languages such as Russian and Ukrainian.",
-            "keywords": [
-                "declension",
-                "language",
-                "php",
-                "pronouns"
-            ],
-            "support": {
-                "issues": "https://github.com/MKC-MKC/DeclensionHelper/issues",
-                "source": "https://github.com/MKC-MKC/DeclensionHelper/tree/1.0.0"
-            },
-            "time": "2025-05-24T08:50:00+00:00"
         },
         {
             "name": "psr/http-client",

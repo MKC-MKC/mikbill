@@ -52,8 +52,8 @@ composer require haikiri/mikbill
 
 - **Billing API**
     - Users [F]
-        - [Получить токен клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/BillingGetTokenTest.php#L36) [F]
-        - [Поиск клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/BillingSearchUsersTest.php#L34) [F]
+        - [Получить токен клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/BillingGetTokenTest.php#L36)
+        - [Поиск клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/BillingSearchUsersTest.php#L34)
         - [Kick User](https://github.com/MKC-MKC/mikbill/blob/main/src/Billing/UsersController.php#L81)
 - **Cabinet API**
     - Auth [F]
@@ -66,43 +66,43 @@ composer require haikiri/mikbill
         - [Смотреть переписку тикета](https://github.com/MKC-MKC/mikbill/blob/main/tests/TicketsTest.php#L113)
         - [Отправка сообщения](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/TicketsController.php#L86)
     - Common [F]
-        - [Время сервера](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/tests/CommonTest.php#L43) [F]
-        - [IP Клиента](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/tests/CommonTest.php#L36) [F]
-        - [Версия MikBiLL](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/src/Cabinet/CommonController.php#L82) [F]
-        - [Конфигурация](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/src/Cabinet/CommonController.php#L64) [MD]
-        - [Контакты компании](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/src/Cabinet/CommonController.php#L100) [F]
-        - [Меню сайта](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/src/Cabinet/CommonController.php#L118) [F]
-    - Packet [MD]
-        - [Доступные тарифы](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PacketController.php#L24) [F]
-        - [Информация об тарифе](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PacketController.php#L45) [MD]
+        - [Время сервера](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/tests/CommonTest.php#L43)
+        - [IP Клиента](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/tests/CommonTest.php#L36)
+        - [Версия MikBiLL](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/src/Cabinet/CommonController.php#L82)
+        - [Конфигурация](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/src/Cabinet/CommonController.php#L64)
+        - [Контакты компании](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/src/Cabinet/CommonController.php#L100)
+        - [Меню сайта](https://github.com/MKC-MKC/mikbill/blob/8e528f0fae097a38ff33dad306ebe9f3bdacb2b5/src/Cabinet/CommonController.php#L118)
+    - Packet [F]
+        - [Доступные тарифы](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PacketController.php#L24)
+        - [Информация об тарифе](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PacketController.php#L45)
     - User [MD]
+        - [Данные Клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/CabinetUserTest.php#L13)
+        - [Напомнить пароль](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L47)
+        - [Изменить пароль](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L73)
+        - [Изменить тариф](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L101)
         - Contacts [P]
-        - [Данные Клиента](https://github.com/MKC-MKC/mikbill/blob/main/tests/CabinetUserTest.php#L13) [F]
-        - [Напомнить пароль](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L47) [F]
-        - [Изменить пароль](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L73) [F]
-        - [Изменить тариф](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L101) [F]
     - Register Hotpost [NP]
     - Payments [MD]
-        - [Voucher](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PaymentsController.php#L26) [F]
+        - [Voucher](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PaymentsController.php#L26)
         - Прочие методы... [NP]
     - Services [MP]
-        - [Услуга Турбо](https://github.com/MKC-MKC/mikbill/blob/main/tests/ServicesTurboInactiveTest.php#L29) [F]
-        - [Услуга Заморозка](https://github.com/MKC-MKC/mikbill/blob/main/tests/ServicesFreezeInactiveTest.php#L28) [F]
+        - [Услуга Турбо](https://github.com/MKC-MKC/mikbill/blob/main/tests/ServicesTurboInactiveTest.php#L29)
+        - [Услуга Заморозка](https://github.com/MKC-MKC/mikbill/blob/main/tests/ServicesFreezeInactiveTest.php#L28)
+        - [Услуга Кредит](https://github.com/MKC-MKC/mikbill/blob/main/tests/ServicesCreditInactiveTest.php#L29)
         - Real IP [MP]
-        - [Услуга Кредит](https://github.com/MKC-MKC/mikbill/blob/main/tests/ServicesCreditInactiveTest.php#L29) [F]
         - Change MAC [LP]
         - Money Transfers [LP]
     - Subscriptions [MD]
-        - [Additional](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/SubscriptionsController.php#L87) [F]
-        - [Middleware](https://github.com/MKC-MKC/mikbill/blob/main/tests/SubscriptionsTest.php#L84) [F]
-        - [Other](https://github.com/MKC-MKC/mikbill/blob/main/tests/SubscriptionsTest.php#L40) [F]
+        - [Additional](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/SubscriptionsController.php#L87)
+        - [Middleware](https://github.com/MKC-MKC/mikbill/blob/main/tests/SubscriptionsTest.php#L84)
+        - [Other](https://github.com/MKC-MKC/mikbill/blob/main/tests/SubscriptionsTest.php#L40)
         - Прочие методы... [NP]
     - Devices [NP]
     - Reports [F]
-        - [Платежи](https://github.com/MKC-MKC/mikbill/blob/main/tests/ReportsPaymentsTest.php#L44) [F]
-        - [Сессии](https://github.com/MKC-MKC/mikbill/blob/main/tests/ReportsSessionsTest.php#L44) [F]
+        - [Платежи](https://github.com/MKC-MKC/mikbill/blob/main/tests/ReportsPaymentsTest.php#L44)
+        - [Сессии](https://github.com/MKC-MKC/mikbill/blob/main/tests/ReportsSessionsTest.php#L44)
     - News [F]
-        - [Новости](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/NewsController.php#L24) [F]
+        - [Новости](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/NewsController.php#L24)
 
 ---
 

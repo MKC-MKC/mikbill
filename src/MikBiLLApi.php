@@ -12,15 +12,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 {
 	private Client $client;
 
-	#	Proxy SOCKS:
-	public bool $isProxy = false;    # true - enable proxy ; false - disable proxy ;
-	public int $proxy_type = CURLPROXY_SOCKS5;
-	public int $proxy_port = 8080;
-	public string $proxy_addr = "";
-	public string $proxy_user = "";
-	public string $proxy_pass = "";
-
-	public function __construct(string $url, string $key, $debug = false)
+	public function __construct(string $url, string $key, private string $proxy = "", $debug = false)
 	{
 		parent::__construct($url, $key, $debug);
 		$this->client = new Client([
@@ -61,15 +53,8 @@ class MikBiLLApi extends MikBiLLApiAbstract
 			$options["query"] = $params;
 		}
 
-		if ($this->isProxy) {
-			$proxy = "socks$this->proxy_type://$this->proxy_user:$this->proxy_pass@$this->proxy_addr:$this->proxy_port";
-			$options["proxy"] = [
-				"http" => $proxy,
-				"https" => $proxy
-			];
-		}
-
 		try {
+			if (!empty($this->proxy)) $options["proxy"] = $this->proxy;
 			$url = rtrim($this->url, "/") . "/" . ltrim($uri, "/");
 			$response = $this->client->request($method, $url, $options);
 			$body = $response->getBody()->getContents();

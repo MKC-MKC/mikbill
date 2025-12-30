@@ -12,7 +12,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 {
 	private Client $client;
 
-	public function __construct(string $url, string $key, private string $proxy = "", $debug = false)
+	public function __construct(string $url, string $key, private string|null $proxy = "", $debug = false)
 	{
 		parent::__construct($url, $key, $debug);
 		$this->client = new Client([

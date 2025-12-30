@@ -31,11 +31,13 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
 	 * Метод устанавливает токен пользователя.
 	 *
 	 * @param string|null $token
-	 * @return void
+	 * @return static
 	 */
-	public function setUserToken($token): void
+	public function setUserToken($token): static
 	{
 		$this->token = $token;
+
+		return $this;
 	}
 
 	/**

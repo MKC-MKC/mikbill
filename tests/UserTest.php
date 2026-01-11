@@ -151,6 +151,10 @@ class UserTest extends TestCase
 		$dateObj = $data->getEndDate();
 		$this->assertSame("16.05.2022", $dateObj->format("d.m.Y"));
 		$this->assertSame("16-05-2022", $dateObj->format("d-m-Y"));
+
+		$dateFormat = $dateObj->format("d.m.Y");
+		$result = "Оплачено до: $dateFormat";
+		self::assertSame(expected: "Оплачено до: 16.05.2022", actual: $result);
 	}
 
 }

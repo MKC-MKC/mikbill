@@ -40,6 +40,6 @@ class BillingGetTokenTest extends TestCase
 		$data = self::$MikBiLL->getUserToken();
 
 		# Убеждаемся в корректности полученных данных.
-		$this->assertEquals(expected: self::$token, actual: $data);
+		$this->assertSame(expected: self::$token, actual: $data);
 	}
 }

@@ -46,7 +46,7 @@ class BillingSearchUsersTest extends TestCase
 
 		# Проверяем для теста одного пользователя на соответствие state = 1.
 		$user = $users[0];
-		$this->assertEquals($expected, $user->getUserState());
+		$this->assertSame($expected, $user->getUserState());
 	}
 
 	/** @in-search */

@@ -58,7 +58,7 @@ class ReportsPaymentsTest extends TestCase
 		}
 
 		$data = count($response) > 1;
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_1($expected = 34)
@@ -66,7 +66,7 @@ class ReportsPaymentsTest extends TestCase
 		$response = self::getData(); # Получаем объекты платежей.
 		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getId());
+		$this->assertSame(expected: $expected, actual: $getOne->getId());
 	}
 
 	public function test_2($expected = 'Услуга "Турбо"')
@@ -74,7 +74,7 @@ class ReportsPaymentsTest extends TestCase
 		$response = self::getData(); # Получаем объекты платежей.
 		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getName());
+		$this->assertSame(expected: $expected, actual: $getOne->getName());
 	}
 
 	public function test_3($expected = 20)
@@ -82,7 +82,7 @@ class ReportsPaymentsTest extends TestCase
 		$response = self::getData(); # Получаем объекты платежей.
 		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getSumma());
+		$this->assertSame(expected: $expected, actual: $getOne->getSumma());
 	}
 
 	public function test_4($expected = "?")
@@ -90,7 +90,7 @@ class ReportsPaymentsTest extends TestCase
 		$response = self::getData(); # Получаем объекты платежей.
 		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getSign());
+		$this->assertSame(expected: $expected, actual: $getOne->getSign());
 	}
 
 	public function test_5($expected = "")
@@ -98,7 +98,7 @@ class ReportsPaymentsTest extends TestCase
 		$response = self::getData(); # Получаем объекты платежей.
 		$getOne = $response[0]; # Получаем первый результат.
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getComment());
+		$this->assertSame(expected: $expected, actual: $getOne->getComment());
 	}
 
 	public function test_6($expected = "25.05.2025 в 14:00:54")
@@ -107,7 +107,7 @@ class ReportsPaymentsTest extends TestCase
 		$getOne = $response[0]; # Получаем первый результат.
 		$data = $getOne->getDate()->format("d.m.Y в H:i:s");
 
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 }

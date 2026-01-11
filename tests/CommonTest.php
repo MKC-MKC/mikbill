@@ -37,14 +37,14 @@ class CommonTest extends TestCase
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/getip.get.json");
 		$data = self::$MikBiLL->cabinet->Common()->getIp();
-		$this->assertEquals(expected: $expected, actual: $data->getIp());
+		$this->assertSame(expected: $expected, actual: $data->getIp());
 	}
 
 	public function test_2($expected = "22.05.2025 15:00:00"): void
 	{
 		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/serverdate.get.json");
 		$data = self::$MikBiLL->cabinet->Common()->getDate()->getDateTime();
-		$this->assertEquals(expected: $expected, actual: $data?->format("d.m.Y H:i:s"));
+		$this->assertSame(expected: $expected, actual: $data?->format("d.m.Y H:i:s"));
 	}
 
 }

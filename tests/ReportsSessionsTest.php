@@ -67,7 +67,7 @@ class ReportsSessionsTest extends TestCase
 		}
 
 		$data = count($response) > 1;
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_1($expected = "username")
@@ -75,7 +75,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getUsername());
+		$this->assertSame(expected: $expected, actual: $getOne->getUsername());
 	}
 
 	public function test_2($expected = 332.718616)
@@ -83,7 +83,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getBillingBefore());
+		$this->assertSame(expected: $expected, actual: $getOne->getBillingBefore());
 	}
 
 	public function test_3($expected = 0.0)
@@ -91,7 +91,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getBillingMinus());
+		$this->assertSame(expected: $expected, actual: $getOne->getBillingMinus());
 	}
 
 	public function test_4($expected = 1300127)
@@ -99,7 +99,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getTimeOn());
+		$this->assertSame(expected: $expected, actual: $getOne->getTimeOn());
 	}
 
 	public function test_5($expected = "04.12.2024 в 11:17:47")
@@ -108,7 +108,7 @@ class ReportsSessionsTest extends TestCase
 		$getOne = $response[0];
 		$data = $getOne->getStartDateTime()?->format("d.m.Y в H:i:s");
 
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_6($expected = "19.12.2024 в 12:26:34")
@@ -117,7 +117,7 @@ class ReportsSessionsTest extends TestCase
 		$getOne = $response[0];
 		$data = $getOne->getStopDateTime()?->format("d.m.Y в H:i:s");
 
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_7($expected = "")
@@ -125,7 +125,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getCallFrom());
+		$this->assertSame(expected: $expected, actual: $getOne->getCallFrom());
 	}
 
 	public function test_8($expected = "10.100.111.254")
@@ -133,7 +133,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getIpAddress());
+		$this->assertSame(expected: $expected, actual: $getOne->getIpAddress());
 	}
 
 	public function test_9($expected = "10.100.111.254")
@@ -141,7 +141,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getFramedIpAddress());
+		$this->assertSame(expected: $expected, actual: $getOne->getFramedIpAddress());
 	}
 
 	public function test_10($expected = 28120.4)
@@ -149,7 +149,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getIn());
+		$this->assertSame(expected: $expected, actual: $getOne->getIn());
 	}
 
 	public function test_11($expected = 3860.2)
@@ -157,7 +157,7 @@ class ReportsSessionsTest extends TestCase
 		$response = self::getData();
 		$getOne = $response[0];
 
-		$this->assertEquals(expected: $expected, actual: $getOne->getOut());
+		$this->assertSame(expected: $expected, actual: $getOne->getOut());
 	}
 
 }

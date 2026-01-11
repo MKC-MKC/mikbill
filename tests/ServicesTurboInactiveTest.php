@@ -26,70 +26,70 @@ class ServicesTurboInactiveTest extends TestCase
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->isAvailable();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_2($expected = false): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->isActive();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_3($expected = 20.0): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->getActivationCost();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_4($expected = 102400): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->getSpeedInBites();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_5($expected = 102400): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->getSpeedOutBites();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_6($expected = 24): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->getTime();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_7($expected = null): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->getStopTime()?->format("d.m.Y H:i:s");
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_8($expected = 100): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->getSpeedIn();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_9($expected = 100): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->getSpeedOut();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_10($expected = "грн"): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getTurbo();
 		$data = $response->getCurrency();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 }

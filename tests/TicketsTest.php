@@ -62,7 +62,7 @@ class TicketsTest extends TestCase
 		# Для теста, сравниваем время создания первого тикета.
 		$getOne = $response[0];
 		$data = $getOne->getDate()?->format("d.m.Y в H:i:s");
-		$this->assertEquals($expected, $data);
+		$this->assertSame($expected, $data);
 	}
 
 	/**
@@ -136,7 +136,7 @@ class TicketsTest extends TestCase
 		# Для теста получаем текст первого сообщения.
 		$getOne = $response[0];
 		$data = $getOne->getMessageTest();
-		$this->assertEquals($expected, $data);
+		$this->assertSame($expected, $data);
 	}
 
 }

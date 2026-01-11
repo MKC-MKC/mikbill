@@ -26,98 +26,98 @@ class ServicesCreditActiveTest extends TestCase
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->isAvailable();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_2($expected = false): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->isActive();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_3($expected = 15.0): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getActivationCost();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_4($expected = 0): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getCreditPercent();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_5($expected = 3): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getType();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_6($expected = "руб"): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getCurrency();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_7($expected = 416.0): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getCreditSum();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_8($expected = true): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->canEarlyLoanRepayment();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_9($expected = 10): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getAvailableDays();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_10($expected = 21): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getCreditDayStart();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_11($expected = 24): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getCreditDayStop();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_12($expected = "21.05.2025"): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getDateStart()->format("d.m.Y");
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_13($expected = "24.05.2025"): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getDateStop()->format("d.m.Y");
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 	public function test_14($expected = 3): void
 	{
 		$response = self::$MikBiLL->cabinet->Services()->getCredit();
 		$data = $response->getActivationDays();
-		$this->assertEquals(expected: $expected, actual: $data);
+		$this->assertSame(expected: $expected, actual: $data);
 	}
 
 }

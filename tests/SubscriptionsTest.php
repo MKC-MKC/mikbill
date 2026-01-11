@@ -58,7 +58,7 @@ class SubscriptionsTest extends TestCase
 
 		# Проверяем для теста количество массивов в ответе.
 		$data = count($response);
-		$this->assertEquals($expected, $data, "Получено получено: `$data/$expected`.");
+		$this->assertSame($expected, $data, "Получено получено: `$data/$expected`.");
 	}
 
 	/**
@@ -75,7 +75,7 @@ class SubscriptionsTest extends TestCase
 		$status = self::$MikBiLL->cabinet->Subscriptions()->setSubscription(id: $id, activate: 1, service: $middleware);
 
 		# Проверяем, является ли ответ на подписку положительным.
-		$this->assertEquals($expected, $status);
+		$this->assertSame($expected, $status);
 	}
 
 	/**
@@ -102,7 +102,7 @@ class SubscriptionsTest extends TestCase
 
 		# Проверяем для теста количество массивов в ответе.
 		$data = count($mws);
-		$this->assertEquals($expected, $data, "Получено получено: `$data/$expected`.");
+		$this->assertSame($expected, $data, "Получено получено: `$data/$expected`.");
 	}
 
 }

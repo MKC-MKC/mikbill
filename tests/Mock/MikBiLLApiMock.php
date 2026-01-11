@@ -1,6 +1,6 @@
 <?php
 
-namespace Haikiri\MikBiLL\Tests\Mock;
+namespace Tests\Haikiri\MikBiLL\Mock;
 
 use Haikiri\MikBiLL\Response;
 use Haikiri\MikBiLL\Exception;

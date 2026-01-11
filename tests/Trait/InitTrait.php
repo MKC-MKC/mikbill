@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Haikiri\MikBiLL\Tests\Trait;
+namespace Tests\Haikiri\MikBiLL\Trait;
 
-use Haikiri\MikBiLL\Tests\Mock;
+use Tests\Haikiri\MikBiLL\Mock;
 
 trait InitTrait
 {

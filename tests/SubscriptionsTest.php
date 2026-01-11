@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Haikiri\MikBiLL\Tests;
+namespace Tests\Haikiri\MikBiLL;
 
-use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
+use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
 use PHPUnit\Framework\TestCase;
 
 /**

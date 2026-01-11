@@ -20,7 +20,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Haikiri\\MikBiLL\\Tests\\": "tests/"
+            "Tests\\Haikiri\\MikBiLL\\": "tests/"
         }
     },
     "minimum-stability": "stable",

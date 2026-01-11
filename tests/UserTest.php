@@ -1,9 +1,9 @@
 <?php /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace Haikiri\MikBiLL\Tests;
+namespace Tests\Haikiri\MikBiLL;
 
-use Haikiri\MikBiLL\Tests\Mock\MikBiLLApiMock as MikBiLLApi;
-use Haikiri\MikBiLL\Tests\Trait\InitTrait;
+use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
+use Tests\Haikiri\MikBiLL\Trait\InitTrait;
 use PHPUnit\Framework\TestCase;
 
 /**

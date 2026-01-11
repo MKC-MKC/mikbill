@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Haikiri\MikBiLL;
 
-use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
-use Haikiri\MikBiLL\Exception\BillApiException;
-use Haikiri\MikBiLL\Cabinet\Reports\Session;
-use Tests\Haikiri\MikBiLL\Trait\InitTrait;
-use PHPUnit\Framework\TestCase;
 use DateTime;
+use Haikiri\MikBiLL\Cabinet\Reports\Session;
+use Haikiri\MikBiLL\Exception\BillApiException;
+use PHPUnit\Framework\TestCase;
+use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
+use Tests\Haikiri\MikBiLL\Trait\InitTrait;
 
 /**
  * Тестирование получения информации о сессиях клиента.

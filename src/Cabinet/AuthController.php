@@ -3,8 +3,8 @@
 namespace Haikiri\MikBiLL\Cabinet;
 
 use Haikiri\MikBiLL\Exception;
-use Haikiri\MikBiLL\Response;
 use Haikiri\MikBiLL\MikBiLLApiInterface;
+use Haikiri\MikBiLL\Response;
 
 class AuthController
 {

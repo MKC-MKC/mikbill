@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Haikiri\MikBiLL;
 
-use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
 use PHPUnit\Framework\TestCase;
+use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
 
 /**
  * Тестирование получения конфигурации сервера.

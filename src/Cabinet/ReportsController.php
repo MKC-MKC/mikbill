@@ -3,8 +3,8 @@
 namespace Haikiri\MikBiLL\Cabinet;
 
 use DateTime;
-use Haikiri\MikBiLL\MikBiLLApiInterface;
 use Haikiri\MikBiLL\Exception\BillApiException;
+use Haikiri\MikBiLL\MikBiLLApiInterface;
 
 class ReportsController
 {

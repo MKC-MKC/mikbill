@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Haikiri\MikBiLL;
 
+use PHPUnit\Framework\TestCase;
 use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
 use Tests\Haikiri\MikBiLL\Trait\InitTrait;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Тестирование авторизации клиента через Логин и Пароль.

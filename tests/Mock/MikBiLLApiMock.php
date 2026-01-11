@@ -2,9 +2,9 @@
 
 namespace Tests\Haikiri\MikBiLL\Mock;
 
-use Haikiri\MikBiLL\Response;
 use Haikiri\MikBiLL\Exception;
 use Haikiri\MikBiLL\MikBiLLApi;
+use Haikiri\MikBiLL\Response;
 
 class MikBiLLApiMock extends MikBiLLApi
 {

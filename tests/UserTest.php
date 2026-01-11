@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Тестирование системы возврата данных авторизованного клиента.
+ * @in-search - Данные доступные в методе поиска.
  * @cabinet - Клиентские запросы требуют токен клиента.
  */
 class UserTest extends TestCase

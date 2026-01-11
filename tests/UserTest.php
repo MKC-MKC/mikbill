@@ -150,8 +150,6 @@ class UserTest extends TestCase
 
 		$dateObj = $data->getEndDate();
 		$this->assertSame("16.05.2022", $dateObj->format("d.m.Y"));
-
-		$dateObj = $data->getEndDate();
 		$this->assertSame("16-05-2022", $dateObj->format("d-m-Y"));
 	}
 

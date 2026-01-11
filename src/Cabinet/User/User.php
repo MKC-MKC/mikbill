@@ -2,7 +2,9 @@
 
 namespace Haikiri\MikBiLL\Cabinet\User;
 
+use DateTime;
 use Haikiri\MikBiLL\ResponseWrapper;
+use Throwable;
 
 class User extends ResponseWrapper
 {
@@ -167,6 +169,29 @@ class User extends ResponseWrapper
 	public function getDaysLeft(): int
 	{
 		return (int)$this->getData("days_left");
+	}
+
+	/**
+	 * Метод возвращает объект времени - дату окончания услуги интернета.
+	 * @return DateTime|null
+	 */
+	public function getEndDate(): DateTime|null
+	{
+		try {
+			$date = $this->getDateItog();
+			return $date ? new DateTime($date) : null;
+		} catch (Throwable) {
+			return null;
+		}
+	}
+
+	/**
+	 * Метод необработанное значение - дату окончания услуги интернета.
+	 * @return string|null
+	 */
+	public function getDateItog(): string|null
+	{
+		return $this->getData("date_itog");
 	}
 
 }

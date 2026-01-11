@@ -515,4 +515,18 @@ class UserTest extends TestCase
 		$this->assertSame($expected, $data);
 	}
 
+	public function test_73(): void
+	{
+		$data = self::$MikBiLL->cabinet->User()->getUser();
+
+		$date = $data->getDateItog();
+		$this->assertSame("16-05-2022", $date);
+
+		$dateObj = $data->getEndDate();
+		$this->assertSame("16.05.2022", $dateObj->format("d.m.Y"));
+
+		$dateObj = $data->getEndDate();
+		$this->assertSame("16-05-2022", $dateObj->format("d-m-Y"));
+	}
+
 }

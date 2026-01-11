@@ -508,4 +508,11 @@ class UserTest extends TestCase
 		$this->assertSame($expected, $data);
 	}
 
+	public function test_72($expected = 110): void
+	{
+		$data = self::$MikBiLL->cabinet->User()->getUser();
+		$data = $data->getDaysLeft();
+		$this->assertSame($expected, $data);
+	}
+
 }

@@ -160,4 +160,13 @@ class User extends ResponseWrapper
 		return $this->getData($sub !== null ? "fee.$sub" : "fee");
 	}
 
+	/**
+	 * Метод возвращает количество оставшихся дней до отключения услуги интернет.
+	 * @return int
+	 */
+	public function getDaysLeft(): int
+	{
+		return (int)$this->getData("days_left");
+	}
+
 }

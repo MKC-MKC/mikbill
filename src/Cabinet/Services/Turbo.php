@@ -6,6 +6,7 @@ namespace Haikiri\MikBiLL\Cabinet\Services;
 
 use DateTime;
 use Haikiri\MikBiLL\ResponseWrapper;
+use Throwable;
 
 class Turbo extends ResponseWrapper
 {
@@ -79,8 +80,12 @@ class Turbo extends ResponseWrapper
 	 */
 	public function getStopTime(): DateTime|null
 	{
-		$date = DateTime::createFromFormat("Y-m-d H:i:s", $this->getData("info.stop_time", ""));
-		return $date !== false ? $date : null;
+		try {
+			$date = $this->getData("info.stop_time", "");
+			return $date ? new DateTime($date) : null;
+		} catch (Throwable) {
+			return null;
+		}
 	}
 
 	/**

@@ -13,7 +13,6 @@ class Session extends ResponseWrapper
 	{
 		try {
 			$date = $this->getData("start_time");
-			if (empty($date)) return null;
 			return new DateTime($date);
 		} catch (Exception) {
 			return null;
@@ -24,7 +23,6 @@ class Session extends ResponseWrapper
 	{
 		try {
 			$date = $this->getData("stop_time");
-			if (empty($date)) return null;
 			return new DateTime($date);
 		} catch (Exception) {
 			return null;

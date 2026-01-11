@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Haikiri\MikBiLL\Cabinet\User;
 
 use DateTime;
+use Throwable;
 
 /**
  * @in-search Данные методы доступны в поиске Billing.
@@ -176,8 +177,12 @@ trait UserTrait
 	 */
 	public function getUserBirthday(): DateTime|null
 	{
-		$date = DateTime::createFromFormat("Y-m-d", $this->getData("date_birth", ""));
-		return $date !== false ? $date : null;
+		try {
+			$date = $this->getData("date_birth", "");
+			return $date ? new DateTime($date) : null;
+		} catch (Throwable) {
+			return null;
+		}
 	}
 
 	/**
@@ -253,8 +258,12 @@ trait UserTrait
 	 */
 	public function getUserAddDate(): DateTime|null
 	{
-		$date = DateTime::createFromFormat("Y-m-d", $this->getData("add_date", ""));
-		return $date !== false ? $date : null;
+		try {
+			$date = $this->getData("add_date", "");
+			return $date ? new DateTime($date) : null;
+		} catch (Throwable) {
+			return null;
+		}
 	}
 
 	/**
@@ -264,8 +273,12 @@ trait UserTrait
 	 */
 	public function getUserDelDate(): DateTime|null
 	{
-		$date = DateTime::createFromFormat("Y-m-d H:i:s", $this->getData("del_date", ""));
-		return $date !== false ? $date : null;
+		try {
+			$date = $this->getData("del_date", "");
+			return $date ? new DateTime($date) : null;
+		} catch (Throwable) {
+			return null;
+		}
 	}
 
 	/**
@@ -275,8 +288,12 @@ trait UserTrait
 	 */
 	public function getUserLastConnectionDate(): DateTime|null
 	{
-		$date = DateTime::createFromFormat("Y-m-d H:i:s", $this->getData("last_connection", ""));
-		return $date !== false ? $date : null;
+		try {
+			$date = $this->getData("last_connection", "");
+			return $date ? new DateTime($date) : null;
+		} catch (Throwable) {
+			return null;
+		}
 	}
 
 	/**
@@ -403,10 +420,11 @@ trait UserTrait
 	public function getUserRouterAddDate(): DateTime|null
 	{
 		$data = $this->getData("router_add_date", "");
-		$date = DateTime::createFromFormat("d/m/Y", $data);
 		if (!$data || $data === "00/00/0000") return null; # Вы ещё те кадры, знайте это, зайки ❤️
 
-		# Парс ошибок...
+		$date = DateTime::createFromFormat("d/m/Y", $data);
+		if ($date === false) return null;
+
 		$err = DateTime::getLastErrors();
 		return $err["warning_count"] > 0 || $err["error_count"] > 0 ? null : $date;
 	}

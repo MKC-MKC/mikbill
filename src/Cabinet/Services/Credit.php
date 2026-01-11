@@ -6,6 +6,7 @@ namespace Haikiri\MikBiLL\Cabinet\Services;
 
 use DateTime;
 use Haikiri\MikBiLL\ResponseWrapper;
+use Throwable;
 
 class Credit extends ResponseWrapper
 {
@@ -124,8 +125,12 @@ class Credit extends ResponseWrapper
 	 */
 	public function getDateStart(): DateTime|null
 	{
-		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_start", ""));
-		return $date !== false ? $date : null;
+		try {
+			$date = $this->getData("info.date_start", "");
+			return $date ? new DateTime($date) : null;
+		} catch (Throwable) {
+			return null;
+		}
 	}
 
 	/**
@@ -134,8 +139,12 @@ class Credit extends ResponseWrapper
 	 */
 	public function getDateStop(): DateTime|null
 	{
-		$date = DateTime::createFromFormat("Y-m-d", $this->getData("info.date_stop", ""));
-		return $date !== false ? $date : null;
+		try {
+			$date = $this->getData("info.date_stop", "");
+			return $date ? new DateTime($date) : null;
+		} catch (Throwable) {
+			return null;
+		}
 	}
 
 	/**

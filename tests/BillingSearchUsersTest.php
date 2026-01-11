@@ -40,7 +40,7 @@ class BillingSearchUsersTest extends TestCase
 		if (self::$debug) {
 			echo "<h3>Список удалённых клиентов:</h3>";
 			foreach ($users as $user) {
-				echo "<h2>[uid: {$user->getUserId()}] – {$user->getUserFirstName()} {$user->getUserMiddleName()}</h2>";
+				echo "<h2>[uid: {$user->getUserId()}] – {$user->getUserFirstName()} {$user->getUserMiddleName()}</h2>\n";
 			}
 		}
 

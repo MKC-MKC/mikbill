@@ -103,20 +103,20 @@ class Credit extends ResponseWrapper
 
 	/**
 	 * Метод возвращает число 'G' активации кредита.
-	 * @return string
+	 * @return int
 	 */
-	public function getCreditDayStart(): string
+	public function getCreditDayStart(): int
 	{
-		return (string)$this->getData("info.start_credit_day");
+		return (int)$this->getData("info.start_credit_day");
 	}
 
 	/**
 	 * Метод возвращает число 'G' отключения кредита.
-	 * @return string
+	 * @return int
 	 */
-	public function getCreditDayStop(): string
+	public function getCreditDayStop(): int
 	{
-		return (string)$this->getData("info.stop_credit_day");
+		return (int)$this->getData("info.stop_credit_day");
 	}
 
 	/**

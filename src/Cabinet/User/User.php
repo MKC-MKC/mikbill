@@ -194,4 +194,18 @@ class User extends ResponseWrapper
 		return $this->getData("date_itog");
 	}
 
+	/**
+	 * Метод возвращает объект времени - когда был активирован кредит.
+	 * @return DateTime|null
+	 */
+	public function getCreditActivationDate(): DateTime|null
+	{
+		try {
+			$value = $this->getData("do_credit_vremen_start_date");
+			return empty($value) ? null : new DateTime($value);
+		} catch (Throwable) {
+			return null;
+		}
+	}
+
 }

@@ -21,6 +21,19 @@ class UserTest extends TestCase
 	private static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
 	private static string $dataFile = __DIR__ . "/Responses/valid/Cabinet/user/user.get.json";
 
+	private static function processData(array $array): void
+	{
+		# Инициализация MikBiLL SDK.
+		self::$MikBiLL = new MikBiLLApi(
+			url: "http://api.mikbill.local",
+			key: self::$signKey,
+			mockedData: json_encode($array),
+		);
+
+		# Записываем токен пользователя.
+		self::$MikBiLL->setUserToken(self::$token);
+	}
+
 	/** @in-search */
 	public function test_34(): void
 	{
@@ -155,6 +168,38 @@ class UserTest extends TestCase
 		$dateFormat = $dateObj->format("d.m.Y");
 		$result = "Оплачено до: $dateFormat";
 		self::assertSame(expected: "Оплачено до: 16.05.2022", actual: $result);
+	}
+
+	public function test_74(): void
+	{
+		# Тестируем отсутствие кредита.
+		$data = self::$MikBiLL->cabinet->User()->getUser();
+
+		# Ожидаем NULL, так как значение кредита установлено как "0".
+		self::assertNull($data->getCreditActivationDate());
+
+		# Подготавливаем custom-response с положительным ответом Billing Api.
+		$array = [
+			"success" => true,
+			"data" => [],
+		];
+
+		# Проверяем валидную дату, после активации кредита.
+		$array["data"]["do_credit_vremen_start_date"] = "2025/12/31 10:11:12";
+
+		# Мокаем данные.
+		self::processData($array);
+		$data = self::$MikBiLL->cabinet->User()->getUser();
+
+		# Проверяем объект времени.
+		$date = $data->getCreditActivationDate();
+		$this->assertSame("31.12.2025", $date->format("d.m.Y"));
+		$this->assertSame("31-12-2025", $date->format("d-m-Y"));
+
+		# Финальное тестирование со сторокой.
+		$dateFormat = $date->format("d.m.Y");
+		$result = "Кредит был активирован: $dateFormat";
+		self::assertSame(expected: "Кредит был активирован: 31.12.2025", actual: $result);
 	}
 
 }

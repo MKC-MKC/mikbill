@@ -8,7 +8,7 @@ use DateTime;
 use Haikiri\MikBiLL\ResponseWrapper;
 use Throwable;
 
-class Freeze extends ResponseWrapper
+class Freeze extends ResponseWrapper implements ServicesInterface
 {
 
 	/**

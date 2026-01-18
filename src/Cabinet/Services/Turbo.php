@@ -8,7 +8,7 @@ use DateTime;
 use Haikiri\MikBiLL\ResponseWrapper;
 use Throwable;
 
-class Turbo extends ResponseWrapper
+class Turbo extends ResponseWrapper implements ServicesInterface
 {
 
 	/**

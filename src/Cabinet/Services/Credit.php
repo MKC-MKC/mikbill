@@ -8,7 +8,7 @@ use DateTime;
 use Haikiri\MikBiLL\ResponseWrapper;
 use Throwable;
 
-class Credit extends ResponseWrapper
+class Credit extends ResponseWrapper implements ServicesInterface
 {
 
 	/**

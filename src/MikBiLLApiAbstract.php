@@ -66,6 +66,10 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
 		$result = json_decode($json, $asArray, $depth, $flags);
 		if (self::$debug) error_log(PHP_EOL . "**********" . PHP_EOL . var_export($result, true));
 		if (json_last_error() !== JSON_ERROR_NONE) throw new LogicException(json_last_error_msg(), json_last_error());
+			if (!is_array($result) && !is_object($result)) {
+				$type = get_debug_type($result);
+				throw new LogicException("Invalid response from the server: JSON must be object or array, got $type");
+			}
 		return $result;
 	}
 

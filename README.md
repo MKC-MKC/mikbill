@@ -81,7 +81,7 @@ composer require haikiri/mikbill
         - [Изменить пароль](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L73)
         - [Изменить тариф](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/UserController.php#L101)
         - Contacts [P]
-    - Register Hotpost [NP]
+    - Register Hotspot [NP]
     - Payments [MD]
         - [Voucher](https://github.com/MKC-MKC/mikbill/blob/main/src/Cabinet/PaymentsController.php#L26)
         - Прочие методы... [NP]

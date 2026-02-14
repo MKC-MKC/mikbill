@@ -7,6 +7,7 @@ namespace Haikiri\MikBiLL;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Haikiri\MikBiLL\Exception\BillApiException;
+use Throwable;
 
 class MikBiLLApi extends MikBiLLApiAbstract
 {
@@ -38,7 +39,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 		$options = [];
 
 		if ($sign) {
-			$params["salt"] = uniqid();
+			$params["salt"] = self::generateSalt();
 			$params["sign"] = hash_hmac("sha512", $params["salt"], $this->key);
 		} else {
 			if ($token === "") throw new Exception\UnauthorizedException("The token was not found: The storage with token is empty.", -999);
@@ -102,4 +103,12 @@ class MikBiLLApi extends MikBiLLApiAbstract
 		};
 	}
 
+	protected static function generateSalt(): string
+	{
+		try {
+			return bin2hex(random_bytes(16));
+		} catch (Throwable) {
+			return uniqid("", true);
+		}
+	}
 }

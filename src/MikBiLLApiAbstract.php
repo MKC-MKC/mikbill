@@ -9,7 +9,7 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
 	protected string $url;
 	protected string $key;
 	protected string|null $token = null;
-	public static bool $debug;
+	public static bool $debug = false;
 	public Billing $billing;
 	public Cabinet $cabinet;
 

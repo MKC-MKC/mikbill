@@ -80,7 +80,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 		if (($response["success"] ?? false) === true) return;
 
 		$code = (int)($response["code"] ?? $response["error"] ?? -1);
-		$message = $response["message"] ?? "Unknown error";
+		$message = (string)($response["message"] ?? $response["errortext"] ?? "Unknown error");
 
 		match ($code) {
 			-422 => throw new Exception\RequiredParamException(message: $message, code: $code),

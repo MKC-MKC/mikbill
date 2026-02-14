@@ -53,8 +53,8 @@ class Response
 
 	public function getToken(): string|null
 	{
-		if (!isset($this->data["token"])) return null;
-		return $this->data["token"];
+		$token = is_array($this->data) ? ($this->data["token"] ?? null) : ($this->data->token ?? null);
+		return is_scalar($token) ? (string)$token : null;
 	}
 
 }

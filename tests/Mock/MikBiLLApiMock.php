@@ -8,7 +8,7 @@ use Haikiri\MikBiLL\Response;
 
 class MikBiLLApiMock extends MikBiLLApi
 {
-	private static ?string $mockedData;
+	private ?string $mockedData;
 	private string $receivedHmacKey;
 	private const EXPECTED_SALT = "mockedSignKey";
 	private const EXPECTED_TOKEN = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
@@ -16,14 +16,14 @@ class MikBiLLApiMock extends MikBiLLApi
 	public function __construct(string $url, string $key, mixed $mockedData = null)
 	{
 		parent::__construct($url, $key);
-		self::$mockedData = $mockedData;
+		$this->mockedData = is_string($mockedData) ? $mockedData : null;
 		$this->receivedHmacKey = $key;
 	}
 
 	public function sendRequest($uri, $method = "POST", $params = [], $sign = false, $token = null): Response
 	{
 		# По умолчанию готовим переданный ответ.
-		$response = self::$mockedData;
+		$response = $this->mockedData ?? "";
 
 		# Подпись запроса.
 		if ($sign) {

@@ -79,7 +79,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 	{
 		if (($response["success"] ?? false) === true) return;
 
-		$code = (int)($response["code"] ?? -1);
+		$code = (int)($response["code"] ?? $response["error"] ?? -1);
 		$message = $response["message"] ?? "Unknown error";
 
 		match ($code) {

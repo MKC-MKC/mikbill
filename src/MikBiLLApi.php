@@ -43,7 +43,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 			$params["sign"] = hash_hmac("sha512", $params["salt"], $this->key);
 		} else {
 			if ($token === "") throw new Exception\UnauthorizedException("The token was not found: The storage with token is empty.", -999);
-			$headers["Authorization"] = $token;
+			if ($token !== null) $headers["Authorization"] = (string)$token;
 		}
 
 		$options["headers"] = $headers;

@@ -35,7 +35,7 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
 	 */
 	public function setUserToken($token): static
 	{
-		$this->token = $token;
+		$this->token = $token === null ? null : (string)$token;
 
 		return $this;
 	}
@@ -47,7 +47,7 @@ abstract class MikBiLLApiAbstract implements MikBiLLApiInterface
 	 */
 	public function getUserToken(): string
 	{
-		return (string)$this->token ?? "";
+		return $this->token ?? "";
 	}
 
 	/**

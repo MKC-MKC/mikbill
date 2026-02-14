@@ -28,7 +28,7 @@ class MikBiLLApiMock extends MikBiLLApi
 		# Подпись запроса.
 		if ($sign) {
 			# Генерация ключа HMAC.
-			$salt = uniqid();
+			$salt = self::generateSalt();
 			$sign = hash_hmac("sha512", $salt, self::$received_key);
 
 			if (self::$debug) {

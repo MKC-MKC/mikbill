@@ -48,7 +48,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 
 		$options["headers"] = $headers;
 
-		if (strtoupper($method) == "POST") {
+		if (strtoupper($method) === "POST") {
 			$options["form_params"] = $params;
 		} elseif (!empty($params)) {
 			$options["query"] = $params;

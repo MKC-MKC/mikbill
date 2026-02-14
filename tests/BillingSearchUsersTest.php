@@ -1,437 +1,116 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
 
 declare(strict_types=1);
 
 namespace Tests\Haikiri\MikBiLL;
 
+use Haikiri\MikBiLL\Exception\BillApiException;
 use PHPUnit\Framework\TestCase;
-use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
-use Tests\Haikiri\MikBiLL\Trait\InitTrait;
+use Tests\Haikiri\MikBiLL\Mock\CreateApi;
 
 /**
  * Тестирование поиска клиента и обработки его данных.
  * @billing - Административные запросы требуют подпись.
  */
-class BillingSearchUsersTest extends TestCase
+final class BillingSearchUsersTest extends TestCase
 {
-	use InitTrait;
+	use CreateApi;
 
-	private static string $expected_test_34 = "91";
-	private static string $expected_test_55 = "Мадрид Тележкина 30/12";
-
-	private static MikBiLLApi $MikBiLL;
-	private static bool $debug = false;
-	private static string $signKey = "mockedSignKey";
-	private static ?string $token = "not-expected";
+	protected static string $signKey = "mockedSignKey";
+	protected static ?string $token = "not-expected";
 	private static string $dataFile = __DIR__ . "/Responses/valid/Billing/Users/search.post.json";
 
 	/**
 	 * Поиск всех активных клиентов (state = 1).
-	 *
+	 * @throws BillApiException
 	 * @in-search
-	 * @noinspection PhpRedundantOptionalArgumentInspection
 	 */
-	public function test_search($expected = 1)
+	public function test_search(): void
 	{
+		# Инициализация SDK.
+		$MikBiLL = self::fromFile(self::$dataFile);
+
 		# Выполняем запрос в биллинг.
-		$users = self::$MikBiLL->billing->Users()->searchUser(key: "state", value: $expected, operator: "=");
+		$users = $MikBiLL->billing->Users()->searchUser(key: "state", value: 1, operator: "=");
 
-		# Можете посмотреть на массив, если включен debug.
-		if (self::$debug) {
-			echo "<h3>Список удалённых клиентов:</h3>";
-			foreach ($users as $user) {
-				echo "<h2>[uid: {$user->getUserId()}] – {$user->getUserFirstName()} {$user->getUserMiddleName()}</h2>\n";
-			}
+		self::assertNotEmpty($users);
+		self::assertSame(1, $users[0]->getUserState());
+	}
+
+	/**
+	 * @throws BillApiException
+	 * @noinspection SpellCheckingInspection
+	 */
+	public function testSearchResultPayloadIsMappedCorrectly(): void
+	{
+		# Инициализация SDK.
+		$MikBiLL = self::fromFile(self::$dataFile);
+
+		# Выполняем запрос в биллинг.
+		$users = $MikBiLL->billing->Users()->searchUser(value: "uid_клиента");
+		self::assertNotEmpty($users);
+
+		# Сверяем первый объект с ожидаемыми значениями.
+		$first = $users[0];
+		$cases = [
+			"getUserId" => [1639, fn() => $first->getUserId()],
+			"getUserGid" => [2, fn() => $first->getUserGid()],
+			"getUserDeletedId" => [0, fn() => $first->getUserDeletedId()],
+			"getUserLogin" => ["username", fn() => $first->getUserLogin()],
+			"getUserPassword" => ["userpass", fn() => $first->getUserPassword()],
+			"getUserDogovor" => ["1232", fn() => $first->getUserDogovor()],
+			"getUserNotes" => ["drhу", fn() => $first->getUserNotes()],
+			"getUserDeposit" => [375.82, fn() => $first->getUserDeposit()],
+			"getUserTotalMoney" => [0.0, fn() => $first->getUserTotalMoney()],
+			"getUserState" => [1, fn() => $first->getUserState()],
+			"isUserBlocked" => [false, fn() => $first->isUserBlocked()],
+			"isUserActivated" => [true, fn() => $first->isUserActivated()],
+			"fioFromArray" => ["Иванько Петр Петрович", fn() => $first->getAsArray()["fio"]],
+			"getUserFirstName" => ["Петр", fn() => $first->getUserFirstName()],
+			"getUserLastName" => ["Иванько", fn() => $first->getUserLastName()],
+			"getUserMiddleName" => ["Петрович", fn() => $first->getUserMiddleName()],
+			"getUserBirthday" => ["11.02.2020", fn() => $first->getUserBirthday()?->format("d.m.Y")],
+			"isUserBirthdayDo" => [true, fn() => $first->isUserBirthdayDo()],
+			"getUserSpeedRate" => [5120, fn() => $first->getUserSpeedRate()],
+			"getUserSpeedBurst" => [5120, fn() => $first->getUserSpeedBurst()],
+			"getUserEmail" => ["info@wi-fi-point.com", fn() => $first->getUserEmail()],
+			"getUserPhone" => ["", fn() => $first->getUserPhone()],
+			"getUserPhoneSms" => ["380934708280", fn() => $first->getUserPhoneSms()],
+			"getUserPhoneMobile" => ["380934708280", fn() => $first->getUserPhoneMobile()],
+			"getUserAddDate" => ["19.07.2013", fn() => $first->getUserAddDate()?->format("d.m.Y")],
+			"getUserDelDate" => [null, fn() => $first->getUserDelDate()?->format("d.m.Y")],
+			"getUserLastConnectionDate" => ["20.05.2025 07:56:17", fn() => $first->getUserLastConnectionDate()?->format("d.m.Y H:i:s")],
+			"getUserInn" => ["3251006556", fn() => $first->getUserInn()],
+			"getUserPassportSeries" => ["_СЕРИЯ_", fn() => $first->getUserPassportSeries()],
+			"getUserPassportRegistration" => ["ЕДРИТ, г. Мадрид, ул. Тележкина, 30/12", fn() => $first->getUserPassportRegistration()],
+			"getUserPassportVoenkomat" => ["", fn() => $first->getUserPassportVoenkomat()],
+			"getUserPassportAuthority" => ["_ГДЕ И КОГДА_", fn() => $first->getUserPassportAuthority()],
+			"getUserSwitchPort" => [4294967295, fn() => $first->getUserSwitchPort()],
+			"getUserSector" => ["91", fn() => $first->getUserSector()],
+			"isUserUseRouter" => [false, fn() => $first->isUserUseRouter()],
+			"getUserRouterModel" => ["TP-Link Corporat", fn() => $first->getUserRouterModel()],
+			"getUserRouterSsid" => ["", fn() => $first->getUserRouterSsid()],
+			"getUserRouterLogin" => ["", fn() => $first->getUserRouterLogin()],
+			"getUserRouterPassword" => ["", fn() => $first->getUserRouterPassword()],
+			"getUserRouterAddDate" => [null, fn() => $first->getUserRouterAddDate()?->format("d.m.Y")],
+			"getUserRouterPort" => ["8080", fn() => $first->getUserRouterPort()],
+			"getUserRouterSerialNumber" => ["", fn() => $first->getUserRouterSerialNumber()],
+			"isUserRouterAcquiredFromUs" => [false, fn() => $first->isUserRouterAcquiredFromUs()],
+			"isUseDualRouter" => [false, fn() => $first->isUseDualRouter()],
+			"getUserCredit" => [4030, fn() => $first->getUserCredit()],
+			"getUserCreditPercent" => [0, fn() => $first->getUserCreditPercent()],
+			"isCreditUnlimited" => [false, fn() => $first->isCreditUnlimited()],
+			"getUserRating" => [0, fn() => $first->getUserRating()],
+			"getUserFramedIp" => ["172.16.0.4", fn() => $first->getUserFramedIp()],
+			"getUserFramedMask" => ["255.255.255.255", fn() => $first->getUserFramedMask()],
+			"getUserLocalIp" => ["10.0.0.4", fn() => $first->getUserLocalIp()],
+			"getUserLocalMac" => ["AA:BB:CC:11:22:33", fn() => $first->getUserLocalMac()],
+			"getUserAddress" => ["Мадрид Тележкина 30/12", fn() => $first->getUserAddress()],
+		];
+
+		foreach ($cases as $label => [$expected, $actual]) {
+			self::assertSame($expected, $actual(), $label);
 		}
-
-		# Проверяем для теста одного пользователя на соответствие state = 1.
-		$user = $users[0];
-		$this->assertSame($expected, $user->getUserState());
-	}
-
-	/** @in-search */
-	public function test_1($expected = 1639): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserId());
-	}
-
-	/** @in-search */
-	public function test_2($expected = 2): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserGid());
-	}
-
-	/** @in-search */
-	public function test_3($expected = 0): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserDeletedId());
-	}
-
-	/** @in-search */
-	public function test_4($expected = "username"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserLogin());
-	}
-
-	/** @in-search */
-	public function test_5($expected = "userpass"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserPassword());
-	}
-
-	/** @in-search */
-	public function test_6($expected = "1232"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserDogovor());
-	}
-
-	/** @in-search */
-	public function test_7($expected = "drhу"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserNotes());
-	}
-
-	/** @in-search */
-	public function test_8($expected = 375.82): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserDeposit());
-	}
-
-	/** @in-search */
-	public function test_9($expected = 0.000000): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserTotalMoney());
-	}
-
-	/** @in-search */
-	public function test_10($expected = 1): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserState());
-	}
-
-	/** @in-search */
-	public function test_11($expected = false): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isUserBlocked());
-	}
-
-	/** @in-search */
-	public function test_12($expected = true): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isUserActivated());
-	}
-
-	/** @in-search */
-	public function test_13($expected = "Иванько Петр Петрович"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getAsArray()["fio"]); # Классический вариант извлечения.
-	}
-
-	/** @in-search */
-	public function test_14($expected = "Петр"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserFirstName());
-	}
-
-	/** @in-search */
-	public function test_15($expected = "Иванько"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserLastName());
-	}
-
-	/** @in-search */
-	public function test_16($expected = "Петрович"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserMiddleName());
-	}
-
-	/** @in-search */
-	public function test_17($expected = "11.02.2020"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserBirthday()?->format("d.m.Y"));
-	}
-
-	/** @in-search */
-	public function test_18($expected = true): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isUserBirthdayDo());
-	}
-
-	/** @in-search */
-	public function test_19($expected = 5120): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserSpeedRate());
-	}
-
-	/** @in-search */
-	public function test_20($expected = 5120): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserSpeedBurst());
-	}
-
-	/** @in-search */
-	public function test_21($expected = "info@wi-fi-point.com"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserEmail());
-	}
-
-	/** @in-search */
-	public function test_22($expected = ""): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserPhone());
-	}
-
-	/** @in-search */
-	public function test_23($expected = "380934708280"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserPhoneSms());
-	}
-
-	/** @in-search */
-	public function test_24($expected = "380934708280"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserPhoneMobile());
-	}
-
-	/** @in-search */
-	public function test_25($expected = "19.07.2013"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserAddDate()?->format("d.m.Y"));
-	}
-
-	/** @in-search */
-	public function test_26($expected = null): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserDelDate()?->format("d.m.Y"));
-	}
-
-	/** @in-search */
-	public function test_27($expected = "20.05.2025 07:56:17"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserLastConnectionDate()?->format("d.m.Y H:i:s"));
-	}
-
-	/** @in-search */
-	public function test_28($expected = "3251006556"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserInn());
-	}
-
-	/** @in-search */
-	public function test_29($expected = "_СЕРИЯ_"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserPassportSeries());
-	}
-
-	/** @in-search */
-	public function test_30($expected = "ЕДРИТ, г. Мадрид, ул. Тележкина, 30/12"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserPassportRegistration());
-	}
-
-	/** @in-search */
-	public function test_31($expected = ""): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserPassportVoenkomat());
-	}
-
-	/** @in-search */
-	public function test_32($expected = "_ГДЕ И КОГДА_"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserPassportAuthority());
-	}
-
-	/** @in-search */
-	public function test_33($expected = 4294967295): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserSwitchPort());
-	}
-
-	/** @in-search */
-	public function test_34(): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame(self::$expected_test_34, $data->getUserSector());
-	}
-
-	/** @in-search */
-	public function test_35($expected = false): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isUserUseRouter());
-	}
-
-	/** @in-search */
-	public function test_36($expected = "TP-Link Corporat"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserRouterModel());
-	}
-
-	/** @in-search */
-	public function test_37($expected = ""): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserRouterSsid());
-	}
-
-	/** @in-search */
-	public function test_38($expected = ""): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserRouterLogin());
-	}
-
-	/** @in-search */
-	public function test_39($expected = ""): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserRouterPassword());
-	}
-
-	/** @in-search */
-	public function test_40($expected = null): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserRouterAddDate()?->format("d.m.Y"));
-	}
-
-	/** @in-search */
-	public function test_41($expected = "8080"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserRouterPort());
-	}
-
-	/** @in-search */
-	public function test_42($expected = ""): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserRouterSerialNumber());
-	}
-
-	/** @in-search */
-	public function test_43($expected = false): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isUserRouterAcquiredFromUs());
-	}
-
-	/** @in-search */
-	public function test_44($expected = false): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isUseDualRouter());
-	}
-
-	/** @in-search */
-	public function test_45($expected = false): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isUseDualRouter());
-	}
-
-	/** @in-search */
-	public function test_46($expected = 4030): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserCredit());
-	}
-
-	/** @in-search */
-	public function test_47($expected = 0): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserCreditPercent());
-	}
-
-	/** @in-search */
-	public function test_48($expected = false): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isCreditUnlimited());
-	}
-
-	/** @in-search */
-	public function test_49($expected = false): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->isCreditUnlimited());
-	}
-
-	/** @in-search */
-	public function test_50($expected = 0): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserRating());
-	}
-
-	/** @in-search */
-	public function test_51($expected = "172.16.0.4"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserFramedIp());
-	}
-
-	/** @in-search */
-	public function test_52($expected = "255.255.255.255"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserFramedMask());
-	}
-
-	/** @in-search */
-	public function test_53($expected = "10.0.0.4"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserLocalIp());
-	}
-
-	/** @in-search */
-	public function test_54($expected = "AA:BB:CC:11:22:33"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserLocalMac());
-	}
-
-	/** @in-search */
-	public function test_55($expected = "Мадрид Тележкина 30/12"): void
-	{
-		$data = self::$MikBiLL->billing->Users()->searchUser(value: "uid_клиента")[0];
-		$this->assertSame($expected, $data->getUserAddress());
 	}
 
 }

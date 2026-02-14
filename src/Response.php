@@ -21,7 +21,7 @@ class Response
 			success: (bool)($response["success"] ?? false),
 			code: (int)($response["code"] ?? $response["error"] ?? -1),
 			message: (string)($response["message"] ?? $response["errortext"] ?? "N/A"),
-			data: is_array($response["data"] ?? null) ? $response["data"] : null,
+			data: $response["data"] ?? null,
 			raw: $response,
 		);
 	}
@@ -53,8 +53,8 @@ class Response
 
 	public function getToken(): string|null
 	{
-		if (!isset($this->data["token"])) return null;
-		return $this->data["token"];
+		$token = is_array($this->data) ? ($this->data["token"] ?? null) : ($this->data->token ?? null);
+		return is_scalar($token) ? (string)$token : null;
 	}
 
 }

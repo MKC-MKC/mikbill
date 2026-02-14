@@ -1,205 +1,120 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Haikiri\MikBiLL;
 
+use Haikiri\MikBiLL\Exception\BillApiException;
 use PHPUnit\Framework\TestCase;
-use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
-use Tests\Haikiri\MikBiLL\Trait\InitTrait;
+use Tests\Haikiri\MikBiLL\Mock\CreateApi;
+use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock;
 
-/**
- * Тестирование системы возврата данных авторизованного клиента.
- * @in-search - Данные доступные в методе поиска. Но эти здесь - немного отличаются.
- * @cabinet - Клиентские запросы требуют токен клиента.
- */
-class UserTest extends TestCase
+final class UserTest extends TestCase
 {
-	use InitTrait;
+	use CreateApi;
 
-	private static MikBiLLApi $MikBiLL;
-	private static bool $debug = false;
-	private static string $signKey = "not-expected";
-	private static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
+	protected static string $signKey = "not-expected";
+	protected static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
 	private static string $dataFile = __DIR__ . "/Responses/valid/Cabinet/user/user.get.json";
 
-	private static function processData(array $array): void
+	/**
+	 * @return void
+	 * @throws BillApiException
+	 * @noinspection SpellCheckingInspection
+	 */
+	public function testMainUserPayloadFieldsAreMappedCorrectly(): void
 	{
-		# Инициализация MikBiLL SDK.
-		self::$MikBiLL = new MikBiLLApi(
-			url: "http://api.mikbill.local",
-			key: self::$signKey,
-			mockedData: json_encode($array),
-		);
+		# Инициализация SDK.
+		$MikBiLL = self::fromFile(self::$dataFile);
 
-		# Записываем токен пользователя.
-		self::$MikBiLL->setUserToken(self::$token);
-	}
+		# Выполняем запрос в биллинг.
+		$user = $MikBiLL->cabinet->User()->getUser();
+		self::assertNotEmpty($user);
 
-	/** @in-search */
-	public function test_34(): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame("1. Основной", $data->getUserSector());
-	}
-
-	/** @in-search */
-	public function test_55(): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame("Мадрид, Тележкина 30/12", $data->getUserAddress());
-	}
-
-	public function test_56($expected = "руб"): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getUserCurrency());
-	}
-
-	public function test_57($expected = "оптика_5Mb"): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getUserTariffName());
-	}
-
-	public function test_58($expected = 5): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getUserTariffSpeedIn());
-	}
-
-	public function test_59($expected = 5): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getUserTariffSpeedOut());
-	}
-
-	public function test_60($expected = 400.0): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getUserTariffFixedCost());
-	}
-
-	public function test_61($expected = 10.0): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getFixedCostOnPerDay());
-	}
-
-	public function test_62($expected = 4030.0): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getUserCharge());
-	}
-
-	public function test_63($expected = "оптика_5Mb"): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getPacket());
-	}
-
-	public function test_64($expected = "оптика_5Mb"): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getPacketName());
-	}
-
-	public function test_65($expected = 24): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getUserTurboTime());
-	}
-
-	public function test_66($expected = false): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->isUserTurboActivated());
-	}
-
-	public function test_67($expected = true): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->isUserTurboDo());
-	}
-
-	public function test_68($expected = 15.0): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$this->assertSame($expected, $data->getUserCreditCost());
-	}
-
-	public function test_69($expected = true): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$data = count($data->getUserPaymentMethods()) > 3;
-		$this->assertSame($expected, $data);
-	}
-
-	public function test_70($expected = true): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$data = count($data->getUserShow()) > 3;
-		$this->assertSame($expected, $data);
-	}
-
-	public function test_71($expected = true): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$data = count($data->getUserFee()) > 3;
-		$this->assertSame($expected, $data);
-	}
-
-	public function test_72($expected = 110): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-		$data = $data->getDaysLeft();
-		$this->assertSame($expected, $data);
-	}
-
-	public function test_73(): void
-	{
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-
-		$date = $data->getDateItog();
-		$this->assertSame("16-05-2022", $date);
-
-		$dateObj = $data->getEndDate();
-		$this->assertSame("16.05.2022", $dateObj->format("d.m.Y"));
-		$this->assertSame("16-05-2022", $dateObj->format("d-m-Y"));
-
-		$dateFormat = $dateObj->format("d.m.Y");
-		$result = "Оплачено до: $dateFormat";
-		self::assertSame(expected: "Оплачено до: 16.05.2022", actual: $result);
-	}
-
-	public function test_74(): void
-	{
-		# Тестируем отсутствие кредита.
-		$data = self::$MikBiLL->cabinet->User()->getUser();
-
-		# Ожидаем NULL, так как значение кредита установлено как "0".
-		self::assertNull($data->getCreditActivationDate());
-
-		# Подготавливаем custom-response с положительным ответом Billing Api.
-		$array = [
-			"success" => true,
-			"data" => [],
+		# Сверяем объект с ожидаемыми значениями.
+		$cases = [
+			"getUserSector" => ["1. Основной", fn() => $user->getUserSector()],
+			"getUserAddress" => ["Мадрид, Тележкина 30/12", fn() => $user->getUserAddress()],
+			"getUserCurrency" => ["руб", fn() => $user->getUserCurrency()],
+			"getUserTariffName" => ["оптика_5Mb", fn() => $user->getUserTariffName()],
+			"getUserTariffSpeedIn" => [5, fn() => $user->getUserTariffSpeedIn()],
+			"getUserTariffSpeedOut" => [5, fn() => $user->getUserTariffSpeedOut()],
+			"getUserTariffFixedCost" => [400.0, fn() => $user->getUserTariffFixedCost()],
+			"getFixedCostOnPerDay" => [10.0, fn() => $user->getFixedCostOnPerDay()],
+			"getUserCharge" => [4030.0, fn() => $user->getUserCharge()],
+			"getPacket" => ["оптика_5Mb", fn() => $user->getPacket()],
+			"getPacketName" => ["оптика_5Mb", fn() => $user->getPacketName()],
+			"getUserTurboTime" => [24, fn() => $user->getUserTurboTime()],
+			"isUserTurboActivated" => [false, fn() => $user->isUserTurboActivated()],
+			"isUserTurboDo" => [true, fn() => $user->isUserTurboDo()],
+			"getUserCreditCost" => [15.0, fn() => $user->getUserCreditCost()],
+			"getUserPaymentMethodsCount" => [true, fn() => count($user->getUserPaymentMethods()) > 3],
+			"getUserShowCount" => [true, fn() => count($user->getUserShow()) > 3],
+			"getUserFeeCount" => [true, fn() => count($user->getUserFee()) > 3],
+			"getDaysLeft" => [110, fn() => $user->getDaysLeft()],
 		];
 
-		# Проверяем валидную дату, после активации кредита.
-		$array["data"]["do_credit_vremen_start_date"] = "2025/12/31 10:11:12";
+		foreach ($cases as $label => [$expected, $resolver]) {
+			self::assertSame($expected, $resolver(), $label);
+		}
+	}
 
-		# Мокаем данные.
-		self::processData($array);
-		$data = self::$MikBiLL->cabinet->User()->getUser();
+	/**
+	 * Примеры работы со временем.
+	 * @return void
+	 * @throws BillApiException
+	 */
+	public function testDateFormatting(): void
+	{
+		$MikBiLL = self::fromFile(self::$dataFile);
+		$user = $MikBiLL->cabinet->User()->getUser();
 
-		# Проверяем объект времени.
-		$date = $data->getCreditActivationDate();
-		$this->assertSame("31.12.2025", $date->format("d.m.Y"));
-		$this->assertSame("31-12-2025", $date->format("d-m-Y"));
+		# Пример получения даты.
+		self::assertSame("16-05-2022", $user->getDateItog());
 
-		# Финальное тестирование со сторокой.
-		$dateFormat = $date->format("d.m.Y");
-		$result = "Кредит был активирован: $dateFormat";
-		self::assertSame(expected: "Кредит был активирован: 31.12.2025", actual: $result);
+		# Пример преобразования даты.
+		$endDate = $user->getEndDate();
+		self::assertSame("16.05.2022", $endDate->format("d.m.Y"));
+		self::assertSame("16-05-2022", $endDate->format("d-m-Y"));
+		self::assertSame("Оплачено до: 16.05.2022", "Оплачено до: " . $endDate->format("d.m.Y"));
+	}
+
+	/**
+	 * Проверяем валидность даты после активации кредита.
+	 * @return void
+	 * @throws BillApiException
+	 * @noinspection SpellCheckingInspection
+	 */
+	public function testCreditActivationDate(): void
+	{
+		# Имитируем получение ответа от API.
+		$json = json_encode([
+			"success" => true,
+			"data" => [
+				"do_credit_vremen_start_date" => "2025/12/31 10:11:12",
+			]
+		]);
+
+		# Инициализируем Биллинг.
+		$MikBiLL = new MikBiLLApiMock(
+			url: "http://api.mikbill.local",
+			key: self::$signKey,
+			mockedData: $json,
+		);
+
+		# Записываем токен.
+		$MikBiLL->setUserToken(self::$token);
+
+		##################################################
+
+		# Выполняем запрос в биллинг.
+		$user = $MikBiLL->cabinet->User()->getUser();
+		$date = $user->getCreditActivationDate();
+
+		# Пример манипуляции со временем.
+		self::assertSame("31.12.2025", $date?->format("d.m.Y"));
+		self::assertSame("31-12-2025", $date?->format("d-m-Y"));
+		self::assertSame("Кредит был активирован: 31.12.2025", "Кредит был активирован: " . $date?->format("d.m.Y"));
 	}
 
 }

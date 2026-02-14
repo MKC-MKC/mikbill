@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Haikiri\MikBiLL;
 
+use Haikiri\MikBiLL\Exception\BillApiException;
 use PHPUnit\Framework\TestCase;
-use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
-use Tests\Haikiri\MikBiLL\Trait\InitTrait;
+use Tests\Haikiri\MikBiLL\Mock\CreateApi;
 
 /**
  * Тестирование получения токена по UID клиента.
@@ -14,32 +14,34 @@ use Tests\Haikiri\MikBiLL\Trait\InitTrait;
  */
 class BillingGetTokenTest extends TestCase
 {
-	use InitTrait;
+	use CreateApi;
 
-	private static MikBiLLApi $MikBiLL;
-	private static bool $debug = false;
-	private static string $signKey = "mockedSignKey";
-	private static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
+	protected static string $signKey = "mockedSignKey";
+	protected static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
 	private static string $dataFile = __DIR__ . "/Responses/valid/Billing/Users/token.post.json";
 
 	/**
 	 * Получение токена.
+	 * @throws BillApiException
 	 */
 	public function test()
 	{
+		# Инициализация SDK.
+		$MikBiLL = self::fromFile(self::$dataFile);
+
 		# Валидация данных.
 		$uid = "Здесь должен быть UID клиента";
 
 		# Выполняем запрос в Billing.
-		$token = self::$MikBiLL->billing->Users()->getUserToken($uid);
+		$token = $MikBiLL->billing->Users()->getUserToken($uid);
 
 		# Обязательно записываем токен в stateless хранилище SDK для последующих запросов.
-		self::$MikBiLL->setUserToken(token: $token);
+		$MikBiLL->setUserToken(token: $token);
 
 		# Получаем токен из хранилища.
-		$data = self::$MikBiLL->getUserToken();
+		$data = $MikBiLL->getUserToken();
 
 		# Убеждаемся в корректности полученных данных.
-		$this->assertSame(expected: self::$token, actual: $data);
+		self::assertSame(expected: self::$token, actual: $data);
 	}
 }

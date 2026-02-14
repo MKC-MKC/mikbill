@@ -7,6 +7,7 @@ namespace Haikiri\MikBiLL;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Haikiri\MikBiLL\Exception\BillApiException;
+use Throwable;
 
 class MikBiLLApi extends MikBiLLApiAbstract
 {
@@ -38,16 +39,16 @@ class MikBiLLApi extends MikBiLLApiAbstract
 		$options = [];
 
 		if ($sign) {
-			$params["salt"] = uniqid();
+			$params["salt"] = self::generateSalt();
 			$params["sign"] = hash_hmac("sha512", $params["salt"], $this->key);
 		} else {
 			if ($token === "") throw new Exception\UnauthorizedException("The token was not found: The storage with token is empty.", -999);
-			$headers["Authorization"] = $token;
+			if ($token !== null) $headers["Authorization"] = (string)$token;
 		}
 
 		$options["headers"] = $headers;
 
-		if (strtoupper($method) == "POST") {
+		if (strtoupper($method) === "POST") {
 			$options["form_params"] = $params;
 		} elseif (!empty($params)) {
 			$options["query"] = $params;
@@ -74,12 +75,12 @@ class MikBiLLApi extends MikBiLLApiAbstract
 	 * @return void
 	 * @throws Exception\BillApiException
 	 */
-	protected static function billResponseValidate(array $response): void
+	public static function billResponseValidate(array $response): void
 	{
 		if (($response["success"] ?? false) === true) return;
 
-		$code = (int)($response["code"] ?? -1);
-		$message = $response["message"] ?? "Unknown error";
+		$code = (int)($response["code"] ?? $response["error"] ?? -1);
+		$message = (string)($response["message"] ?? $response["errortext"] ?? "Unknown error");
 
 		match ($code) {
 			-422 => throw new Exception\RequiredParamException(message: $message, code: $code),
@@ -102,4 +103,12 @@ class MikBiLLApi extends MikBiLLApiAbstract
 		};
 	}
 
+	protected static function generateSalt(): string
+	{
+		try {
+			return bin2hex(random_bytes(16));
+		} catch (Throwable) {
+			return uniqid("", true);
+		}
+	}
 }

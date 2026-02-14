@@ -37,12 +37,12 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9.6 || ^13.0"
+        "phpunit/phpunit": "^9.6"
     },
     "scripts": {
         "test": "vendor/bin/phpunit --colors=always tests",
         "test:main": "vendor/bin/phpunit --colors=always tests/Main",
         "test:debug": "vendor/bin/phpunit --colors=always --debug tests",
-        "test:dox": "vendor/bin/phpunit --colors=always --display-deprecations --testdox tests"
+        "test:dox": "vendor/bin/phpunit --colors=always --testdox tests"
     }
 }

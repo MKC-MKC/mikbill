@@ -4,71 +4,39 @@ declare(strict_types=1);
 
 namespace Tests\Haikiri\MikBiLL;
 
+use Haikiri\MikBiLL\Exception\BillApiException;
 use PHPUnit\Framework\TestCase;
-use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock as MikBiLLApi;
+use Tests\Haikiri\MikBiLL\Mock\CreateApi;
+use Tests\Haikiri\MikBiLL\Mock\MikBiLLApiMock;
 
-/**
- * Тестирование системы тикетов.
- * @cabinet - Клиентские запросы требуют токен клиента.
- */
-class TicketsTest extends TestCase
+final class TicketsTest extends TestCase
 {
-	private static MikBiLLApi $MikBiLL;
+	use CreateApi;
+
 	private static bool $debug = false;
-	private static string $signKey = "not-expected";
-	private static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
+	protected static string $signKey = "not-expected";
+	protected static ?string $token = "Bearer eyJ0eXAiOi.JKV1QiLCJ.hbGciOiJIUzI.1NiJ9";
 
-	public static function processData($path): void
+	/**
+	 * Получаем дату первого тикета.
+	 * @return void
+	 * @throws BillApiException
+	 */
+	public function testGetFirstTicketDate()
 	{
-		# Подготовка тестовых данных.
-		$json = file_get_contents($path);
+		$MikBiLL = self::fromFile(__DIR__ . "/Responses/valid/Cabinet/tickets/tickets.get.json");
+		$tickets = $MikBiLL->cabinet->Tickets()->getTickets();
 
-		# Инициализация MikBiLL SDK.
-		self::$MikBiLL = new MikBiLLApi(
-			url: "http://api.mikbill.local",
-			key: self::$signKey,
-			mockedData: $json,
-		);
-
-		# Записываем токен пользователя.
-		self::$MikBiLL->setUserToken(self::$token);
+		self::assertSame("14.11.2022 в 15:17:36", $tickets[0]->getDate()?->format("d.m.Y в H:i:s"));
 	}
 
 	/**
-	 * Клиент может увидеть список своих тикетов.
+	 * Создаём новый тикет.
+	 * @return void
+	 * @throws BillApiException
+	 * @noinspection SpellCheckingInspection
 	 */
-	public function test_view_tickets($expected = "14.11.2022 в 15:17:36")
-	{
-		# Имитируем получение ответа от API.
-		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/tickets/tickets.get.json");
-
-		# Выполняем запрос в биллинг.
-		$response = self::$MikBiLL->cabinet->Tickets()->getTickets();
-
-		# Можете посмотреть на массив, если включен debug.
-		if (self::$debug) {
-			foreach ($response as $ticket) {
-				$status = $ticket->isClosed() ? "📛 [закрыто]" : "⏳ [открыто]";
-				echo sprintf(
-					"<hr><h2><small>%s</small> Обращение: <code>[id:%s]</code> | открыто %s</h2>",
-					$status,
-					$ticket->getId(),
-					$ticket->getDate()?->format("d.m.Y в H:i:s") ?? ""
-				);
-				echo "<p>Первое сообщение:</p><code>{$ticket->getMessage()}</code>";
-			}
-		}
-
-		# Для теста, сравниваем время создания первого тикета.
-		$getOne = $response[0];
-		$data = $getOne->getDate()?->format("d.m.Y в H:i:s");
-		$this->assertSame($expected, $data);
-	}
-
-	/**
-	 * Клиент может создать новый тикет.
-	 */
-	public function test_new_ticket()
+	public function testNewTicket()
 	{
 		# Имитируем получение ответа от API.
 		$json = json_encode(
@@ -82,7 +50,7 @@ class TicketsTest extends TestCase
 		);
 
 		# Инициализируем Биллинг.
-		$MikBiLL = new MikBiLLApi(
+		$MikBiLL = new MikBiLLApiMock(
 			url: "http://api.mikbill.local",
 			key: self::$signKey,
 			mockedData: $json,
@@ -104,23 +72,25 @@ class TicketsTest extends TestCase
 		if (self::$debug) echo $message . str_repeat(PHP_EOL, 2);
 
 		# Сверяем результаты.
-		$this->assertEquals($expected, $data, $message);
+		self::assertEquals($expected, $response->getId());
 	}
 
 	/**
-	 * Клиент может видеть переписку с оператором.
+	 * Просмотр тикета.
+	 * @return void
+	 * @throws BillApiException
 	 */
-	public function test_view_ticket_messages($expected = "Сообщение с которым будет открыт тикет.")
+	public function testViewTicketMessage()
 	{
 		# Имитируем получение ответа от API.
-		self::processData(path: __DIR__ . "/Responses/valid/Cabinet/tickets/tickets.get-ID.json");
+		$MikBiLL = self::fromFile(__DIR__ . "/Responses/valid/Cabinet/tickets/tickets.get-ID.json");
 
 		# Выполняем запрос в биллинг.
-		$response = self::$MikBiLL->cabinet->Tickets()->getTicketsDialog("Тут ваш ID тикета");
+		$dialog = $MikBiLL->cabinet->Tickets()->getTicketsDialog("Тут ваш ID тикета");
 
 		# Можете посмотреть на массив, если включен debug.
 		if (self::$debug) {
-			foreach ($response as $ticket) {
+			foreach ($dialog as $ticket) {
 				$type = $ticket->isMessageFromClient() ? "клиент" : "оператор";
 
 				$name = $ticket->isMessageFromClient()
@@ -133,10 +103,7 @@ class TicketsTest extends TestCase
 			}
 		}
 
-		# Для теста получаем текст первого сообщения.
-		$getOne = $response[0];
-		$data = $getOne->getMessageTest();
-		$this->assertSame($expected, $data);
+		self::assertSame("Сообщение с которым будет открыт тикет.", $dialog[0]->getMessageTest());
 	}
 
 }

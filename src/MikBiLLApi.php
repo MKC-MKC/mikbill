@@ -75,7 +75,7 @@ class MikBiLLApi extends MikBiLLApiAbstract
 	 * @return void
 	 * @throws Exception\BillApiException
 	 */
-	protected static function billResponseValidate(array $response): void
+	public static function billResponseValidate(array $response): void
 	{
 		if (($response["success"] ?? false) === true) return;
 
